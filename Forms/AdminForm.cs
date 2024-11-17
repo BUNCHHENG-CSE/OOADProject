@@ -8,6 +8,24 @@ public partial class AdminForm : Form
         InitializeComponent();
         btnDashboard.Click += DoClickDashboard;
         btnStaff.Click += DoClickStaff;
+        btnProducts.Click += DoClickProducts;
+        btnCategory.Click += DoClickCategory;
+        btnUser.Click += DoClickUser;
+    }
+
+    private void DoClickUser(object? sender, EventArgs e)
+    {
+        AddControl(new UserForm());
+    }
+
+    private void DoClickCategory(object? sender, EventArgs e)
+    {
+        AddControl(new CategoryForm());
+    }
+
+    private void DoClickProducts(object? sender, EventArgs e)
+    {
+        AddControl(new ProductsForm());
     }
 
     private void DoClickStaff(object? sender, EventArgs e)

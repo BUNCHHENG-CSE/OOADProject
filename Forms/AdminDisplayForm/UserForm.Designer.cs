@@ -28,12 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "UserForm";
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserForm));
+            btnAddUser = new Button();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
+            // 
+            // btnAddUser
+            // 
+            btnAddUser.FlatStyle = FlatStyle.Flat;
+            btnAddUser.ForeColor = Color.FromArgb(243, 244, 243);
+            btnAddUser.Image = (Image)resources.GetObject("btnAddUser.Image");
+            btnAddUser.Location = new Point(36, 36);
+            btnAddUser.Name = "btnAddUser";
+            btnAddUser.Size = new Size(49, 46);
+            btnAddUser.TabIndex = 2;
+            btnAddUser.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(36, 107);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(1021, 150);
+            dataGridView1.TabIndex = 3;
+            // 
+            // UserForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1092, 802);
+            Controls.Add(dataGridView1);
+            Controls.Add(btnAddUser);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "UserForm";
+            Text = "UserForm";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button btnAddUser;
+        private DataGridView dataGridView1;
     }
 }

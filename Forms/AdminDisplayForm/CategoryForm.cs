@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OOADPRO.Forms.AdminDisplayForm
+namespace OOADPRO.Forms.AdminDisplayForm;
+
+public partial class CategoryForm : Form
 {
-    public partial class CategoryForm : Form
+    public CategoryForm()
     {
-        public CategoryForm()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        btnAddCategory.Click += DoClickAddCategory;
+    }
+
+    private void DoClickAddCategory(object? sender, EventArgs e)
+    {
+        new CategoryAddForm().Show();
     }
 }

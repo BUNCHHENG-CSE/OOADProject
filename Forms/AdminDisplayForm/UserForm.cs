@@ -15,6 +15,12 @@ namespace OOADPRO.Forms.AdminDisplayForm
         public UserForm()
         {
             InitializeComponent();
+            btnAddUser.Click += DoClickAddUser;
+        }
+
+        private void DoClickAddUser(object? sender, EventArgs e)
+        {
+            new UserAddForm().Show();
         }
     }
 }

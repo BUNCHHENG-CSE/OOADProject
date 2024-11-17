@@ -15,6 +15,12 @@ namespace OOADPRO.Forms.AdminDisplayForm
         public ProductsForm()
         {
             InitializeComponent();
+            btnAddProduct.Click += DoClickAddProducts;
+        }
+
+        private void DoClickAddProducts(object? sender, EventArgs e)
+        {
+           new ProductsAddForm().Show();
         }
     }
 }

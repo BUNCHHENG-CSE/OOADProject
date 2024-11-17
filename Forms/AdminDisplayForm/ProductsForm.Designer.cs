@@ -28,12 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "ProductsForm";
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductsForm));
+            btnAddProduct = new Button();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
+            // 
+            // btnAddProduct
+            // 
+            btnAddProduct.FlatStyle = FlatStyle.Flat;
+            btnAddProduct.ForeColor = Color.FromArgb(243, 244, 243);
+            btnAddProduct.Image = (Image)resources.GetObject("btnAddProduct.Image");
+            btnAddProduct.Location = new Point(36, 36);
+            btnAddProduct.Name = "btnAddProduct";
+            btnAddProduct.Size = new Size(49, 46);
+            btnAddProduct.TabIndex = 2;
+            btnAddProduct.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(36, 107);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(1021, 150);
+            dataGridView1.TabIndex = 3;
+            // 
+            // ProductsForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1076, 763);
+            Controls.Add(dataGridView1);
+            Controls.Add(btnAddProduct);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "ProductsForm";
+            Text = "ProductsForm";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button btnAddProduct;
+        private DataGridView dataGridView1;
     }
 }

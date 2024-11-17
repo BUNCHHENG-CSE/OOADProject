@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             panel1 = new Panel();
-            button7 = new Button();
-            button6 = new Button();
+            btnProducts = new Button();
+            btnOverview = new Button();
             button5 = new Button();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
+            btnSale = new Button();
+            btnCategory = new Button();
+            btnUser = new Button();
             btnStaff = new Button();
             btnDashboard = new Button();
             panel3 = new Panel();
@@ -48,12 +48,12 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(38, 57, 91);
-            panel1.Controls.Add(button7);
-            panel1.Controls.Add(button6);
+            panel1.Controls.Add(btnProducts);
+            panel1.Controls.Add(btnOverview);
             panel1.Controls.Add(button5);
-            panel1.Controls.Add(button4);
-            panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(btnSale);
+            panel1.Controls.Add(btnCategory);
+            panel1.Controls.Add(btnUser);
             panel1.Controls.Add(btnStaff);
             panel1.Controls.Add(btnDashboard);
             panel1.Controls.Add(panel3);
@@ -62,37 +62,37 @@
             panel1.Size = new Size(291, 802);
             panel1.TabIndex = 0;
             // 
-            // button7
+            // btnProducts
             // 
-            button7.BackColor = Color.FromArgb(38, 57, 91);
-            button7.FlatAppearance.BorderSize = 0;
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button7.ForeColor = Color.FromArgb(212, 203, 229);
-            button7.Image = (Image)resources.GetObject("button7.Image");
-            button7.ImageAlign = ContentAlignment.MiddleLeft;
-            button7.Location = new Point(32, 287);
-            button7.Name = "button7";
-            button7.Size = new Size(234, 38);
-            button7.TabIndex = 8;
-            button7.Text = "Product";
-            button7.UseVisualStyleBackColor = false;
+            btnProducts.BackColor = Color.FromArgb(38, 57, 91);
+            btnProducts.FlatAppearance.BorderSize = 0;
+            btnProducts.FlatStyle = FlatStyle.Flat;
+            btnProducts.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnProducts.ForeColor = Color.FromArgb(212, 203, 229);
+            btnProducts.Image = (Image)resources.GetObject("btnProducts.Image");
+            btnProducts.ImageAlign = ContentAlignment.MiddleLeft;
+            btnProducts.Location = new Point(32, 287);
+            btnProducts.Name = "btnProducts";
+            btnProducts.Size = new Size(234, 38);
+            btnProducts.TabIndex = 8;
+            btnProducts.Text = "Product";
+            btnProducts.UseVisualStyleBackColor = false;
             // 
-            // button6
+            // btnOverview
             // 
-            button6.BackColor = Color.FromArgb(38, 57, 91);
-            button6.FlatAppearance.BorderSize = 0;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button6.ForeColor = Color.FromArgb(212, 203, 229);
-            button6.Image = (Image)resources.GetObject("button6.Image");
-            button6.ImageAlign = ContentAlignment.MiddleLeft;
-            button6.Location = new Point(32, 609);
-            button6.Name = "button6";
-            button6.Size = new Size(234, 38);
-            button6.TabIndex = 7;
-            button6.Text = "Overview";
-            button6.UseVisualStyleBackColor = false;
+            btnOverview.BackColor = Color.FromArgb(38, 57, 91);
+            btnOverview.FlatAppearance.BorderSize = 0;
+            btnOverview.FlatStyle = FlatStyle.Flat;
+            btnOverview.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnOverview.ForeColor = Color.FromArgb(212, 203, 229);
+            btnOverview.Image = (Image)resources.GetObject("btnOverview.Image");
+            btnOverview.ImageAlign = ContentAlignment.MiddleLeft;
+            btnOverview.Location = new Point(32, 609);
+            btnOverview.Name = "btnOverview";
+            btnOverview.Size = new Size(234, 38);
+            btnOverview.TabIndex = 7;
+            btnOverview.Text = "Overview";
+            btnOverview.UseVisualStyleBackColor = false;
             // 
             // button5
             // 
@@ -110,53 +110,53 @@
             button5.Text = "Logout";
             button5.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // btnSale
             // 
-            button4.BackColor = Color.FromArgb(38, 57, 91);
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.ForeColor = Color.FromArgb(212, 203, 229);
-            button4.Image = (Image)resources.GetObject("button4.Image");
-            button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(32, 520);
-            button4.Name = "button4";
-            button4.Size = new Size(234, 38);
-            button4.TabIndex = 5;
-            button4.Text = "Sale Report";
-            button4.UseVisualStyleBackColor = false;
+            btnSale.BackColor = Color.FromArgb(38, 57, 91);
+            btnSale.FlatAppearance.BorderSize = 0;
+            btnSale.FlatStyle = FlatStyle.Flat;
+            btnSale.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSale.ForeColor = Color.FromArgb(212, 203, 229);
+            btnSale.Image = (Image)resources.GetObject("btnSale.Image");
+            btnSale.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSale.Location = new Point(32, 520);
+            btnSale.Name = "btnSale";
+            btnSale.Size = new Size(234, 38);
+            btnSale.TabIndex = 5;
+            btnSale.Text = "Sale Report";
+            btnSale.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnCategory
             // 
-            button3.BackColor = Color.FromArgb(38, 57, 91);
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.FromArgb(212, 203, 229);
-            button3.Image = (Image)resources.GetObject("button3.Image");
-            button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(32, 360);
-            button3.Name = "button3";
-            button3.Size = new Size(234, 38);
-            button3.TabIndex = 4;
-            button3.Text = "Category";
-            button3.UseVisualStyleBackColor = false;
+            btnCategory.BackColor = Color.FromArgb(38, 57, 91);
+            btnCategory.FlatAppearance.BorderSize = 0;
+            btnCategory.FlatStyle = FlatStyle.Flat;
+            btnCategory.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCategory.ForeColor = Color.FromArgb(212, 203, 229);
+            btnCategory.Image = (Image)resources.GetObject("btnCategory.Image");
+            btnCategory.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCategory.Location = new Point(32, 360);
+            btnCategory.Name = "btnCategory";
+            btnCategory.Size = new Size(234, 38);
+            btnCategory.TabIndex = 4;
+            btnCategory.Text = "Category";
+            btnCategory.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnUser
             // 
-            button2.BackColor = Color.FromArgb(38, 57, 91);
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.FromArgb(212, 203, 229);
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(32, 443);
-            button2.Name = "button2";
-            button2.Size = new Size(234, 38);
-            button2.TabIndex = 3;
-            button2.Text = "User";
-            button2.UseVisualStyleBackColor = false;
+            btnUser.BackColor = Color.FromArgb(38, 57, 91);
+            btnUser.FlatAppearance.BorderSize = 0;
+            btnUser.FlatStyle = FlatStyle.Flat;
+            btnUser.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUser.ForeColor = Color.FromArgb(212, 203, 229);
+            btnUser.Image = (Image)resources.GetObject("btnUser.Image");
+            btnUser.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUser.Location = new Point(32, 443);
+            btnUser.Name = "btnUser";
+            btnUser.Size = new Size(234, 38);
+            btnUser.TabIndex = 3;
+            btnUser.Text = "User";
+            btnUser.UseVisualStyleBackColor = false;
             // 
             // btnStaff
             // 
@@ -244,12 +244,12 @@
         private Panel panelcontrolMain;
         private Button btnDashboard;
         private Label label1;
-        private Button button6;
+        private Button btnOverview;
         private Button button5;
-        private Button button4;
-        private Button button3;
-        private Button button2;
+        private Button btnSale;
+        private Button btnCategory;
+        private Button btnUser;
         private Button btnStaff;
-        private Button button7;
+        private Button btnProducts;
     }
 }

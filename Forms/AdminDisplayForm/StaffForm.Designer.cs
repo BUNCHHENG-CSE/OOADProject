@@ -39,7 +39,7 @@
             btnAddStaff.FlatStyle = FlatStyle.Flat;
             btnAddStaff.ForeColor = Color.FromArgb(243, 244, 243);
             btnAddStaff.Image = (Image)resources.GetObject("btnAddStaff.Image");
-            btnAddStaff.Location = new Point(46, 34);
+            btnAddStaff.Location = new Point(36, 36);
             btnAddStaff.Name = "btnAddStaff";
             btnAddStaff.Size = new Size(49, 46);
             btnAddStaff.TabIndex = 1;
