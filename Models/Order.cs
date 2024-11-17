@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace OOADPRO.Models;
 
-internal class Order
+public class Order
 {
+    public int OrderID { get; set; }
+    public DateTime?  DateOrder { get; set; }
+   public decimal TotalPrice { get; set; }
+
 }

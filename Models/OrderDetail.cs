@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace OOADPRO.Models;
 
-namespace OOADPRO.Models;
-
-internal class OrderDetail
+public class OrderDetail
 {
+    public int OrderDetailID { get; set; }
+    public int OrderQty { get; set; }
+    public float UnitPrice { get; set; }
+    public Category? CategoryID { get; set; }
+    public Order? OrderID { get; set; }
+    public Products? ProductsID { get; set; }
+
+
 }

@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace OOADPRO.Models;
 
-internal class Products
+public class Products
 {
+    public int ProductsID { get; set; }
+    public string? ProductName { get; set; }
+    public decimal ProductsPrice { get; set; }
+    public string? ProductDescription { get; set; }
+    public string? ProductImage { get; set; }
+    public Category? Category { get; set; }
+
 }

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace OOADPRO.Models;
 
-namespace OOADPRO.Models
+public class User
 {
-    internal class User
-    {
-    }
+    public int UserID { get; set; }
+    public string? Username { get; set; }
+    public string? Password { get; set; }
+    public Staff? Staff { get; set; }
 }
