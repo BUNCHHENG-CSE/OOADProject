@@ -9,7 +9,6 @@ public class Staff
     public string? StaffPosition { get; set; }
     public string? StaffAddress { get; set; }
     public string? ContactNumber { get; set; }
-    public string? PersonalNumber { get; set; } = "";
     public DateTime? HiredDate { get; set; }
     public byte[]? Photo { get; set; }
 

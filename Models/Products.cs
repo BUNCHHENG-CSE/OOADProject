@@ -12,6 +12,7 @@ public class Products
     public string? ProductName { get; set; }
     public decimal ProductsPrice { get; set; }
     public string? ProductDescription { get; set; }
+    public int ProductsStock { get; set; }
     public string? ProductImage { get; set; }
     public Category? Category { get; set; }
 
