@@ -1,4 +1,5 @@
-﻿using ScottPlot.MarkerShapes;
+﻿using ScottPlot;
+using ScottPlot.MarkerShapes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,23 +18,32 @@ public partial class DashboardForm : Form
     {
         InitializeComponent();
     }
-
-    private void DashboardForm_Load(object sender, EventArgs e)
+    private void WeeklySale()
     {
-        double[] values = { 789, 143, 283 };
-        string[] labels = { "America", "China", "Canada" };
-        Color[] labelcolors = { Color.White, Color.White, Color.White, };
-        Color[] slicecolors = { Color.Red, Color.Coral, Color.Gold };
-        var pie = formsPlot1.Plot.AddPie(values);
+        double[] dataX = new double[] { 1, 4, 9, 16, 25 };
+        double[] dataY = new double[] { 1, 2, 3, 4, 5 };
+        formsPlotWeeklySale.Plot.AddBar(dataX, dataY);
+        formsPlotWeeklySale.Refresh();
+    }
+    private void TodayvsYTDPlot()
+    {
+        double[] values = { 789, 143 };
+        string[] labels = { "Yesterday", "Today" };
+        Color[] labelcolors = { Color.White, Color.White,};
+        Color[] slicecolors = { Color.Red,  Color.Gold };
+        var pie = formsPlotTodayvsYTD.Plot.AddPie(values);
         pie.SliceLabels = labels;
         pie.ShowLabels = true;
         pie.SliceFillColors = slicecolors;
         pie.SliceLabelColors = labelcolors;
-        formsPlot1.Plot.Style(this.BackColor, this.BackColor);
-
-        formsPlot1.Plot.XAxis.Ticks(false);
-        formsPlot1.Plot.YAxis.Ticks(false);
-        formsPlot1.Refresh();
-        //formsPlot1.Plot.Frame(false);
+        formsPlotTodayvsYTD.Plot.Style(this.BackColor, this.BackColor);
+        formsPlotTodayvsYTD.Plot.XAxis.Ticks(false);
+        formsPlotTodayvsYTD.Plot.YAxis.Ticks(false);
+        formsPlotTodayvsYTD.Refresh();
+    }
+    private void DashboardForm_Load(object sender, EventArgs e)
+    {
+        TodayvsYTDPlot();
+        WeeklySale();
     }
 }

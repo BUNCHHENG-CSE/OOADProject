@@ -11,6 +11,18 @@ public partial class AdminForm : Form
         btnProducts.Click += DoClickProducts;
         btnCategory.Click += DoClickCategory;
         btnUser.Click += DoClickUser;
+        btnSaleReport.Click += DoClickSaleReport;
+        btnOverview.Click += DoClickOverview;
+    }
+
+    private void DoClickOverview(object? sender, EventArgs e)
+    {
+        AddControl(new OverviewForm());
+    }
+
+    private void DoClickSaleReport(object? sender, EventArgs e)
+    {
+        AddControl(new SaleReportForm());
     }
 
     private void DoClickUser(object? sender, EventArgs e)

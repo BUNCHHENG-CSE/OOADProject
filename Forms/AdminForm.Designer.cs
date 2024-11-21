@@ -33,7 +33,7 @@
             btnProducts = new Button();
             btnOverview = new Button();
             button5 = new Button();
-            btnSale = new Button();
+            btnSaleReport = new Button();
             btnCategory = new Button();
             btnUser = new Button();
             btnStaff = new Button();
@@ -51,7 +51,7 @@
             panel1.Controls.Add(btnProducts);
             panel1.Controls.Add(btnOverview);
             panel1.Controls.Add(button5);
-            panel1.Controls.Add(btnSale);
+            panel1.Controls.Add(btnSaleReport);
             panel1.Controls.Add(btnCategory);
             panel1.Controls.Add(btnUser);
             panel1.Controls.Add(btnStaff);
@@ -110,21 +110,21 @@
             button5.Text = "Logout";
             button5.UseVisualStyleBackColor = false;
             // 
-            // btnSale
+            // btnSaleReport
             // 
-            btnSale.BackColor = Color.FromArgb(38, 57, 91);
-            btnSale.FlatAppearance.BorderSize = 0;
-            btnSale.FlatStyle = FlatStyle.Flat;
-            btnSale.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSale.ForeColor = Color.FromArgb(212, 203, 229);
-            btnSale.Image = (Image)resources.GetObject("btnSale.Image");
-            btnSale.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSale.Location = new Point(32, 520);
-            btnSale.Name = "btnSale";
-            btnSale.Size = new Size(234, 38);
-            btnSale.TabIndex = 5;
-            btnSale.Text = "Sale Report";
-            btnSale.UseVisualStyleBackColor = false;
+            btnSaleReport.BackColor = Color.FromArgb(38, 57, 91);
+            btnSaleReport.FlatAppearance.BorderSize = 0;
+            btnSaleReport.FlatStyle = FlatStyle.Flat;
+            btnSaleReport.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSaleReport.ForeColor = Color.FromArgb(212, 203, 229);
+            btnSaleReport.Image = (Image)resources.GetObject("btnSaleReport.Image");
+            btnSaleReport.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSaleReport.Location = new Point(32, 520);
+            btnSaleReport.Name = "btnSaleReport";
+            btnSaleReport.Size = new Size(234, 38);
+            btnSaleReport.TabIndex = 5;
+            btnSaleReport.Text = "Sale Report";
+            btnSaleReport.UseVisualStyleBackColor = false;
             // 
             // btnCategory
             // 
@@ -246,7 +246,7 @@
         private Label label1;
         private Button btnOverview;
         private Button button5;
-        private Button btnSale;
+        private Button btnSaleReport;
         private Button btnCategory;
         private Button btnUser;
         private Button btnStaff;

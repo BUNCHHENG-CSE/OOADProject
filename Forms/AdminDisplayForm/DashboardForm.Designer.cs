@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            formsPlot1 = new ScottPlot.FormsPlot();
+            formsPlotTodayvsYTD = new ScottPlot.FormsPlot();
             panel1 = new Panel();
             label2 = new Label();
             label1 = new Label();
@@ -41,22 +41,22 @@
             panel4 = new Panel();
             label7 = new Label();
             label8 = new Label();
-            formsPlot2 = new ScottPlot.FormsPlot();
-            label9 = new Label();
-            label10 = new Label();
+            formsPlotWeeklySale = new ScottPlot.FormsPlot();
+            labelWeeklySale = new Label();
+            labelTodayvsYTD = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
             SuspendLayout();
             // 
-            // formsPlot1
+            // formsPlotTodayvsYTD
             // 
-            formsPlot1.Location = new Point(614, 417);
-            formsPlot1.Margin = new Padding(4, 3, 4, 3);
-            formsPlot1.Name = "formsPlot1";
-            formsPlot1.Size = new Size(450, 286);
-            formsPlot1.TabIndex = 1;
+            formsPlotTodayvsYTD.Location = new Point(614, 417);
+            formsPlotTodayvsYTD.Margin = new Padding(4, 3, 4, 3);
+            formsPlotTodayvsYTD.Name = "formsPlotTodayvsYTD";
+            formsPlotTodayvsYTD.Size = new Size(450, 286);
+            formsPlotTodayvsYTD.TabIndex = 1;
             // 
             // panel1
             // 
@@ -186,47 +186,47 @@
             label8.TabIndex = 3;
             label8.Text = "Today Customer";
             // 
-            // formsPlot2
+            // formsPlotWeeklySale
             // 
-            formsPlot2.Location = new Point(31, 417);
-            formsPlot2.Margin = new Padding(4, 3, 4, 3);
-            formsPlot2.Name = "formsPlot2";
-            formsPlot2.Size = new Size(450, 286);
-            formsPlot2.TabIndex = 6;
+            formsPlotWeeklySale.Location = new Point(31, 417);
+            formsPlotWeeklySale.Margin = new Padding(4, 3, 4, 3);
+            formsPlotWeeklySale.Name = "formsPlotWeeklySale";
+            formsPlotWeeklySale.Size = new Size(450, 286);
+            formsPlotWeeklySale.TabIndex = 6;
             // 
-            // label9
+            // labelWeeklySale
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Sitka Small Semibold", 14F, FontStyle.Bold);
-            label9.Location = new Point(169, 374);
-            label9.Name = "label9";
-            label9.Size = new Size(132, 28);
-            label9.TabIndex = 7;
-            label9.Text = "Weekly Sale";
+            labelWeeklySale.AutoSize = true;
+            labelWeeklySale.Font = new Font("Sitka Small Semibold", 14F, FontStyle.Bold);
+            labelWeeklySale.Location = new Point(198, 374);
+            labelWeeklySale.Name = "labelWeeklySale";
+            labelWeeklySale.Size = new Size(132, 28);
+            labelWeeklySale.TabIndex = 7;
+            labelWeeklySale.Text = "Weekly Sale";
             // 
-            // label10
+            // labelTodayvsYTD
             // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Sitka Small Semibold", 14F, FontStyle.Bold);
-            label10.Location = new Point(710, 374);
-            label10.Name = "label10";
-            label10.Size = new Size(287, 28);
-            label10.TabIndex = 8;
-            label10.Text = "Today VS Yesterday Income";
+            labelTodayvsYTD.AutoSize = true;
+            labelTodayvsYTD.Font = new Font("Sitka Small Semibold", 14F, FontStyle.Bold);
+            labelTodayvsYTD.Location = new Point(710, 374);
+            labelTodayvsYTD.Name = "labelTodayvsYTD";
+            labelTodayvsYTD.Size = new Size(287, 28);
+            labelTodayvsYTD.TabIndex = 8;
+            labelTodayvsYTD.Text = "Today VS Yesterday Income";
             // 
             // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1092, 802);
-            Controls.Add(label10);
-            Controls.Add(label9);
-            Controls.Add(formsPlot2);
+            Controls.Add(labelTodayvsYTD);
+            Controls.Add(labelWeeklySale);
+            Controls.Add(formsPlotWeeklySale);
             Controls.Add(panel3);
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Controls.Add(formsPlot1);
+            Controls.Add(formsPlotTodayvsYTD);
             FormBorderStyle = FormBorderStyle.None;
             Name = "DashboardForm";
             Text = "DashboardForm";
@@ -244,7 +244,7 @@
         }
 
         #endregion
-        private ScottPlot.FormsPlot formsPlot1;
+        private ScottPlot.FormsPlot formsPlotTodayvsYTD;
         private Panel panel1;
         private Label label2;
         private Label label1;
@@ -254,11 +254,11 @@
         private Label label6;
         private Panel panel4;
         private Label label8;
-        private ScottPlot.FormsPlot formsPlot2;
+        private ScottPlot.FormsPlot formsPlotWeeklySale;
         private Label label3;
         private Label label5;
         private Label label7;
-        private Label label9;
-        private Label label10;
+        private Label labelWeeklySale;
+        private Label labelTodayvsYTD;
     }
 }

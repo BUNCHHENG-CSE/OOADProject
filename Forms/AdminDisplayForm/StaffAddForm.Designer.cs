@@ -28,40 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
+            txtStaffID = new TextBox();
             labelStaffID = new Label();
-            button1 = new Button();
+            btnClear = new Button();
             labelGender = new Label();
             labelStaffName = new Label();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            txtStaffName = new TextBox();
+            txtStaffGender = new TextBox();
             labelDOB = new Label();
             labelStaffPosition = new Label();
             labelStaffAddress = new Label();
             labelContactNumber = new Label();
-            labelPersonalNumber = new Label();
             labelHiredDate = new Label();
             picStaff = new PictureBox();
             btnUploadPhoto = new Button();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
-            textBox8 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
-            button2 = new Button();
-            button3 = new Button();
+            txtStaffPosition = new TextBox();
+            txtContactNumber = new TextBox();
+            dtpHiredDate = new DateTimePicker();
+            dtpDOB = new DateTimePicker();
+            btnInsert = new Button();
+            btnUpdate = new Button();
+            rtxtStaffAddress = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)picStaff).BeginInit();
             SuspendLayout();
             // 
-            // textBox1
+            // txtStaffID
             // 
-            textBox1.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            textBox1.Location = new Point(94, 27);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(133, 28);
-            textBox1.TabIndex = 0;
+            txtStaffID.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
+            txtStaffID.Location = new Point(94, 27);
+            txtStaffID.Name = "txtStaffID";
+            txtStaffID.ReadOnly = true;
+            txtStaffID.Size = new Size(133, 28);
+            txtStaffID.TabIndex = 0;
             // 
             // labelStaffID
             // 
@@ -73,15 +71,15 @@
             labelStaffID.TabIndex = 1;
             labelStaffID.Text = "Staff ID";
             // 
-            // button1
+            // btnClear
             // 
-            button1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
-            button1.Location = new Point(27, 390);
-            button1.Name = "button1";
-            button1.Size = new Size(121, 49);
-            button1.TabIndex = 2;
-            button1.Text = "Clear";
-            button1.UseVisualStyleBackColor = true;
+            btnClear.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
+            btnClear.Location = new Point(19, 346);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(121, 49);
+            btnClear.TabIndex = 2;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
             // 
             // labelGender
             // 
@@ -103,27 +101,27 @@
             labelStaffName.TabIndex = 4;
             labelStaffName.Text = "Staff Name";
             // 
-            // textBox2
+            // txtStaffName
             // 
-            textBox2.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            textBox2.Location = new Point(370, 29);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(217, 28);
-            textBox2.TabIndex = 5;
+            txtStaffName.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
+            txtStaffName.Location = new Point(370, 29);
+            txtStaffName.Name = "txtStaffName";
+            txtStaffName.Size = new Size(246, 28);
+            txtStaffName.TabIndex = 5;
             // 
-            // textBox3
+            // txtStaffGender
             // 
-            textBox3.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            textBox3.Location = new Point(89, 84);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(158, 28);
-            textBox3.TabIndex = 6;
+            txtStaffGender.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
+            txtStaffGender.Location = new Point(89, 84);
+            txtStaffGender.Name = "txtStaffGender";
+            txtStaffGender.Size = new Size(158, 28);
+            txtStaffGender.TabIndex = 6;
             // 
             // labelDOB
             // 
             labelDOB.AutoSize = true;
             labelDOB.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            labelDOB.Location = new Point(13, 144);
+            labelDOB.Location = new Point(13, 134);
             labelDOB.Name = "labelDOB";
             labelDOB.Size = new Size(127, 23);
             labelDOB.TabIndex = 7;
@@ -143,7 +141,7 @@
             // 
             labelStaffAddress.AutoSize = true;
             labelStaffAddress.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            labelStaffAddress.Location = new Point(12, 186);
+            labelStaffAddress.Location = new Point(15, 189);
             labelStaffAddress.Name = "labelStaffAddress";
             labelStaffAddress.Size = new Size(125, 23);
             labelStaffAddress.TabIndex = 9;
@@ -153,27 +151,17 @@
             // 
             labelContactNumber.AutoSize = true;
             labelContactNumber.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            labelContactNumber.Location = new Point(13, 236);
+            labelContactNumber.Location = new Point(13, 238);
             labelContactNumber.Name = "labelContactNumber";
             labelContactNumber.Size = new Size(146, 23);
             labelContactNumber.TabIndex = 10;
             labelContactNumber.Text = "Contact Number";
             // 
-            // labelPersonalNumber
-            // 
-            labelPersonalNumber.AutoSize = true;
-            labelPersonalNumber.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            labelPersonalNumber.Location = new Point(12, 281);
-            labelPersonalNumber.Name = "labelPersonalNumber";
-            labelPersonalNumber.Size = new Size(156, 23);
-            labelPersonalNumber.TabIndex = 11;
-            labelPersonalNumber.Text = "Personal Number";
-            // 
             // labelHiredDate
             // 
             labelHiredDate.AutoSize = true;
             labelHiredDate.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            labelHiredDate.Location = new Point(11, 332);
+            labelHiredDate.Location = new Point(15, 287);
             labelHiredDate.Name = "labelHiredDate";
             labelHiredDate.Size = new Size(102, 23);
             labelHiredDate.TabIndex = 12;
@@ -198,102 +186,92 @@
             btnUploadPhoto.Text = "Upload Photo";
             btnUploadPhoto.UseVisualStyleBackColor = true;
             // 
-            // textBox5
+            // txtStaffPosition
             // 
-            textBox5.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            textBox5.Location = new Point(387, 84);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(217, 28);
-            textBox5.TabIndex = 53;
+            txtStaffPosition.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
+            txtStaffPosition.Location = new Point(387, 84);
+            txtStaffPosition.Name = "txtStaffPosition";
+            txtStaffPosition.Size = new Size(217, 28);
+            txtStaffPosition.TabIndex = 53;
             // 
-            // textBox6
+            // txtContactNumber
             // 
-            textBox6.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            textBox6.Location = new Point(153, 181);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(217, 28);
-            textBox6.TabIndex = 54;
+            txtContactNumber.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
+            txtContactNumber.Location = new Point(176, 233);
+            txtContactNumber.Name = "txtContactNumber";
+            txtContactNumber.Size = new Size(244, 28);
+            txtContactNumber.TabIndex = 55;
             // 
-            // textBox7
+            // dtpHiredDate
             // 
-            textBox7.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            textBox7.Location = new Point(176, 231);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(217, 28);
-            textBox7.TabIndex = 55;
+            dtpHiredDate.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
+            dtpHiredDate.Location = new Point(132, 282);
+            dtpHiredDate.Name = "dtpHiredDate";
+            dtpHiredDate.Size = new Size(313, 28);
+            dtpHiredDate.TabIndex = 58;
             // 
-            // textBox8
+            // dtpDOB
             // 
-            textBox8.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            textBox8.Location = new Point(187, 276);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(217, 28);
-            textBox8.TabIndex = 56;
+            dtpDOB.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
+            dtpDOB.Location = new Point(176, 129);
+            dtpDOB.Name = "dtpDOB";
+            dtpDOB.Size = new Size(313, 28);
+            dtpDOB.TabIndex = 59;
             // 
-            // dateTimePicker1
+            // btnInsert
             // 
-            dateTimePicker1.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            dateTimePicker1.Location = new Point(132, 327);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(313, 28);
-            dateTimePicker1.TabIndex = 58;
+            btnInsert.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
+            btnInsert.Location = new Point(324, 346);
+            btnInsert.Name = "btnInsert";
+            btnInsert.Size = new Size(121, 49);
+            btnInsert.TabIndex = 60;
+            btnInsert.Text = "Insert";
+            btnInsert.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker2
+            // btnUpdate
             // 
-            dateTimePicker2.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            dateTimePicker2.Location = new Point(153, 139);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(313, 28);
-            dateTimePicker2.TabIndex = 59;
+            btnUpdate.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
+            btnUpdate.Location = new Point(597, 346);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(121, 49);
+            btnUpdate.TabIndex = 61;
+            btnUpdate.Text = "Update";
+            btnUpdate.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // rtxtStaffAddress
             // 
-            button2.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
-            button2.Location = new Point(324, 390);
-            button2.Name = "button2";
-            button2.Size = new Size(121, 49);
-            button2.TabIndex = 60;
-            button2.Text = "Insert";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
-            button3.Location = new Point(596, 390);
-            button3.Name = "button3";
-            button3.Size = new Size(121, 49);
-            button3.TabIndex = 61;
-            button3.Text = "Update";
-            button3.UseVisualStyleBackColor = true;
+            rtxtStaffAddress.Location = new Point(176, 173);
+            rtxtStaffAddress.Name = "rtxtStaffAddress";
+            rtxtStaffAddress.Size = new Size(434, 52);
+            rtxtStaffAddress.TabIndex = 62;
+            rtxtStaffAddress.Text = "";
             // 
             // StaffAddForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(textBox8);
-            Controls.Add(textBox7);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
+            ClientSize = new Size(800, 412);
+            Controls.Add(rtxtStaffAddress);
+            Controls.Add(btnUpdate);
+            Controls.Add(btnInsert);
+            Controls.Add(dtpDOB);
+            Controls.Add(dtpHiredDate);
+            Controls.Add(txtContactNumber);
+            Controls.Add(txtStaffPosition);
             Controls.Add(btnUploadPhoto);
             Controls.Add(picStaff);
             Controls.Add(labelHiredDate);
-            Controls.Add(labelPersonalNumber);
             Controls.Add(labelContactNumber);
             Controls.Add(labelStaffAddress);
             Controls.Add(labelStaffPosition);
             Controls.Add(labelDOB);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
+            Controls.Add(txtStaffGender);
+            Controls.Add(txtStaffName);
             Controls.Add(labelStaffName);
             Controls.Add(labelGender);
-            Controls.Add(button1);
+            Controls.Add(btnClear);
             Controls.Add(labelStaffID);
-            Controls.Add(textBox1);
+            Controls.Add(txtStaffID);
             MaximumSize = new Size(816, 489);
             Name = "StaffAddForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -305,28 +283,26 @@
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox txtStaffID;
         private Label labelStaffID;
-        private Button button1;
+        private Button btnClear;
         private Label labelGender;
         private Label labelStaffName;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox txtStaffName;
+        private TextBox txtStaffGender;
         private Label labelDOB;
         private Label labelStaffPosition;
         private Label labelStaffAddress;
         private Label labelContactNumber;
-        private Label labelPersonalNumber;
         private Label labelHiredDate;
         private PictureBox picStaff;
         private Button btnUploadPhoto;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private TextBox textBox7;
-        private TextBox textBox8;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
-        private Button button2;
-        private Button button3;
+        private TextBox txtStaffPosition;
+        private TextBox txtContactNumber;
+        private DateTimePicker dtpHiredDate;
+        private DateTimePicker dtpDOB;
+        private Button btnInsert;
+        private Button btnUpdate;
+        private RichTextBox rtxtStaffAddress;
     }
 }
