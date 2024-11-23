@@ -225,31 +225,56 @@ public partial class StaffAddForm : Form
         txtStaffID.Text = (staffCount + 1).ToString();
 
     }
+    //public void LoadStaffDetails(Staff staff)
+    //{
+    //    if (staff == null)
+    //        throw new ArgumentNullException(nameof(staff));
+
+    //    txtStaffName.Text = staff.StaffName;
+    //    cBStaffGender.SelectedItem = staff.Gender;
+    //    dtpDOB.Value = staff.BirthDate ?? DateTime.Now;
+    //    cBStaffPosition.Text = staff.StaffPosition;
+    //    rtxtStaffAddress.Text = staff.StaffAddress;
+    //    txtContactNumber.Text = staff.ContactNumber;
+    //    dtpHiredDate.Value = staff.HiredDate ?? DateTime.Now; 
+
+    //    if (staff.Photo != null)
+    //    {
+    //        picStaff.Image = ConvertImageClass.ConvertByteArrayToImage(staff.Photo);
+    //    }
+    //    else
+    //    {
+    //        picStaff.Image = null; 
+    //    }
+
+    //    txtStaffID.Text = staff.StaffID.ToString();
+    //}
+
     public void LoadStaffDetails(Staff staff)
     {
-        if (staff == null)
-            throw new ArgumentNullException(nameof(staff));
-
-        txtStaffName.Text = staff.StaffName;
-        cBStaffGender.SelectedItem = staff.Gender;
-        Console.WriteLine(staff.Gender);
-        dtpDOB.Value = staff.BirthDate ?? DateTime.Now;
-        cBStaffPosition.Text = staff.StaffPosition;
-        rtxtStaffAddress.Text = staff.StaffAddress;
-        txtContactNumber.Text = staff.ContactNumber;
-        dtpHiredDate.Value = staff.HiredDate ?? DateTime.Now; 
-
-        // Load the photo if available
-        if (staff.Photo != null)
+        if (staff != null)
         {
-            picStaff.Image = ConvertImageClass.ConvertByteArrayToImage(staff.Photo);
+            txtStaffName.Text = staff.StaffName;
+            cBStaffGender.SelectedItem = staff.Gender ?? ""; 
+            dtpDOB.Value = staff.BirthDate ?? DateTime.Now;
+            cBStaffPosition.SelectedItem = staff.StaffPosition ?? ""; 
+            rtxtStaffAddress.Text = staff.StaffAddress ?? ""; 
+            txtContactNumber.Text = staff.ContactNumber ?? "";
+            dtpHiredDate.Value = staff.HiredDate ?? DateTime.Now;
+
+            if (staff.Photo != null)
+            {
+                picStaff.Image = ConvertImageClass.ConvertByteArrayToImage(staff.Photo);
+            }
+            else
+            {
+                picStaff.Image = null;
+            }
         }
         else
         {
-            picStaff.Image = null; 
+            MessageBox.Show("Staff details not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
-
-        txtStaffID.Text = staff.StaffID.ToString();
     }
 
     public event StaffLoadingEventHandler? StaffLoadingChanged;

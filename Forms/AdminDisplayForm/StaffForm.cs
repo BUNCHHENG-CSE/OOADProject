@@ -119,7 +119,7 @@ public partial class StaffForm : Form
     private void LoadStaffForUpdate(Staff staff)
     {
         StaffAddForm updateForm = new StaffAddForm(this);
-        updateForm.LoadStaffDetails(staff); 
+        updateForm.LoadStaffDetails(staff);
         updateForm.ShowDialog();
         flowLayoutPanelStaff.Controls.Clear();
         LoadingDataStaff();

@@ -32,7 +32,7 @@ internal class Helper
             Connection = conn;
             if (Connection != null)
             {
-               // MessageBox.Show($"Connected to server successfully", "Connection To Server");
+                MessageBox.Show($"Connected to server successfully", "Connection To Server");
             }
             return conn;
         }
