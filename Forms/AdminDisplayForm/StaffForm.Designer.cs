@@ -30,8 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffForm));
             btnAddStaff = new Button();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel1 = new Panel();
+            picStaff = new PictureBox();
+            labelStaffID = new Label();
+            label1 = new Label();
+            button1 = new Button();
+            button2 = new Button();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picStaff).BeginInit();
             SuspendLayout();
             // 
             // btnAddStaff
@@ -45,13 +51,64 @@
             btnAddStaff.TabIndex = 1;
             btnAddStaff.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // panel1
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(36, 107);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1021, 150);
-            dataGridView1.TabIndex = 2;
+            panel1.Controls.Add(button2);
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(labelStaffID);
+            panel1.Controls.Add(picStaff);
+            panel1.Location = new Point(36, 88);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1044, 639);
+            panel1.TabIndex = 2;
+            // 
+            // picStaff
+            // 
+            picStaff.BorderStyle = BorderStyle.FixedSingle;
+            picStaff.Location = new Point(13, 13);
+            picStaff.Name = "picStaff";
+            picStaff.Size = new Size(119, 143);
+            picStaff.TabIndex = 14;
+            picStaff.TabStop = false;
+            // 
+            // labelStaffID
+            // 
+            labelStaffID.AutoSize = true;
+            labelStaffID.Font = new Font("Sitka Small", 10F, FontStyle.Bold);
+            labelStaffID.Location = new Point(43, 168);
+            labelStaffID.Name = "labelStaffID";
+            labelStaffID.Size = new Size(66, 20);
+            labelStaffID.TabIndex = 15;
+            labelStaffID.Text = "Staff ID";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Sitka Small", 10F, FontStyle.Bold);
+            label1.Location = new Point(43, 198);
+            label1.Name = "label1";
+            label1.Size = new Size(66, 20);
+            label1.TabIndex = 16;
+            label1.Text = "Staff ID";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(13, 230);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 17;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(94, 230);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 18;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
             // 
             // StaffForm
             // 
@@ -59,17 +116,24 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(243, 244, 243);
             ClientSize = new Size(1092, 802);
-            Controls.Add(dataGridView1);
+            Controls.Add(panel1);
             Controls.Add(btnAddStaff);
             FormBorderStyle = FormBorderStyle.None;
             Name = "StaffForm";
             Text = "StaffForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picStaff).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
         private Button btnAddStaff;
-        private DataGridView dataGridView1;
+        private Panel panel1;
+        private PictureBox picStaff;
+        private Button button2;
+        private Button button1;
+        private Label label1;
+        private Label labelStaffID;
     }
 }

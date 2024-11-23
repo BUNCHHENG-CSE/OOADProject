@@ -34,7 +34,6 @@
             labelGender = new Label();
             labelStaffName = new Label();
             txtStaffName = new TextBox();
-            txtStaffGender = new TextBox();
             labelDOB = new Label();
             labelStaffPosition = new Label();
             labelStaffAddress = new Label();
@@ -42,13 +41,14 @@
             labelHiredDate = new Label();
             picStaff = new PictureBox();
             btnUploadPhoto = new Button();
-            txtStaffPosition = new TextBox();
             txtContactNumber = new TextBox();
             dtpHiredDate = new DateTimePicker();
             dtpDOB = new DateTimePicker();
             btnInsert = new Button();
             btnUpdate = new Button();
             rtxtStaffAddress = new RichTextBox();
+            cBStaffGender = new ComboBox();
+            cBStaffPosition = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)picStaff).BeginInit();
             SuspendLayout();
             // 
@@ -109,14 +109,6 @@
             txtStaffName.Size = new Size(246, 28);
             txtStaffName.TabIndex = 5;
             // 
-            // txtStaffGender
-            // 
-            txtStaffGender.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            txtStaffGender.Location = new Point(89, 84);
-            txtStaffGender.Name = "txtStaffGender";
-            txtStaffGender.Size = new Size(158, 28);
-            txtStaffGender.TabIndex = 6;
-            // 
             // labelDOB
             // 
             labelDOB.AutoSize = true;
@@ -131,7 +123,7 @@
             // 
             labelStaffPosition.AutoSize = true;
             labelStaffPosition.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            labelStaffPosition.Location = new Point(255, 89);
+            labelStaffPosition.Location = new Point(268, 84);
             labelStaffPosition.Name = "labelStaffPosition";
             labelStaffPosition.Size = new Size(126, 23);
             labelStaffPosition.TabIndex = 8;
@@ -173,6 +165,7 @@
             picStaff.Location = new Point(622, 12);
             picStaff.Name = "picStaff";
             picStaff.Size = new Size(145, 185);
+            picStaff.SizeMode = PictureBoxSizeMode.Zoom;
             picStaff.TabIndex = 13;
             picStaff.TabStop = false;
             // 
@@ -185,14 +178,6 @@
             btnUploadPhoto.TabIndex = 51;
             btnUploadPhoto.Text = "Upload Photo";
             btnUploadPhoto.UseVisualStyleBackColor = true;
-            // 
-            // txtStaffPosition
-            // 
-            txtStaffPosition.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            txtStaffPosition.Location = new Point(387, 84);
-            txtStaffPosition.Name = "txtStaffPosition";
-            txtStaffPosition.Size = new Size(217, 28);
-            txtStaffPosition.TabIndex = 53;
             // 
             // txtContactNumber
             // 
@@ -246,18 +231,35 @@
             rtxtStaffAddress.TabIndex = 62;
             rtxtStaffAddress.Text = "";
             // 
+            // cBStaffGender
+            // 
+            cBStaffGender.FormattingEnabled = true;
+            cBStaffGender.Location = new Point(106, 84);
+            cBStaffGender.Name = "cBStaffGender";
+            cBStaffGender.Size = new Size(143, 23);
+            cBStaffGender.TabIndex = 63;
+            // 
+            // cBStaffPosition
+            // 
+            cBStaffPosition.FormattingEnabled = true;
+            cBStaffPosition.Location = new Point(400, 84);
+            cBStaffPosition.Name = "cBStaffPosition";
+            cBStaffPosition.Size = new Size(194, 23);
+            cBStaffPosition.TabIndex = 64;
+            // 
             // StaffAddForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 412);
+            Controls.Add(cBStaffPosition);
+            Controls.Add(cBStaffGender);
             Controls.Add(rtxtStaffAddress);
             Controls.Add(btnUpdate);
             Controls.Add(btnInsert);
             Controls.Add(dtpDOB);
             Controls.Add(dtpHiredDate);
             Controls.Add(txtContactNumber);
-            Controls.Add(txtStaffPosition);
             Controls.Add(btnUploadPhoto);
             Controls.Add(picStaff);
             Controls.Add(labelHiredDate);
@@ -265,7 +267,6 @@
             Controls.Add(labelStaffAddress);
             Controls.Add(labelStaffPosition);
             Controls.Add(labelDOB);
-            Controls.Add(txtStaffGender);
             Controls.Add(txtStaffName);
             Controls.Add(labelStaffName);
             Controls.Add(labelGender);
@@ -276,6 +277,7 @@
             Name = "StaffAddForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "StaffAddForm";
+            Load += StaffAddForm_Load;
             ((System.ComponentModel.ISupportInitialize)picStaff).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -289,7 +291,6 @@
         private Label labelGender;
         private Label labelStaffName;
         private TextBox txtStaffName;
-        private TextBox txtStaffGender;
         private Label labelDOB;
         private Label labelStaffPosition;
         private Label labelStaffAddress;
@@ -297,12 +298,13 @@
         private Label labelHiredDate;
         private PictureBox picStaff;
         private Button btnUploadPhoto;
-        private TextBox txtStaffPosition;
         private TextBox txtContactNumber;
         private DateTimePicker dtpHiredDate;
         private DateTimePicker dtpDOB;
         private Button btnInsert;
         private Button btnUpdate;
         private RichTextBox rtxtStaffAddress;
+        private ComboBox cBStaffGender;
+        private ComboBox cBStaffPosition;
     }
 }
