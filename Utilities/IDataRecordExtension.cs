@@ -108,4 +108,75 @@ public static class IDataRecordExtension
 
     #endregion
 
+    #region Get Staff INFO. To Display On ListBox and Display Product
+    public static Products ToDisplayProduct(this IDataRecord record)
+    {
+        return new Products
+        {
+            ProductsID = record.GetInt32(record.GetOrdinal("ProductsID")),
+            ProductName = record.GetString(record.GetOrdinal("ProductsName")),
+            ProductsPrice = record.GetDecimal(record.GetOrdinal("Price")),
+            ProductDescription = record.IsDBNull(record.GetOrdinal("ProductsDescription")) ? null : record.GetString(record.GetOrdinal("ProductsDescription")),
+            ProductsStock = record.IsDBNull(record.GetOrdinal("ProductsStock")) ? 0 : record.GetInt32(record.GetOrdinal("ProductsStock")),
+            ProductImage = record.IsDBNull(record.GetOrdinal("ProductsImage")) ? null : (byte[])record["ProductsImage"],
+            Category = new Category
+            {
+                CategoryID = record.GetInt32(record.GetOrdinal("CategoryID")),
+                CategoryName = record.IsDBNull(record.GetOrdinal("CategoryName")) ? null : record.GetString(record.GetOrdinal("CategoryName")),
+                CategoryDescription = record.IsDBNull(record.GetOrdinal("CategoryDescription")) ? null : record.GetString(record.GetOrdinal("CategoryDescription"))
+            }
+        };
+    }
+    public static Products ToDisplayProductsID(this IDataReader record)
+    {
+        int index = record.GetOrdinal("ProductsID");
+        int pid = record.GetInt32(index);
+
+        return new Products()
+        {
+            ProductsID= pid,
+        };
+    }
+
+    public static Products ToProductsAllData(this IDataReader record)
+    {
+        int index = record.GetOrdinal("ProductsID");
+        int pid = record.GetInt32(index);
+
+        index = record.GetOrdinal("ProductName");
+        string? productname = record.GetString(index);
+
+        index = record.GetOrdinal("ProductsPrice");
+        int productsprice = record.GetInt32(index);
+
+        index = record.GetOrdinal("ProductDescription");
+        string? productdescription = record.GetString(index);
+
+        index = record.GetOrdinal("ProductsStock");
+        int productstock = record.GetInt32(index);
+
+        index = record.GetOrdinal("ProductImage");
+        byte[] productimage = null;
+        if (!record.IsDBNull(index)) productimage = (byte[])record[index];
+
+
+        return new Products()
+        {
+            ProductsID = pid,
+
+            ProductName = productname,
+
+            ProductsPrice = productsprice,
+
+            ProductDescription = productdescription,
+
+            ProductsStock = productstock,
+
+            ProductImage = productimage
+
+        };
+    }
+
+
+    #endregion
 }

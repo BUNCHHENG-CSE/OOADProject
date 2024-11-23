@@ -42,6 +42,7 @@
             button1 = new Button();
             button2 = new Button();
             textBox1 = new TextBox();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -150,11 +151,20 @@
             textBox1.Size = new Size(116, 29);
             textBox1.TabIndex = 75;
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Location = new Point(24, 68);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(587, 687);
+            flowLayoutPanel1.TabIndex = 76;
+            // 
             // OrderForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1092, 802);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(textBox1);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -187,5 +197,6 @@
         private DataGridViewTextBoxColumn Qty;
         private DataGridViewTextBoxColumn Amount;
         private DataGridViewTextBoxColumn Product;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
