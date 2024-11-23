@@ -7,12 +7,17 @@ namespace OOADPRO.Forms.AdminDisplayForm;
 public partial class StaffForm : Form
 {
     int staffCount = 0;
+    private System.Windows.Forms.Timer clickTimer;
+    private const int DoubleClick = 300;
     public StaffForm()
     {
         InitializeComponent();
         btnAddStaff.Click += DoClickAddStaff;
+        clickTimer = new System.Windows.Forms.Timer();
+        clickTimer.Interval = DoubleClick;
+        clickTimer.Tick += ClickTimer_Tick;
     }
-
+    private Staff _selectedStaff;
     private void DoClickAddStaff(object? sender, EventArgs e)
     {
         StaffAddForm staffAddForm = new StaffAddForm(this);
@@ -26,9 +31,7 @@ public partial class StaffForm : Form
         };
         staffAddForm.Show();
 
-    
     }
-
     private void StaffForm_Load(object sender, EventArgs e)
     {
         LoadingDataStaff();
@@ -73,11 +76,24 @@ public partial class StaffForm : Form
                     AutoSize = true,
                     Location = new Point(5, 210)
                 };
-                pictureBox.Click += (sender, e) =>
+                //pictureBox.Click += (sender, e) =>LoadStaffForUpdate(staff);
+              
+                //pictureBox.DoubleClick += (s, e) =>Del
+
+                pictureBox.MouseDown += (s, e) =>
                 {
-                    LoadStaffForUpdate();
+                    if (e.Clicks == 1)
+                    {
+                        _selectedStaff = staff; 
+                        clickTimer.Start();   
+                    }
+                    else if (e.Clicks == 2)
+                    {
+                        clickTimer.Stop();  
+                        DeleteStaffById(staff.StaffID); 
+                    }
                 };
-                pictureBox.DoubleClick += (s, e) => DeleteStaffById(staff.StaffID);
+
 
                 productPanel.Controls.Add(pictureBox);
                 productPanel.Controls.Add(staffNameLabel);
@@ -91,10 +107,22 @@ public partial class StaffForm : Form
             MessageBox.Show(ex.Message, "Retriving staff", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
-    private void LoadStaffForUpdate()
+    private void ClickTimer_Tick(object? sender, EventArgs e)
+    {
+        clickTimer.Stop();
+        if (_selectedStaff != null)
+        {
+            LoadStaffForUpdate(_selectedStaff);
+        }
+    }
+
+    private void LoadStaffForUpdate(Staff staff)
     {
         StaffAddForm updateForm = new StaffAddForm(this);
+        updateForm.LoadStaffDetails(staff); 
         updateForm.ShowDialog();
+        flowLayoutPanelStaff.Controls.Clear();
+        LoadingDataStaff();
     }
     private void DeleteStaffById(int staffid)
     {
@@ -103,7 +131,6 @@ public partial class StaffForm : Form
             {
                 var result = StaffFunc.GetAllStaff(Program.Connection);
                 bool isDeleted = StaffFunc.DeleteStaff(Program.Connection, staffid);
-
                 if (isDeleted)
                 {
                     MessageBox.Show("Product deleted successfully!");
@@ -121,7 +148,6 @@ public partial class StaffForm : Form
                 MessageBox.Show($"Error deleting product: {ex.Message}");
             }
         }
-
-
     }
+   
 }
