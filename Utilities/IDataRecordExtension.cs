@@ -1,10 +1,5 @@
 ﻿using OOADPRO.Models;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OOADPRO.Utilities;
 
@@ -49,7 +44,7 @@ public static class IDataRecordExtension
         index = record.GetOrdinal("StaffName");
         string? staffname = record.GetString(index);
 
-  
+
         index = record.GetOrdinal("Gender");
         string? gender = record.GetString(index);
 
@@ -134,7 +129,7 @@ public static class IDataRecordExtension
 
         return new Products()
         {
-            ProductsID= pid,
+            ProductsID = pid,
         };
     }
 
@@ -179,4 +174,52 @@ public static class IDataRecordExtension
 
 
     #endregion
+
+
+    #region Get User INFO. To Display On ListBox and Display User on TextBox When Click on ListBox
+    public static User ToDisplayUser(this IDataReader record)
+    {
+        int index = record.GetOrdinal("UserID");
+        int id = record.GetInt32(index);
+
+        index = record.GetOrdinal("Username");
+        string? username = record.GetString(index);
+        return new User()
+        {
+            UserID = id,
+            Username = username,
+        };
+    }
+    public static User ToUserAllData(this IDataReader record)
+    {
+        Staff staff = new Staff();
+
+        int index = record.GetOrdinal("UserID");
+        int id = record.GetInt32(index);
+
+        index = record.GetOrdinal("Username");
+        string? username = record.GetString(index);
+
+        index = record.GetOrdinal("Password");
+        string? password = record.GetString(index);
+
+        index = record.GetOrdinal("StaffID");
+        staff.StaffID = record.GetInt32(index);
+
+        index = record.GetOrdinal("StaffName");
+        staff.StaffName = record.GetString(index);
+
+        index = record.GetOrdinal("StaffPosition");
+        staff.StaffPosition = record.GetString(index);
+
+        return new User()
+        {
+            UserID = id,
+            Username = username,
+            Password = password,
+            Staff = staff
+        };
+    }
+    #endregion
+
 }

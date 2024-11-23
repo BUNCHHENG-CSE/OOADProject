@@ -1,15 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using OOADPRO.Models;
 using OOADPRO.Utilities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace OOADPRO.Forms.AdminDisplayForm;
 
@@ -24,9 +15,18 @@ public partial class StaffForm : Form
 
     private void DoClickAddStaff(object? sender, EventArgs e)
     {
-        new StaffAddForm().ShowDialog();
-        flowLayoutPanelStaff.Controls.Clear();
-        new StaffAddForm().Show();
+        StaffAddForm staffAddForm = new StaffAddForm(this);
+        staffAddForm.StaffLoadingChanged += (sender, result) =>
+        {
+            if (result)
+            {
+                flowLayoutPanelStaff.Controls.Clear();
+                LoadingDataStaff();
+            }
+        };
+        staffAddForm.Show();
+
+    
     }
 
     private void StaffForm_Load(object sender, EventArgs e)
@@ -43,18 +43,21 @@ public partial class StaffForm : Form
             {
                 Panel productPanel = new Panel
                 {
-                    Width = 200,
+                    Width = 185,
                     Height = 250,
                     BorderStyle = BorderStyle.FixedSingle,
-                    Margin = new Padding(5)
+                    Margin = new Padding(10)
                 };
 
                 PictureBox pictureBox = new PictureBox
                 {
                     Width = 180,
                     Height = 180,
+                    
                     SizeMode = PictureBoxSizeMode.Zoom,
+                    
                     Image = staff.Photo != null ? ConvertImageClass.ConvertByteArrayToImage(staff.Photo) : null
+                   
                 };
 
                 Label staffNameLabel = new Label
@@ -90,7 +93,7 @@ public partial class StaffForm : Form
     }
     private void LoadStaffForUpdate()
     {
-        StaffAddForm updateForm = new StaffAddForm();
+        StaffAddForm updateForm = new StaffAddForm(this);
         updateForm.ShowDialog();
     }
     private void DeleteStaffById(int staffid)

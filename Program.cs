@@ -1,4 +1,5 @@
 using Microsoft.Data.SqlClient;
+using OOADPRO.Forms;
 using OOADPRO.Utilities;
 
 namespace OOADPRO;
@@ -33,4 +34,7 @@ internal static class Program
     }
     public static SqlConnection Connection = default!;
     public static string[] Genders { get; set; } = new string[] { "Female", "Male" };
+
 }
+public delegate void AmountCountEventHandler(object? sender, bool result);
+public delegate void StaffLoadingEventHandler(object? sender, bool result);

@@ -123,7 +123,7 @@
             // 
             labelStaffPosition.AutoSize = true;
             labelStaffPosition.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            labelStaffPosition.Location = new Point(268, 84);
+            labelStaffPosition.Location = new Point(268, 89);
             labelStaffPosition.Name = "labelStaffPosition";
             labelStaffPosition.Size = new Size(126, 23);
             labelStaffPosition.TabIndex = 8;
@@ -225,6 +225,7 @@
             // 
             // rtxtStaffAddress
             // 
+            rtxtStaffAddress.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             rtxtStaffAddress.Location = new Point(176, 173);
             rtxtStaffAddress.Name = "rtxtStaffAddress";
             rtxtStaffAddress.Size = new Size(434, 52);
@@ -233,18 +234,20 @@
             // 
             // cBStaffGender
             // 
+            cBStaffGender.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             cBStaffGender.FormattingEnabled = true;
-            cBStaffGender.Location = new Point(106, 84);
+            cBStaffGender.Location = new Point(89, 81);
             cBStaffGender.Name = "cBStaffGender";
-            cBStaffGender.Size = new Size(143, 23);
+            cBStaffGender.Size = new Size(159, 31);
             cBStaffGender.TabIndex = 63;
             // 
             // cBStaffPosition
             // 
+            cBStaffPosition.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             cBStaffPosition.FormattingEnabled = true;
-            cBStaffPosition.Location = new Point(400, 84);
+            cBStaffPosition.Location = new Point(400, 81);
             cBStaffPosition.Name = "cBStaffPosition";
-            cBStaffPosition.Size = new Size(194, 23);
+            cBStaffPosition.Size = new Size(194, 31);
             cBStaffPosition.TabIndex = 64;
             // 
             // StaffAddForm
