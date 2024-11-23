@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using OOADPRO.Utilities;
+﻿using OOADPRO.Utilities;
 
 namespace OOADPRO.Forms.CashierDisplayForm
 {
@@ -24,7 +15,7 @@ namespace OOADPRO.Forms.CashierDisplayForm
         }
         private void LoadProducts()
         {
-            var products = ProductFunc.GetAllProducts(Program.l);
+            var products = ProductFunc.GetAllProducts(Program.Connection);
 
             foreach (var product in products)
             {
@@ -41,7 +32,7 @@ namespace OOADPRO.Forms.CashierDisplayForm
                     Width = 180,
                     Height = 180,
                     SizeMode = PictureBoxSizeMode.Zoom,
-                    Image = product.ProductImage != null ? ConvertByteArrayToImage(product.ProductImage) : null
+                    Image = product.ProductImage != null ? ConvertImageClass.ConvertByteArrayToImage(product.ProductImage) : null
                 };
 
                 Label productNameLabel = new Label
@@ -73,16 +64,7 @@ namespace OOADPRO.Forms.CashierDisplayForm
             }
         }
 
-        private Image ConvertByteArrayToImage(byte[] byteArray)
-        {
-            if (byteArray == null || byteArray.Length == 0)
-                return null;
 
-            using (MemoryStream ms = new MemoryStream(byteArray))
-            {
-                return Image.FromStream(ms);
-            }
-        }
-  
+
     }
 }

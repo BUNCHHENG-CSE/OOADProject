@@ -109,8 +109,6 @@ public partial class StaffAddForm : Form
             }
         }
 
-        LoadingDataStaff();
-
     }
 
     private void DoClickInsertStaff(object? sender, EventArgs e)
@@ -140,7 +138,7 @@ public partial class StaffAddForm : Form
             MessageBoxButtons.OK, MessageBoxIcon.Stop);
             return;
         }
-       
+
         if (cBStaffPosition.SelectedItem == null)
         {
             MessageBox.Show("Staff Position is required", "Creating",
@@ -173,7 +171,7 @@ public partial class StaffAddForm : Form
             BirthDate = dtpDOB.Value,
             StaffAddress = rtxtStaffAddress.Text.Trim(),
             ContactNumber = txtContactNumber.Text.Trim(),
-           
+
             StaffPosition = cBStaffPosition.SelectedItem.ToString(),
             HiredDate = dtpHiredDate.Value,
             Photo = StaffImages,
@@ -190,50 +188,42 @@ public partial class StaffAddForm : Form
         }
         catch (Exception ex) { MessageBox.Show(ex.Message, "Submitting", MessageBoxButtons.OK, MessageBoxIcon.Error); }
 
-        LoadingDataStaff();
+        clearFormInput();
 
     }
 
     private void DoClickClearFormInput(object? sender, EventArgs e)
     {
+        clearFormInput();
+    }
+    private void clearFormInput()
+    {
         txtStaffID.Text = (staffCount + 1).ToString();
-        txtStaffName.Clear();
+        txtStaffName.Text = "";
         cBStaffGender.SelectedItem = null;
-        rtxtStaffAddress.Clear();
-        txtContactNumber.Clear();
+        dtpDOB.Value = DateTime.Now;
+        rtxtStaffAddress.Text = "";
+        txtContactNumber.Text = "";
         cBStaffPosition.SelectedItem = null;
-        dtpDOB.ResetText();
-        dtpHiredDate.ResetText();
-        picStaff.ImageLocation = "";
-        imgLocation = "";
+        dtpHiredDate.Value = DateTime.Now;
         picStaff.Image = null;
     }
-
     private void StaffAddForm_Load(object sender, EventArgs e)
-    {
-        LoadingDataStaff();
-        txtStaffID.Text = (staffCount + 1).ToString();
-
-    }
-    private void LoadingDataStaff()
     {
         try
         {
             var result = StaffFunc.GetAllStaff(Program.Connection);
-            Console.WriteLine(result);
-            // if (result.LastOrDefault() != null) { staffCount = result.LastOrDefault().StaffID; }
-            // else { staffCount = 0; }
-            //// lsStaff.Items.Clear();
-            // foreach (var staff in result)
-            // {
-            //    // lsStaff.Items.Add($"{staff.StaffID}. {staff.StaffNameKH}");
-            // }
-
+            if (result.LastOrDefault() != null) { staffCount = result.LastOrDefault().StaffID; }
+            else { staffCount = 0; }
         }
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message, "Retriving staff", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        txtStaffID.Text = (staffCount + 1).ToString();
+
     }
-   // public event AmountCountEventHandler? StaffAmountChanged;
+
+    // public event AmountCountEventHandler? StaffAmountChanged;
 }
