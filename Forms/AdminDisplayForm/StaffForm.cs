@@ -15,12 +15,6 @@ public partial class StaffForm : Form
 
     private void DoClickAddStaff(object? sender, EventArgs e)
     {
-        new StaffAddForm().ShowDialog();
-        flowLayoutPanelStaff.Controls.Clear();
-        new StaffAddForm().Show();
-    }
-
-
         StaffAddForm staffAddForm = new StaffAddForm(this);
         staffAddForm.StaffLoadingChanged += (sender, result) =>
         {
@@ -32,6 +26,7 @@ public partial class StaffForm : Form
         };
         staffAddForm.Show();
 
+    
     }
 
     private void StaffForm_Load(object sender, EventArgs e)
@@ -101,7 +96,7 @@ public partial class StaffForm : Form
     }
     private void LoadStaffForUpdate()
     {
-        StaffAddForm updateForm = new StaffAddForm();
+        StaffAddForm updateForm = new StaffAddForm(this);
         updateForm.ShowDialog();
     }
     private void DeleteProductById(int staffid)
