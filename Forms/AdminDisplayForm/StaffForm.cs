@@ -29,8 +29,6 @@ public partial class StaffForm : Form
         new StaffAddForm().Show();
     }
 
-
-
     private void StaffForm_Load(object sender, EventArgs e)
     {
         LoadingDataStaff();
@@ -76,10 +74,7 @@ public partial class StaffForm : Form
                 {
                     LoadStaffForUpdate();
                 };
-                pictureBox.DoubleClick += (sender, e) =>
-                {
-                    DeleteProductById(staff.StaffID);
-                };
+                pictureBox.DoubleClick += (s, e) => DeleteStaffById(staff.StaffID);
 
                 productPanel.Controls.Add(pictureBox);
                 productPanel.Controls.Add(staffNameLabel);
@@ -98,7 +93,7 @@ public partial class StaffForm : Form
         StaffAddForm updateForm = new StaffAddForm();
         updateForm.ShowDialog();
     }
-    private void DeleteProductById(int staffid)
+    private void DeleteStaffById(int staffid)
     {
         {
             try
@@ -109,7 +104,7 @@ public partial class StaffForm : Form
                 if (isDeleted)
                 {
                     MessageBox.Show("Product deleted successfully!");
-                    // Optionally, reload the products after deletion
+       
                     flowLayoutPanelStaff.Controls.Clear();
                     LoadingDataStaff();
                 }
