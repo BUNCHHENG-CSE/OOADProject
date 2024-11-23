@@ -1,8 +1,10 @@
+using OOADPRO.Forms;
 using OOADPRO.Forms.AdminDisplayForm;
 namespace OOADPRO;
 
 public partial class AdminForm : Form
 {
+    private DBConnectionForm databaseConnectionFormReference;
     public AdminForm()
     {
         InitializeComponent();
