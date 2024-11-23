@@ -1,6 +1,7 @@
 ﻿using OOADPRO.Models;
 using OOADPRO.Utilities;
 using System.Drawing.Imaging;
+using static OOADPRO.Program;
 
 namespace OOADPRO.Forms.AdminDisplayForm;
 
@@ -11,8 +12,8 @@ public partial class StaffAddForm : Form
     List<string> listBoxStaff = new List<string>();
     int staffCount = 0;
     int indexOfUpdateStaff;
-    string[] staffPosition { get; set; } = new string[] { "Administrator", "Accountant", "Receptionist" };
-    public StaffAddForm()
+    string[] staffPosition { get; set; } = new string[] { "Administrator", "Cashier" };
+    public StaffAddForm(StaffForm staffform)
     {
         InitializeComponent();
 
@@ -182,7 +183,7 @@ public partial class StaffAddForm : Form
             if (result == true)
             {
                 MessageBox.Show($"Successfully inserted staff with the id {txtStaffID.Text}");
-                // StaffAmountChanged?.Invoke(this, result);
+                StaffLoadingChanged?.Invoke(this, result);
             }
             //listBoxStaff.Add($"{txtStaffID.Text}. {newStaff.StaffName}");
         }
@@ -225,5 +226,5 @@ public partial class StaffAddForm : Form
 
     }
 
-    // public event AmountCountEventHandler? StaffAmountChanged;
+    public event StaffLoadingEventHandler? StaffLoadingChanged;
 }

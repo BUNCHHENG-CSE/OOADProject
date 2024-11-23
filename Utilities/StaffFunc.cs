@@ -4,7 +4,7 @@ using System.Data;
 
 namespace OOADPRO.Utilities;
 
-public class StaffFunc
+public static class StaffFunc
 {
 
     public static IEnumerable<Staff> GetAllStaff(SqlConnection con)
