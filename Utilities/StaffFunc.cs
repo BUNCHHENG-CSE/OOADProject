@@ -171,6 +171,27 @@ public static class StaffFunc
             cmd.Dispose();
         }
     }
+    public static bool DeleteStaff(SqlConnection con, int staffid)
+    {
+        SqlCommand cmd = new SqlCommand("spDeleteStaff", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@id", staffid);
+
+        try
+        {
+            int rowsAffected = cmd.ExecuteNonQuery();
+            return rowsAffected > 0;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Failed to delete product > {ex.Message}");
+        }
+        finally
+        {
+            cmd.Dispose();
+        }
+    }
+
 
 
 }

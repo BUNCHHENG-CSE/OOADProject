@@ -1,4 +1,6 @@
-﻿using OOADPRO.Utilities;
+﻿using Microsoft.Data.SqlClient;
+using OOADPRO.Models;
+using OOADPRO.Utilities;
 
 namespace OOADPRO.Forms.AdminDisplayForm;
 
@@ -13,6 +15,12 @@ public partial class StaffForm : Form
 
     private void DoClickAddStaff(object? sender, EventArgs e)
     {
+        new StaffAddForm().ShowDialog();
+        flowLayoutPanelStaff.Controls.Clear();
+        new StaffAddForm().Show();
+    }
+
+
         StaffAddForm staffAddForm = new StaffAddForm(this);
         staffAddForm.StaffLoadingChanged += (sender, result) =>
         {
@@ -70,6 +78,15 @@ public partial class StaffForm : Form
                     AutoSize = true,
                     Location = new Point(5, 210)
                 };
+                pictureBox.Click += (sender, e) =>
+                {
+                    LoadStaffForUpdate();
+                };
+                pictureBox.DoubleClick += (sender, e) =>
+                {
+                    DeleteProductById(staff.StaffID);
+                };
+
                 productPanel.Controls.Add(pictureBox);
                 productPanel.Controls.Add(staffNameLabel);
                 productPanel.Controls.Add(staffPosition);
@@ -81,5 +98,38 @@ public partial class StaffForm : Form
         {
             MessageBox.Show(ex.Message, "Retriving staff", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+    }
+    private void LoadStaffForUpdate()
+    {
+        StaffAddForm updateForm = new StaffAddForm();
+        updateForm.ShowDialog();
+    }
+    private void DeleteProductById(int staffid)
+    {
+        {
+            try
+            {
+                var result = StaffFunc.GetAllStaff(Program.Connection);
+                bool isDeleted = StaffFunc.DeleteStaff(Program.Connection, staffid);
+
+                if (isDeleted)
+                {
+                    MessageBox.Show("Product deleted successfully!");
+                    // Optionally, reload the products after deletion
+                    flowLayoutPanelStaff.Controls.Clear();
+                    LoadingDataStaff();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete the product.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting product: {ex.Message}");
+            }
+        }
+
+
     }
 }
