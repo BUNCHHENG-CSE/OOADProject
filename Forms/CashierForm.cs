@@ -31,7 +31,7 @@ namespace OOADPRO.Forms
         }
         private void DoClickOrder(object? sender, EventArgs e)
         {
-            AddControl(new OrderDeatilAddForm());
+            AddControl(new OrderForm());
         }
         public void AddControl(Form f)
         {

@@ -128,28 +128,40 @@ public partial class StaffForm : Form
     }
     private void DeleteStaffById(int staffid)
     {
+        try
         {
-            try
+            DialogResult dialogResult = MessageBox.Show(
+                "Are you sure you want to delete this member?",
+                "Confirm Deletion",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (dialogResult == DialogResult.Yes)
             {
                 var result = StaffFunc.GetAllStaff(Program.Connection);
                 bool isDeleted = StaffFunc.DeleteStaff(Program.Connection, staffid);
                 if (isDeleted)
                 {
-                    MessageBox.Show("Product deleted successfully!");
-                    
+                    MessageBox.Show("Staff deleted successfully!");
                     flowLayoutPanelStaff.Controls.Clear();
                     LoadingDataStaff();
                 }
                 else
                 {
-                    MessageBox.Show("Failed to delete the product.");
+                    MessageBox.Show("Failed to delete the staff member.");
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Error deleting product: {ex.Message}");
+                MessageBox.Show("Sava man.");
             }
         }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error deleting staff: {ex.Message}");
+        }
     }
-   
+
+
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OOADPRO.Forms.AdminDisplayForm;
 
 namespace OOADPRO.Forms.CashierDisplayForm
 {
@@ -15,6 +16,13 @@ namespace OOADPRO.Forms.CashierDisplayForm
         public OrderForm()
         {
             InitializeComponent();
+            btnAddStaff.Click += DoClickAddOrderDetail;
         }
+
+        private void DoClickAddOrderDetail(object? sender, EventArgs e)
+        {
+            new OrderDetailAddForm().Show();
+        }
+       
     }
 }
