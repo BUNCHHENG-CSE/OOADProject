@@ -9,5 +9,4 @@ public class OrderDetail
     public Order? Order { get; set; }
     public Products? Products { get; set; }
 
-
 }

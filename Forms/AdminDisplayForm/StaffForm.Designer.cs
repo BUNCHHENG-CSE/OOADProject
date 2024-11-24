@@ -46,7 +46,7 @@
             // 
             // flowLayoutPanelStaff
             // 
-            flowLayoutPanelStaff.AutoSize = true;
+            flowLayoutPanelStaff.AutoScroll = true;
             flowLayoutPanelStaff.Location = new Point(36, 88);
             flowLayoutPanelStaff.Name = "flowLayoutPanelStaff";
             flowLayoutPanelStaff.Size = new Size(1044, 551);
@@ -65,7 +65,6 @@
             Text = "StaffForm";
             Load += StaffForm_Load;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

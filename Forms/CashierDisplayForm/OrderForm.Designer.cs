@@ -66,32 +66,39 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { SR, Qty, Amount, Product });
-            dataGridView1.Location = new Point(631, 12);
+            dataGridView1.Location = new Point(632, 22);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(449, 456);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.Size = new Size(436, 456);
             dataGridView1.TabIndex = 69;
             // 
             // SR
             // 
             SR.HeaderText = "SR";
             SR.Name = "SR";
+            SR.ReadOnly = true;
             // 
             // Qty
             // 
             Qty.HeaderText = "Qty";
             Qty.Name = "Qty";
+            Qty.ReadOnly = true;
             // 
             // Amount
             // 
             Amount.HeaderText = "Amount";
             Amount.Name = "Amount";
+            Amount.ReadOnly = true;
             // 
             // Product
             // 
             Product.HeaderText = "Product";
             Product.Name = "Product";
+            Product.ReadOnly = true;
             // 
             // Total
             // 
@@ -136,7 +143,7 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(913, 653);
+            button2.Location = new Point(936, 653);
             button2.Name = "button2";
             button2.Size = new Size(94, 34);
             button2.TabIndex = 74;

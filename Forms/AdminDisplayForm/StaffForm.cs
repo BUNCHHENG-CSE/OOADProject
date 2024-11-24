@@ -40,6 +40,7 @@ public partial class StaffForm : Form
     {
         try
         {
+     
             var result = StaffFunc.GetAllStaff(Program.Connection);
             Console.WriteLine(result);
             foreach (var staff in result)
@@ -49,33 +50,37 @@ public partial class StaffForm : Form
                     Width = 185,
                     Height = 250,
                     BorderStyle = BorderStyle.FixedSingle,
-                    Margin = new Padding(10)
+                    Padding = new Padding(20)
                 };
 
                 PictureBox pictureBox = new PictureBox
                 {
                     Width = 180,
                     Height = 180,
-                    
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                    
+                    SizeMode = PictureBoxSizeMode.StretchImage,
                     Image = staff.Photo != null ? ConvertImageClass.ConvertByteArrayToImage(staff.Photo) : null
-                   
                 };
 
                 Label staffNameLabel = new Label
                 {
                     Text = staff.StaffName,
-                    AutoSize = true,
+                    Font = new Font("Arial", 12, FontStyle.Bold), 
+                    Size = new Size(180, 30),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    AutoSize = false,
                     Location = new Point(5, 190)
                 };
 
                 Label staffPosition = new Label
                 {
-                    Text = staff.StaffPosition,
-                    AutoSize = true,
+                    Text = staff.StaffPosition,             
+                    Font = new Font("Arial", 12, FontStyle.Bold),
+                    Size = new Size(180, 30),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    AutoSize = false,
                     Location = new Point(5, 210)
                 };
+                staffPosition.TextAlign = ContentAlignment.MiddleCenter;
                 //pictureBox.Click += (sender, e) =>LoadStaffForUpdate(staff);
               
                 //pictureBox.DoubleClick += (s, e) =>Del
@@ -94,7 +99,7 @@ public partial class StaffForm : Form
                     }
                 };
 
-
+                flowLayoutPanelStaff.Padding = new Padding(20);
                 productPanel.Controls.Add(pictureBox);
                 productPanel.Controls.Add(staffNameLabel);
                 productPanel.Controls.Add(staffPosition);
@@ -134,7 +139,7 @@ public partial class StaffForm : Form
                 if (isDeleted)
                 {
                     MessageBox.Show("Product deleted successfully!");
-       
+                    
                     flowLayoutPanelStaff.Controls.Clear();
                     LoadingDataStaff();
                 }
