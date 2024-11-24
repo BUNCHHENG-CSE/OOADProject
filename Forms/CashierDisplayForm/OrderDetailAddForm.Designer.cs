@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             flowLayoutPanel1 = new FlowLayoutPanel();
-            button1 = new Button();
+            buttonpay = new Button();
             txtTotal = new Label();
             dataGridView1 = new DataGridView();
-            txtProductName = new TextBox();
-            labelOverview = new Label();
             OrderDetailID = new DataGridViewTextBoxColumn();
             ProductsID = new DataGridViewTextBoxColumn();
             ProductsName = new DataGridViewTextBoxColumn();
             Qty = new DataGridViewTextBoxColumn();
             UnitPrice = new DataGridViewTextBoxColumn();
             Amount = new DataGridViewTextBoxColumn();
+            txtProductName = new TextBox();
+            labelOverview = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -51,15 +51,15 @@
             flowLayoutPanel1.Size = new Size(555, 643);
             flowLayoutPanel1.TabIndex = 86;
             // 
-            // button1
+            // buttonpay
             // 
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(626, 582);
-            button1.Name = "button1";
-            button1.Size = new Size(92, 42);
-            button1.TabIndex = 83;
-            button1.Text = "Pay Order";
-            button1.UseVisualStyleBackColor = true;
+            buttonpay.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buttonpay.Location = new Point(626, 582);
+            buttonpay.Name = "buttonpay";
+            buttonpay.Size = new Size(92, 42);
+            buttonpay.TabIndex = 83;
+            buttonpay.Text = "Pay Order";
+            buttonpay.UseVisualStyleBackColor = true;
             // 
             // txtTotal
             // 
@@ -82,24 +82,6 @@
             dataGridView1.ReadOnly = true;
             dataGridView1.Size = new Size(434, 412);
             dataGridView1.TabIndex = 79;
-            // 
-            // txtProductName
-            // 
-            txtProductName.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            txtProductName.Location = new Point(118, 3);
-            txtProductName.Name = "txtProductName";
-            txtProductName.Size = new Size(211, 28);
-            txtProductName.TabIndex = 78;
-            // 
-            // labelOverview
-            // 
-            labelOverview.AutoSize = true;
-            labelOverview.Font = new Font("Sitka Small Semibold", 14F, FontStyle.Bold);
-            labelOverview.Location = new Point(18, 2);
-            labelOverview.Name = "labelOverview";
-            labelOverview.Size = new Size(94, 28);
-            labelOverview.TabIndex = 77;
-            labelOverview.Text = "Search :";
             // 
             // OrderDetailID
             // 
@@ -140,13 +122,31 @@
             Amount.Name = "Amount";
             Amount.ReadOnly = true;
             // 
+            // txtProductName
+            // 
+            txtProductName.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
+            txtProductName.Location = new Point(118, 3);
+            txtProductName.Name = "txtProductName";
+            txtProductName.Size = new Size(211, 28);
+            txtProductName.TabIndex = 78;
+            // 
+            // labelOverview
+            // 
+            labelOverview.AutoSize = true;
+            labelOverview.Font = new Font("Sitka Small Semibold", 14F, FontStyle.Bold);
+            labelOverview.Location = new Point(18, 2);
+            labelOverview.Name = "labelOverview";
+            labelOverview.Size = new Size(94, 28);
+            labelOverview.TabIndex = 77;
+            labelOverview.Text = "Search :";
+            // 
             // OrderDetailAddForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1060, 724);
             Controls.Add(flowLayoutPanel1);
-            Controls.Add(button1);
+            Controls.Add(buttonpay);
             Controls.Add(txtTotal);
             Controls.Add(dataGridView1);
             Controls.Add(txtProductName);
@@ -161,7 +161,7 @@
         #endregion
 
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button button1;
+        private Button buttonpay;
         private Label txtTotal;
         private DataGridView dataGridView1;
         private TextBox txtProductName;

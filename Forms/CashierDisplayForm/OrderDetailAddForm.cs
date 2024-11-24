@@ -32,6 +32,7 @@ namespace OOADPRO.Forms.CashierDisplayForm
             {
                 LoadProducts();
             }
+            buttonpay.Click += btnSave_Click;
 
         }
         private void LoadProducts()
@@ -153,6 +154,52 @@ namespace OOADPRO.Forms.CashierDisplayForm
                 }
             }
         }
+        private void SaveOrderDetails(SqlConnection con)
+        {
+            SqlCommand cmd;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                int orderDetailId = Convert.ToInt32(row.Cells["OrderDetailID"].Value);
+                int productId = Convert.ToInt32(row.Cells["ProductsID"].Value);
+                int orderQty = Convert.ToInt32(row.Cells["Qty"].Value);
+                float unitPrice = Convert.ToSingle(row.Cells["UnitPrice"].Value);
+                if (orderDetailId == -1)
+                {
+                    cmd = new SqlCommand("InsertOrderDetail", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@OrderID", this.OrderID); 
+                    cmd.Parameters.AddWithValue("@ProductID", productId);
+                    cmd.Parameters.AddWithValue("@OrderQty", orderQty);
+                    cmd.Parameters.AddWithValue("@UnitPrice", unitPrice);
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    cmd = new SqlCommand("UpdateOrderDetail", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@OrderDetailID", orderDetailId);
+                    cmd.Parameters.AddWithValue("@OrderID", this.OrderID);
+                    cmd.Parameters.AddWithValue("@ProductID", productId);
+                    cmd.Parameters.AddWithValue("@OrderQty", orderQty);
+                    cmd.Parameters.AddWithValue("@UnitPrice", unitPrice);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            using (Program.Connection) 
+            {
+                Program.Connection.Open();
+                SaveOrderDetails(Program.Connection);
+            }
+            MessageBox.Show("Order details saved successfully!");
+        }
+
+
+
     }
 }
     
