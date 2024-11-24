@@ -81,9 +81,6 @@ public partial class StaffForm : Form
                     Location = new Point(5, 210)
                 };
                 staffPosition.TextAlign = ContentAlignment.MiddleCenter;
-                //pictureBox.Click += (sender, e) =>LoadStaffForUpdate(staff);
-              
-                //pictureBox.DoubleClick += (s, e) =>Del
 
                 pictureBox.MouseDown += (s, e) =>
                 {

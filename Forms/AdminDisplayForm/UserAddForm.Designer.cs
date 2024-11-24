@@ -30,7 +30,6 @@
         {
             btnUpdate = new Button();
             btnInsert = new Button();
-            txtStaffID = new TextBox();
             txtStaffName = new TextBox();
             picStaff = new PictureBox();
             labelStaffID = new Label();
@@ -44,6 +43,8 @@
             txtUserID = new TextBox();
             labelStaffPosition = new Label();
             txtStaffPosition = new TextBox();
+            cBStaffID = new ComboBox();
+            chBShowPass = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)picStaff).BeginInit();
             SuspendLayout();
             // 
@@ -67,21 +68,13 @@
             btnInsert.Text = "Insert";
             btnInsert.UseVisualStyleBackColor = true;
             // 
-            // txtStaffID
-            // 
-            txtStaffID.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            txtStaffID.Location = new Point(381, 29);
-            txtStaffID.Name = "txtStaffID";
-            txtStaffID.ReadOnly = true;
-            txtStaffID.Size = new Size(217, 28);
-            txtStaffID.TabIndex = 97;
-            // 
             // txtStaffName
             // 
             txtStaffName.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             txtStaffName.Location = new Point(172, 181);
             txtStaffName.Name = "txtStaffName";
-            txtStaffName.Size = new Size(254, 28);
+            txtStaffName.ReadOnly = true;
+            txtStaffName.Size = new Size(255, 28);
             txtStaffName.TabIndex = 96;
             // 
             // picStaff
@@ -90,6 +83,7 @@
             picStaff.Location = new Point(633, 12);
             picStaff.Name = "picStaff";
             picStaff.Size = new Size(145, 185);
+            picStaff.SizeMode = PictureBoxSizeMode.Zoom;
             picStaff.TabIndex = 94;
             picStaff.TabStop = false;
             // 
@@ -97,7 +91,7 @@
             // 
             labelStaffID.AutoSize = true;
             labelStaffID.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            labelStaffID.Location = new Point(279, 32);
+            labelStaffID.Location = new Point(267, 35);
             labelStaffID.Name = "labelStaffID";
             labelStaffID.Size = new Size(76, 23);
             labelStaffID.TabIndex = 93;
@@ -118,15 +112,16 @@
             txtPassword.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             txtPassword.Location = new Point(172, 132);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(254, 28);
+            txtPassword.Size = new Size(303, 28);
             txtPassword.TabIndex = 91;
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // txtUsername
             // 
             txtUsername.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             txtUsername.Location = new Point(172, 85);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(254, 28);
+            txtUsername.Size = new Size(303, 28);
             txtUsername.TabIndex = 90;
             // 
             // labelUsername
@@ -193,19 +188,41 @@
             txtStaffPosition.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             txtStaffPosition.Location = new Point(172, 227);
             txtStaffPosition.Name = "txtStaffPosition";
-            txtStaffPosition.Size = new Size(254, 28);
+            txtStaffPosition.ReadOnly = true;
+            txtStaffPosition.Size = new Size(255, 28);
             txtStaffPosition.TabIndex = 101;
+            // 
+            // cBStaffID
+            // 
+            cBStaffID.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
+            cBStaffID.FormattingEnabled = true;
+            cBStaffID.Location = new Point(361, 27);
+            cBStaffID.Name = "cBStaffID";
+            cBStaffID.Size = new Size(230, 31);
+            cBStaffID.TabIndex = 102;
+            // 
+            // chBShowPass
+            // 
+            chBShowPass.AutoSize = true;
+            chBShowPass.Font = new Font("Sitka Small", 10F, FontStyle.Bold);
+            chBShowPass.Location = new Point(481, 138);
+            chBShowPass.Name = "chBShowPass";
+            chBShowPass.Size = new Size(146, 24);
+            chBShowPass.TabIndex = 103;
+            chBShowPass.Text = "Show Password";
+            chBShowPass.UseVisualStyleBackColor = true;
             // 
             // UserAddForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(789, 371);
+            Controls.Add(chBShowPass);
+            Controls.Add(cBStaffID);
             Controls.Add(txtStaffPosition);
             Controls.Add(labelStaffPosition);
             Controls.Add(btnUpdate);
             Controls.Add(btnInsert);
-            Controls.Add(txtStaffID);
             Controls.Add(txtStaffName);
             Controls.Add(picStaff);
             Controls.Add(labelStaffID);
@@ -220,6 +237,7 @@
             Name = "UserAddForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UserAddForm";
+            Load += UserAddForm_Load;
             ((System.ComponentModel.ISupportInitialize)picStaff).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -229,7 +247,6 @@
 
         private Button btnUpdate;
         private Button btnInsert;
-        private TextBox txtStaffID;
         private TextBox txtStaffName;
         private PictureBox picStaff;
         private Label labelStaffID;
@@ -243,5 +260,7 @@
         private TextBox txtUserID;
         private Label labelStaffPosition;
         private TextBox txtStaffPosition;
+        private ComboBox cBStaffID;
+        private CheckBox chBShowPass;
     }
 }

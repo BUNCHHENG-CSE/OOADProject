@@ -73,7 +73,7 @@ public class UserFunc
         cmd.Parameters.AddWithValue("@usr", user.Username);
         cmd.Parameters.AddWithValue("@passwd", user.Password);
         cmd.Parameters.AddWithValue("@staid", user.Staff.StaffID);
-        cmd.Parameters.AddWithValue("@stanKH", user.Staff.StaffName);
+        cmd.Parameters.AddWithValue("@stan", user.Staff.StaffName);
         cmd.Parameters.AddWithValue("@stapos", user.Staff.StaffPosition);
         try
         {

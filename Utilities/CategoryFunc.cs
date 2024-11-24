@@ -131,4 +131,24 @@ public class CategoryFunc
             cmd.Dispose();
         }
     }
+    public static bool DeleteCategory(SqlConnection con, int categoryID)
+    {
+        SqlCommand cmd = new SqlCommand("spDeleteCategory", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@id", categoryID);
+
+        try
+        {
+            int rowsAffected = cmd.ExecuteNonQuery();
+            return rowsAffected > 0;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Failed to delete category > {ex.Message}");
+        }
+        finally
+        {
+            cmd.Dispose();
+        }
+    }
 }

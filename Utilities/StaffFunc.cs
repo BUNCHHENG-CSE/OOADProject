@@ -28,7 +28,7 @@ public static class StaffFunc
             var queryAbles = reader.Cast<IDataRecord>().AsQueryable();
             foreach (var record in queryAbles)
             {
-                yield return reader.ToDisplayStaff();
+                yield return reader.ToStaffAllData();
             }
         }
         reader?.Close();
@@ -88,9 +88,9 @@ public static class StaffFunc
         reader?.Close();
         return result;
     }
-    public static Staff GetOneStaffNameandPosition(SqlConnection con, int id)
+    public static Staff GetOneStaffNameandPositionPhoto(SqlConnection con, int id)
     {
-        SqlCommand cmd = new SqlCommand("spReadOneStaffNameandPosition", con);
+        SqlCommand cmd = new SqlCommand("spReadOneStaffNameandPositionPhoto", con);
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@id", id);
         SqlDataReader? reader = null;
@@ -111,7 +111,7 @@ public static class StaffFunc
         {
             if (reader.Read() == true)
             {
-                result = reader.ToStaffNameKHandPosition();
+                result = reader.ToStaffNameandPositionPhoto();
             }
         }
         reader?.Close();
@@ -191,7 +191,4 @@ public static class StaffFunc
             cmd.Dispose();
         }
     }
-
-
-
 }

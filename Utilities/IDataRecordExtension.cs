@@ -1,4 +1,5 @@
 ﻿using OOADPRO.Models;
+using ScottPlot;
 using System.Data;
 
 namespace OOADPRO.Utilities;
@@ -6,25 +7,30 @@ namespace OOADPRO.Utilities;
 public static class IDataRecordExtension
 {
     #region Get Staff INFO. To Display On ListBox and Display Staff on TextBox When Click on ListBox
-    public static Staff ToDisplayStaff(this IDataReader record)
-    {
-        int index = record.GetOrdinal("StaffID");
-        int id = record.GetInt32(index);
-        index = record.GetOrdinal("StaffName");
-        string? staffname = record.GetString(index);
-        index = record.GetOrdinal("StaffPosition");
-        string? staffposition = record.GetString(index);
-        index = record.GetOrdinal("Photo");
-        byte[] photo = null;
-        if (!record.IsDBNull(index)) photo = (byte[])record[index];
-        return new Staff()
-        {
-            StaffID = id,
-            StaffName = staffname,
-            StaffPosition = staffposition,
-            Photo = photo
-        };
-    }
+    //public static Staff ToDisplayStaff(this IDataReader record)
+    //{
+    //    int index = record.GetOrdinal("StaffID");
+    //    int id = record.GetInt32(index);
+    //    index = record.GetOrdinal("StaffName");
+    //    string? staffname = record.GetString(index);
+    //    index = record.GetOrdinal("StaffPosition");
+    //    string? staffposition = record.GetString(index);
+    //    index = record.GetOrdinal("Photo");
+    //    byte[] photo = null;
+    //    if (!record.IsDBNull(index)) photo = (byte[])record[index];
+    //    return new Staff()
+    //    {
+    //        StaffID = id,
+    //        StaffName = staffname,
+    //        Gender = gender,
+    //        BirthDate = birthdate,
+    //        StaffPosition = staffposition,
+    //        StaffAddress = staffaddress,
+    //        ContactNumber = contactnumber,
+    //        HiredDate = hireddate,
+    //        Photo = photo,
+    //    };
+    //}
     public static Staff ToDisplayStaffID(this IDataReader record)
     {
         int index = record.GetOrdinal("StaffID");
@@ -85,7 +91,7 @@ public static class IDataRecordExtension
         };
     }
 
-    public static Staff ToStaffNameKHandPosition(this IDataReader record)
+    public static Staff ToStaffNameandPositionPhoto(this IDataReader record)
     {
 
         int index = record.GetOrdinal("StaffName");
@@ -94,10 +100,14 @@ public static class IDataRecordExtension
         index = record.GetOrdinal("StaffPosition");
         string? staffposition = record.GetString(index);
 
+        index = record.GetOrdinal("Photo");
+        byte[] photo = null;
+        if (!record.IsDBNull(index)) photo = (byte[])record[index];
         return new Staff()
         {
             StaffName = staffname,
             StaffPosition = staffposition,
+            Photo = photo,
         };
     }
 

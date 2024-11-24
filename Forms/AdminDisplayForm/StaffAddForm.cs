@@ -1,7 +1,6 @@
 ﻿using OOADPRO.Models;
 using OOADPRO.Utilities;
 using System.Drawing.Imaging;
-using static OOADPRO.Program;
 
 namespace OOADPRO.Forms.AdminDisplayForm;
 
@@ -22,8 +21,6 @@ public partial class StaffAddForm : Form
         btnInsert.Click += DoClickInsertStaff;
         btnUpdate.Click += DoClickUpdateStaff;
         btnUploadPhoto.Click += DoClickUploadStaffPhoto;
-        //lsStaff.SelectedIndexChanged += Select_Handling_Staff;
-        //txtSearchStaff.TextChanged += SearchChangedFunc;
         cBStaffPosition.DataSource = staffPosition;
         dtpDOB.Format = DateTimePickerFormat.Custom;
         dtpHiredDate.Format = DateTimePickerFormat.Custom;
@@ -87,22 +84,14 @@ public partial class StaffAddForm : Form
                 StaffImages = ms.ToArray();
             }
             effectedStaff.Photo = StaffImages;
+           
             try
             {
+
                 var result = StaffFunc.UpdateStaff(Program.Connection, effectedStaff);
                 if (result == true)
                     MessageBox.Show($"Successfully updated an existing staff with the id {txtStaffID.Text}");
-                foreach (string checkStaff in listBoxStaff)
-                {
-                    string[] splitText = checkStaff.Split('.');
-                    if (splitText[0].Trim().Equals(effectedStaff.StaffID.ToString()))
-                    {
-                        indexOfUpdateStaff = listBoxStaff.IndexOf(checkStaff);
-                        listBoxStaff.Remove(checkStaff);
-                        break;
-                    }
-                }
-                listBoxStaff.Insert(indexOfUpdateStaff, $"{effectedStaff.StaffID}. {effectedStaff.StaffName}");
+                
             }
             catch (Exception ex)
             {
@@ -185,12 +174,11 @@ public partial class StaffAddForm : Form
                 MessageBox.Show($"Successfully inserted staff with the id {txtStaffID.Text}");
                 StaffLoadingChanged?.Invoke(this, result);
             }
-            //listBoxStaff.Add($"{txtStaffID.Text}. {newStaff.StaffName}");
         }
         catch (Exception ex) { MessageBox.Show(ex.Message, "Submitting", MessageBoxButtons.OK, MessageBoxIcon.Error); }
 
         clearFormInput();
-
+        LoadStaff();
     }
 
     private void DoClickClearFormInput(object? sender, EventArgs e)
@@ -211,6 +199,14 @@ public partial class StaffAddForm : Form
     }
     private void StaffAddForm_Load(object sender, EventArgs e)
     {
+        LoadStaff();
+        if (txtStaffName.Text == "")
+
+            txtStaffID.Text = (staffCount + 1).ToString();
+
+    }
+    private void LoadStaff()
+    {
         try
         {
             var result = StaffFunc.GetAllStaff(Program.Connection);
@@ -221,19 +217,15 @@ public partial class StaffAddForm : Form
         {
             MessageBox.Show(ex.Message, "Retriving staff", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
-        txtStaffID.Text = (staffCount + 1).ToString();
-
     }
     public void LoadStaffDetails(Staff staff)
     {
         if (staff == null)
             throw new ArgumentNullException(nameof(staff));
-
+        txtStaffID.Clear();
+        txtStaffID.Text = staff.StaffID.ToString();
         txtStaffName.Text = staff.StaffName;
-
         cBStaffGender.SelectedItem = staff.Gender;
-        Console.WriteLine($"Gender: {staff.Gender}, Address: {staff.StaffAddress}, Contact: {staff.ContactNumber}");
         dtpDOB.Value = staff.BirthDate ?? DateTime.Now;
         cBStaffPosition.Text = staff.StaffPosition;
         rtxtStaffAddress.Text = staff.StaffAddress;
@@ -250,8 +242,7 @@ public partial class StaffAddForm : Form
             picStaff.Image = null;
         }
 
-
-        txtStaffID.Text = staff.StaffID.ToString();
+        effectedStaff = staff;
     }
 
 
