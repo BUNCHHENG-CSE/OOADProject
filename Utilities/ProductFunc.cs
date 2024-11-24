@@ -101,9 +101,6 @@ namespace OOADPRO.Utilities
             return product;
         }
 
-
-
-
         public static Products GetOneProducts(SqlConnection con, int id)
         {
             SqlCommand cmd = new SqlCommand("spReadOneProduct", con);
@@ -163,11 +160,13 @@ namespace OOADPRO.Utilities
         {
             SqlCommand cmd = new SqlCommand("spUpdateProduct", con);
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@id", product.ProductsID);
             cmd.Parameters.AddWithValue("@pn", product.ProductName);
             cmd.Parameters.AddWithValue("@pm", product.ProductsPrice);
-            cmd.Parameters.AddWithValue("@ps", product.ProductDescription);
-            cmd.Parameters.AddWithValue("@pi", product.ProductDescription);
-            cmd.Parameters.AddWithValue("@pd", product.ProductImage);
+            cmd.Parameters.AddWithValue("@ps", product.ProductsStock);
+            cmd.Parameters.AddWithValue("@pd", product.ProductDescription);
+            cmd.Parameters.AddWithValue("@pi", product.ProductImage);
+            cmd.Parameters.AddWithValue("@cid", product.Category.CategoryID);
             try
             {
                 int effected = cmd.ExecuteNonQuery();
@@ -176,6 +175,26 @@ namespace OOADPRO.Utilities
             catch (Exception ex)
             {
                 throw new Exception($"Failed in updating existing staff > {ex.Message}");
+            }
+            finally
+            {
+                cmd.Dispose();
+            }
+        }
+        public static bool DeleteProducts(SqlConnection con, int productID)
+        {
+            SqlCommand cmd = new SqlCommand("spDeleteProduct", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@id", productID);
+
+            try
+            {
+                int rowsAffected = cmd.ExecuteNonQuery();
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to delete product > {ex.Message}");
             }
             finally
             {

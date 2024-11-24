@@ -30,8 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductsForm));
             btnAddProduct = new Button();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            flowLayoutPanelProducts = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // btnAddProduct
@@ -45,31 +44,31 @@
             btnAddProduct.TabIndex = 2;
             btnAddProduct.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // flowLayoutPanelProducts
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(36, 107);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1021, 150);
-            dataGridView1.TabIndex = 3;
+            flowLayoutPanelProducts.AutoScroll = true;
+            flowLayoutPanelProducts.Location = new Point(36, 103);
+            flowLayoutPanelProducts.Name = "flowLayoutPanelProducts";
+            flowLayoutPanelProducts.Size = new Size(1044, 551);
+            flowLayoutPanelProducts.TabIndex = 3;
             // 
             // ProductsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1076, 763);
-            Controls.Add(dataGridView1);
+            ClientSize = new Size(1092, 802);
+            Controls.Add(flowLayoutPanelProducts);
             Controls.Add(btnAddProduct);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ProductsForm";
             Text = "ProductsForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += ProductsForm_Load;
             ResumeLayout(false);
         }
 
         #endregion
 
         private Button btnAddProduct;
-        private DataGridView dataGridView1;
+        private FlowLayoutPanel flowLayoutPanelProducts;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using OOADPRO.Models;
 using ScottPlot;
+using System;
 using System.Data;
 
 namespace OOADPRO.Utilities;
@@ -250,6 +251,10 @@ public static class IDataRecordExtension
         index = record.GetOrdinal("StaffPosition");
         staff.StaffPosition = record.GetString(index);
 
+        index = record.GetOrdinal("Photo");
+        byte[] photo = null;
+        if (!record.IsDBNull(index)) photo = (byte[])record[index];
+        staff.Photo = photo;
         return new User()
         {
             UserID = id,
@@ -311,38 +316,38 @@ public static class IDataRecordExtension
         };
     }
 
-    public static OrderDetail ToOrderDetailWithProductInfo(this IDataReader record)
-    {
-        int orderDetailId = record.GetInt32(record.GetOrdinal("OrderDetailID"));
-        int orderQty = record.GetInt32(record.GetOrdinal("OrderQty"));
-        float unitPrice = record.GetFloat(record.GetOrdinal("UnitPrice"));
-        int orderId = record.GetInt32(record.GetOrdinal("OrderID"));
-        int productId = record.GetInt32(record.GetOrdinal("ProductsID"));
-        string? productName = record.IsDBNull(record.GetOrdinal("ProductName")) ? null : record.GetString(record.GetOrdinal("ProductName"));
+    //public static OrderDetail ToOrderDetailWithProductInfo(this IDataReader record)
+    //{
+    //    int orderDetailId = record.GetInt32(record.GetOrdinal("OrderDetailID"));
+    //    int orderQty = record.GetInt32(record.GetOrdinal("OrderQty"));
+    //    float unitPrice = record.GetFloat(record.GetOrdinal("UnitPrice"));
+    //    int orderId = record.GetInt32(record.GetOrdinal("OrderID"));
+    //    int productId = record.GetInt32(record.GetOrdinal("ProductsID"));
+    //    string? productName = record.IsDBNull(record.GetOrdinal("ProductName")) ? null : record.GetString(record.GetOrdinal("ProductName"));
 
-        return new OrderDetail
-        {
-            OrderDetailID = orderDetailId,
-            OrderQty = orderQty,
-            UnitPrice = unitPrice,
-            OrderID = orderId,
-            ProductsID = productId,
-            Product = new Products
-            {
-                ProductsID = productId,
-                ProductName = productName
-            }
-        };
-    }
+    //    return new OrderDetail
+    //    {
+    //        OrderDetailID = orderDetailId,
+    //        OrderQty = orderQty,
+    //        UnitPrice = unitPrice,
+    //        OrderID = orderId,
+    //        ProductsID = productId,
+    //        Product = new Products
+    //        {
+    //            ProductsID = productId,
+    //            ProductName = productName
+    //        }
+    //    };
+    //}
 
-    public static OrderDetail ToOrderDetailBasicInfo(this IDataReader record)
-    {
-        return new OrderDetail
-        {
-            OrderDetailID = record.GetInt32(record.GetOrdinal("OrderDetailID")),
-            OrderID = record.GetInt32(record.GetOrdinal("OrderID"))
-        };
-    }
+    //public static OrderDetail ToOrderDetailBasicInfo(this IDataReader record)
+    //{
+    //    return new OrderDetail
+    //    {
+    //        OrderDetailID = record.GetInt32(record.GetOrdinal("OrderDetailID")),
+    //        OrderID = record.GetInt32(record.GetOrdinal("OrderID"))
+    //    };
+    //}
 
     #endregion
 }

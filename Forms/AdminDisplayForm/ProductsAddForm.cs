@@ -1,5 +1,6 @@
 ﻿using OOADPRO.Models;
 using OOADPRO.Utilities;
+using System.Drawing.Imaging;
 
 namespace OOADPRO.Forms.AdminDisplayForm;
 
@@ -8,7 +9,8 @@ public partial class ProductsAddForm : Form
     string? imgLocation = "";
     int productCount = 0;
     int indexOfUpdateProduct;
-    public ProductsAddForm()
+    Products? effectedProduct = null;
+    public ProductsAddForm(ProductsForm productsForm)
     {
         InitializeComponent();
         btnClear.Click += DoClickClearFormInput;
@@ -19,7 +21,68 @@ public partial class ProductsAddForm : Form
 
     private void DoClickUpdateProduct(object? sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        byte[] ProductImages = null;
+        if (txtProductName.Text == "" || txtProductName.Text.Trim().Length > 100)
+        {
+            MessageBox.Show("Staff Name is required or name too long", "Creating",
+            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+        }
+        if (cBCategoryID.SelectedItem == null)
+        {
+            MessageBox.Show("Staff Gender is required", "Creating",
+            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+        }
+        if (rtxtProductDescription.Text == "" || rtxtProductDescription.Text.Trim().Length > 1000)
+        {
+            MessageBox.Show("Staff Address is required or address too long", "Creating",
+            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+        }
+        if (decimal.TryParse(txtPrice.Text.ToString(), out decimal productPrice) == false)
+        {
+            MessageBox.Show("Product price is required or something wrong", "Creating",
+            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+        }
+        if (int.TryParse(txtProductStock.Text.ToString(), out int productStock) == false)
+        {
+            MessageBox.Show("Product stock is required or something wrong", "Creating",
+            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+        }
+        effectedProduct.ProductName = txtProductName.Text.Trim();
+        effectedProduct.ProductsPrice = productPrice;
+        effectedProduct.ProductDescription = rtxtProductDescription.Text.Trim();
+        effectedProduct.ProductsStock = productStock;
+        effectedProduct.Category.CategoryID = int.Parse(cBCategoryID.SelectedItem.ToString());
+
+
+        if (picProduct.Image != null)
+        {
+            Image image = picProduct.Image;
+            MemoryStream ms = new MemoryStream();
+            image.Save(ms, ImageFormat.Png);
+            ProductImages = ms.ToArray();
+        }
+        effectedProduct.ProductImage = ProductImages;
+        try
+        {
+
+            var result = ProductFunc.UpdateProducts(Program.Connection, effectedProduct);
+            if (result == true)
+            {
+
+                MessageBox.Show($"Successfully updated an existing product with the id {txtProductID.Text}");
+                ProductLoadingChanged?.Invoke(this, result);
+            }
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Failed to update an existing product > {ex.Message}");
+        }
     }
 
     private void DoClickInsertProduct(object? sender, EventArgs e)
@@ -78,7 +141,7 @@ public partial class ProductsAddForm : Form
             if (result == true)
             {
                 MessageBox.Show($"Successfully inserted product with the id {txtProductID.Text}");
-
+                ProductLoadingChanged?.Invoke(this, result);
             }
 
         }
@@ -122,7 +185,7 @@ public partial class ProductsAddForm : Form
                 ls.Add(category.CategoryID.ToString());
             }
             cBCategoryID.DataSource = ls;
-            cBCategoryID.SelectedIndex = -1;
+            
         }
         catch (Exception ex)
         {
@@ -133,6 +196,21 @@ public partial class ProductsAddForm : Form
     private void ProductsAddForm_Load(object sender, EventArgs e)
     {
         LoadingDataCategoryID();
+        LoadProduct();
+
+        if (txtProductName.Text == "")
+        {
+            txtProductID.Text = (productCount + 1).ToString();
+            cBCategoryID.SelectedIndex = -1;
+        }
+        else
+        {
+            cBCategoryID.SelectedItem = effectedProduct.Category.CategoryID.ToString();
+        }
+
+    }
+    private void LoadProduct()
+    {
         try
         {
             var result = ProductFunc.GetAllProducts(Program.Connection);
@@ -143,7 +221,30 @@ public partial class ProductsAddForm : Form
         {
             MessageBox.Show(ex.Message, "Retriving Payment", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        txtProductID.Text = (productCount + 1).ToString();
-
     }
+    public void LoadProductDetails(Products products)
+    {
+        if (products == null)
+            return;
+
+        txtProductID.Clear();
+        txtProductID.Text = products.ProductsID.ToString();
+        
+       // cBCategoryID.SelectedItem = products.Category.CategoryID.ToString();
+        txtProductName.Text = products.ProductName;
+        txtPrice.Text = products.ProductsPrice.ToString();
+        txtProductStock.Text = products.ProductsStock.ToString();
+        rtxtProductDescription.Text = products.ProductDescription;
+        if (products.ProductImage != null)
+        {
+            picProduct.Image = ConvertImageClass.ConvertByteArrayToImage(products.ProductImage);
+        }
+        else
+        {
+            picProduct.Image = null;
+        }
+
+        effectedProduct = products;
+    }
+    public event LoadingEventHandler? ProductLoadingChanged;
 }

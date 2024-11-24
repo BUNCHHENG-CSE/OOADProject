@@ -30,8 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserForm));
             btnAddUser = new Button();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            flowLayoutPanelUser = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // btnAddUser
@@ -45,31 +44,31 @@
             btnAddUser.TabIndex = 2;
             btnAddUser.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // flowLayoutPanelUser
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(36, 107);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1021, 150);
-            dataGridView1.TabIndex = 3;
+            flowLayoutPanelUser.AutoScroll = true;
+            flowLayoutPanelUser.Location = new Point(36, 88);
+            flowLayoutPanelUser.Name = "flowLayoutPanelUser";
+            flowLayoutPanelUser.Size = new Size(1044, 551);
+            flowLayoutPanelUser.TabIndex = 3;
             // 
             // UserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1092, 802);
-            Controls.Add(dataGridView1);
+            Controls.Add(flowLayoutPanelUser);
             Controls.Add(btnAddUser);
             FormBorderStyle = FormBorderStyle.None;
             Name = "UserForm";
             Text = "UserForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += UserForm_Load;
             ResumeLayout(false);
         }
 
         #endregion
 
         private Button btnAddUser;
-        private DataGridView dataGridView1;
+        private FlowLayoutPanel flowLayoutPanelUser;
     }
 }

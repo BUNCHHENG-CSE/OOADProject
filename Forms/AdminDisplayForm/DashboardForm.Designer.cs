@@ -86,9 +86,9 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(157, 99);
             label1.Name = "label1";
-            label1.Size = new Size(69, 23);
+            label1.Size = new Size(77, 23);
             label1.TabIndex = 3;
-            label1.Text = "All Use";
+            label1.Text = "All User";
             // 
             // panel2
             // 
@@ -180,11 +180,11 @@
             label8.AutoSize = true;
             label8.Font = new Font("Sitka Small Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(100, 99);
+            label8.Location = new Point(120, 99);
             label8.Name = "label8";
-            label8.Size = new Size(146, 23);
+            label8.Size = new Size(112, 23);
             label8.TabIndex = 3;
-            label8.Text = "Today Customer";
+            label8.Text = "Today Order";
             // 
             // formsPlotWeeklySale
             // 

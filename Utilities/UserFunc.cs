@@ -32,7 +32,7 @@ public class UserFunc
             var queryAbles = reader.Cast<IDataRecord>().AsQueryable();
             foreach (var record in queryAbles)
             {
-                yield return reader.ToDisplayUser();
+                yield return reader.ToUserAllData();
             }
         }
         reader?.Close();
@@ -109,6 +109,27 @@ public class UserFunc
         catch (Exception ex)
         {
             throw new Exception($"Failed in updating existing user > {ex.Message}");
+        }
+        finally
+        {
+            cmd.Dispose();
+        }
+
+    }
+    public static bool DeleteUser(SqlConnection con, int userID)
+    {
+        SqlCommand cmd = new SqlCommand("spDeleteUser", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@id", userID);
+
+        try
+        {
+            int rowsAffected = cmd.ExecuteNonQuery();
+            return rowsAffected > 0;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Failed to delete user > {ex.Message}");
         }
         finally
         {

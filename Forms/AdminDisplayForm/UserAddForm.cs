@@ -1,15 +1,17 @@
-﻿using OOADPRO.Models;
+﻿
+using OOADPRO.Models;
 using OOADPRO.Utilities;
 
 namespace OOADPRO.Forms.AdminDisplayForm;
 
 public partial class UserAddForm : Form
 {
+    User? effectedUser = null;
     Staff? effectedStaff = null;
 
     int userCount = 0;
     int indexOfUpdateUser;
-    public UserAddForm()
+    public UserAddForm(UserForm userform)
     {
         InitializeComponent();
         btnClear.Click += DoClickClearFormInput;
@@ -33,7 +35,48 @@ public partial class UserAddForm : Form
 
     private void DoClickUpdateUser(object? sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        if (txtUsername.Text == "" || txtUsername.Text.Trim().Length > 100)
+        {
+            MessageBox.Show("Username is required or username too long", "Creating",
+            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+        }
+        if (txtPassword.Text == "" || txtPassword.Text.Trim().Length > 100)
+        {
+            MessageBox.Show("Password is required or password too long", "Creating",
+            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+        }
+        if (cBStaffID.SelectedItem == null)
+        {
+            MessageBox.Show("Staff Gender is required", "Creating",
+            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+        }
+        string? staffID = cBStaffID.SelectedItem.ToString();
+        if (staffID == null) return;
+
+        effectedUser.Username = txtUsername.Text.Trim();
+        effectedUser.Password = txtPassword.Text.Trim();
+        effectedUser.Staff.StaffID = int.Parse(cBStaffID.SelectedItem.ToString());
+        effectedUser.Staff.StaffName = txtStaffName.Text.Trim();
+        effectedUser.Staff.StaffPosition = txtStaffPosition.Text.Trim();
+        try
+        {
+
+            var result = UserFunc.UpdateUser(Program.Connection, effectedUser);
+            if (result == true)
+            {
+                MessageBox.Show($"Successfully updated an existing staff with the id {txtUserID.Text}");
+                UserLoadingChanged?.Invoke(this, result);
+            }
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Failed to update an existing staff > {ex.Message}");
+        }
+
     }
 
     private void DoClickInsertUser(object? sender, EventArgs e)
@@ -77,6 +120,7 @@ public partial class UserAddForm : Form
             var result = UserFunc.AddUser(Program.Connection, newUser);
             if (result == true)
                 MessageBox.Show($"Successfully inserted user with the id {txtUserID.Text}");
+            UserLoadingChanged?.Invoke(this, result);
         }
         catch (Exception ex) { MessageBox.Show(ex.Message, "Submitting", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         LoadingUser();
@@ -102,6 +146,29 @@ public partial class UserAddForm : Form
 
         LoadingUser();
         LoadingDataStaffID();
+        if (txtUsername.Text == "")
+        {
+            txtUserID.Text = (userCount + 1).ToString();
+            cBStaffID.SelectedIndex = -1;
+            txtStaffName.Clear();
+            txtStaffPosition.Clear();
+            picStaff.Image = null;
+        }
+        else
+        {
+            cBStaffID.SelectedItem =effectedUser.Staff.StaffID.ToString();
+            txtStaffName.Text = effectedUser.Staff.StaffName;
+            txtStaffPosition.Text = effectedUser.Staff.StaffPosition;
+            if (effectedUser.Staff.Photo != null)
+            {
+                picStaff.Image = ConvertImageClass.ConvertByteArrayToImage(effectedUser.Staff.Photo);
+            }
+            else
+            {
+                picStaff.Image = null;
+            }
+        }
+            
     }
     private void LoadingUser()
     {
@@ -110,7 +177,7 @@ public partial class UserAddForm : Form
             var result = UserFunc.GetAllUser(Program.Connection);
             if (result.LastOrDefault() != null) { userCount = result.LastOrDefault().UserID; }
             else { userCount = 0; }
-            txtUserID.Text = (userCount + 1).ToString();
+            
         }
         catch (Exception ex)
         {
@@ -151,15 +218,28 @@ public partial class UserAddForm : Form
                 ls.Add(staff.StaffID.ToString());
             }
             cBStaffID.DataSource = ls;
-            cBStaffID.SelectedIndex = -1;
-            txtStaffName.Clear();
-            txtStaffPosition.Clear();
-            picStaff.Image = null;
+            
+            
         }
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message, "Retrieving staff ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
+    public void LoadUserDetails(User user)
+    {
+        Console.WriteLine(user);
+        if (user == null)
+            return;
+        txtUserID.Clear();
+        txtUserID.Text = user.UserID.ToString();
+        txtUsername.Text = user.Username;
+        txtPassword.Text = user.Password;
+       
 
+        
+
+        effectedUser = user;
+    }
+    public event LoadingEventHandler? UserLoadingChanged;
 }

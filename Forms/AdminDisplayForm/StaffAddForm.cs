@@ -90,8 +90,11 @@ public partial class StaffAddForm : Form
 
                 var result = StaffFunc.UpdateStaff(Program.Connection, effectedStaff);
                 if (result == true)
+                {
                     MessageBox.Show($"Successfully updated an existing staff with the id {txtStaffID.Text}");
-                
+                    StaffLoadingChanged?.Invoke(this, result);
+                }
+
             }
             catch (Exception ex)
             {
@@ -246,5 +249,5 @@ public partial class StaffAddForm : Form
     }
 
 
-    public event StaffLoadingEventHandler? StaffLoadingChanged;
+    public event LoadingEventHandler? StaffLoadingChanged;
 }

@@ -42,7 +42,6 @@ public partial class StaffForm : Form
         {
      
             var result = StaffFunc.GetAllStaff(Program.Connection);
-            Console.WriteLine(result);
             foreach (var staff in result)
             {
                 Panel productPanel = new Panel
