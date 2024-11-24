@@ -175,8 +175,36 @@ public static class IDataRecordExtension
 
     #endregion
 
+    #region Get Category INFO. 
+    public static Category ToDisplayCategory(this IDataReader record)
+    {
+        int index = record.GetOrdinal("CategoryID");
+        int id = record.GetInt32(index);
 
-    #region Get User INFO. To Display On ListBox and Display User on TextBox When Click on ListBox
+        index = record.GetOrdinal("CategoryName");
+        string? categoryName = record.GetString(index);
+
+        index = record.GetOrdinal("CategoryDescription");
+        string? categoryDescription = record.GetString(index);
+        return new Category()
+        {
+           CategoryID = id,
+           CategoryName = categoryName,
+            CategoryDescription = categoryDescription
+        };
+    }
+    public static Category ToDisplayCategoryID(this IDataReader record)
+    {
+        int index = record.GetOrdinal("CategoryID");
+        int id = record.GetInt32(index);
+        return new Category()
+        {
+            CategoryID = id,
+        };
+    }
+
+    #endregion
+    #region Get User INFO
     public static User ToDisplayUser(this IDataReader record)
     {
         int index = record.GetOrdinal("UserID");

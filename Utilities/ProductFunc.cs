@@ -136,14 +136,14 @@ namespace OOADPRO.Utilities
       
         public static bool AddProducts(SqlConnection con, Products product)
         {
-            SqlCommand cmd = new SqlCommand("spInsertProducts", con);
+            SqlCommand cmd = new SqlCommand("spInsertProduct", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@pn", product.ProductName);
             cmd.Parameters.AddWithValue("@pm", product.ProductsPrice);
-            cmd.Parameters.AddWithValue("@ps", product.ProductDescription);
-            cmd.Parameters.AddWithValue("@pi", product.ProductDescription);
-            cmd.Parameters.AddWithValue("@pd", product.ProductImage);
-
+            cmd.Parameters.AddWithValue("@ps", product.ProductsStock);
+            cmd.Parameters.AddWithValue("@pd", product.ProductDescription);
+            cmd.Parameters.AddWithValue("@pi", product.ProductImage);
+            cmd.Parameters.AddWithValue("@cid", product.Category.CategoryID);
             try
             {
                 int effected = cmd.ExecuteNonQuery();

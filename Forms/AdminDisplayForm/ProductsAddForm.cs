@@ -1,20 +1,149 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using OOADPRO.Models;
+using OOADPRO.Utilities;
 
-namespace OOADPRO.Forms.AdminDisplayForm
+namespace OOADPRO.Forms.AdminDisplayForm;
+
+public partial class ProductsAddForm : Form
 {
-    public partial class ProductsAddForm : Form
+    string? imgLocation = "";
+    int productCount = 0;
+    int indexOfUpdateProduct;
+    public ProductsAddForm()
     {
-        public ProductsAddForm()
+        InitializeComponent();
+        btnClear.Click += DoClickClearFormInput;
+        btnInsert.Click += DoClickInsertProduct;
+        btnUpdate.Click += DoClickUpdateProduct;
+        btnUploadPhoto.Click += DoClickUploadProductPhoto;
+    }
+
+    private void DoClickUpdateProduct(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void DoClickInsertProduct(object? sender, EventArgs e)
+    {
+        byte[] ProductImages = null;
+        if (txtProductName.Text == "" || txtProductName.Text.Trim().Length > 100)
         {
-            InitializeComponent();
+            MessageBox.Show("Staff Name is required or name too long", "Creating",
+            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
         }
+        if (cBCategoryID.SelectedItem == null)
+        {
+            MessageBox.Show("Staff Gender is required", "Creating",
+            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+        }
+        if (rtxtProductDescription.Text == "" || rtxtProductDescription.Text.Trim().Length > 1000)
+        {
+            MessageBox.Show("Staff Address is required or address too long", "Creating",
+            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+        }
+        if (decimal.TryParse(txtPrice.Text.ToString(), out decimal productPrice) == false)
+        {
+            MessageBox.Show("Product price is required or something wrong", "Creating",
+            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+        }
+        if (int.TryParse(txtProductStock.Text.ToString(), out int productStock) == false)
+        {
+            MessageBox.Show("Product stock is required or something wrong", "Creating",
+            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            return;
+        }
+
+        if (imgLocation != "")
+        {
+            FileStream stream = new FileStream(imgLocation, FileMode.Open, FileAccess.Read);
+            BinaryReader breader = new BinaryReader(stream);
+            ProductImages = breader.ReadBytes((int)stream.Length);
+        }
+
+        Products newProduct = new Products()
+        {
+            ProductName = txtProductName.Text.Trim(),
+            ProductsPrice = productPrice,
+            ProductDescription = rtxtProductDescription.Text.Trim(),
+            ProductsStock = productStock,
+            ProductImage = ProductImages,
+            Category = new Category() { CategoryID = int.Parse(cBCategoryID.SelectedItem.ToString()) }
+        };
+        try
+        {
+            var result = ProductFunc.AddProducts(Program.Connection, newProduct);
+            if (result == true)
+            {
+                MessageBox.Show($"Successfully inserted product with the id {txtProductID.Text}");
+
+            }
+
+        }
+        catch (Exception ex) { MessageBox.Show(ex.Message, "Submitting", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
+        clearFormInput();
+    }
+
+    private void DoClickClearFormInput(object? sender, EventArgs e)
+    {
+        clearFormInput();
+    }
+    private void clearFormInput()
+    {
+        txtProductID.Text = (productCount + 1).ToString();
+        cBCategoryID.SelectedItem = null;
+        txtProductName.Text = "";
+        txtPrice.Text = "";
+        txtProductStock.Text = "";
+        rtxtProductDescription.Text = "";
+        picProduct.Image = null;
+    }
+    private void DoClickUploadProductPhoto(object? sender, EventArgs e)
+    {
+        OpenFileDialog dialog = new OpenFileDialog();
+        dialog.Filter = "SELECT Photo(*.Jpg; *.png; *.Gif)|*.Jpg; *.png; *.Gif";
+        if (dialog.ShowDialog() == DialogResult.OK)
+        {
+            imgLocation = dialog.FileName.ToString();
+            picProduct.ImageLocation = imgLocation;
+        }
+    }
+    private void LoadingDataCategoryID()
+    {
+        try
+        {
+            var result = CategoryFunc.GetAllCategoryID(Program.Connection);
+            List<string> ls = new List<string>();
+            foreach (var category in result)
+            {
+                ls.Add(category.CategoryID.ToString());
+            }
+            cBCategoryID.DataSource = ls;
+            cBCategoryID.SelectedIndex = -1;
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Retriving Category ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private void ProductsAddForm_Load(object sender, EventArgs e)
+    {
+        LoadingDataCategoryID();
+        try
+        {
+            var result = ProductFunc.GetAllProducts(Program.Connection);
+            if (result.LastOrDefault() != null) { productCount = result.LastOrDefault().ProductsID; }
+            else { productCount = 0; }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Retriving Payment", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        txtProductID.Text = (productCount + 1).ToString();
+
     }
 }

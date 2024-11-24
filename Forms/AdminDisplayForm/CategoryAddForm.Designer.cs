@@ -141,6 +141,7 @@
             Name = "CategoryAddForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CategoryAddForm";
+            Load += CategoryAddForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

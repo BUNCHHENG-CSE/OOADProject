@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             btnInsert = new Button();
-            txtCategoryID = new TextBox();
             btnUploadPhoto = new Button();
-            picStaff = new PictureBox();
+            picProduct = new PictureBox();
             labelCategoryID = new Label();
             labelDescription = new Label();
             txtPrice = new TextBox();
@@ -45,7 +44,8 @@
             rtxtProductDescription = new RichTextBox();
             labelProductStock = new Label();
             txtProductStock = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)picStaff).BeginInit();
+            cBCategoryID = new ComboBox();
+            ((System.ComponentModel.ISupportInitialize)picProduct).BeginInit();
             SuspendLayout();
             // 
             // btnInsert
@@ -58,15 +58,6 @@
             btnInsert.Text = "Insert";
             btnInsert.UseVisualStyleBackColor = true;
             // 
-            // txtCategoryID
-            // 
-            txtCategoryID.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            txtCategoryID.Location = new Point(395, 32);
-            txtCategoryID.Name = "txtCategoryID";
-            txtCategoryID.ReadOnly = true;
-            txtCategoryID.Size = new Size(173, 28);
-            txtCategoryID.TabIndex = 78;
-            // 
             // btnUploadPhoto
             // 
             btnUploadPhoto.Font = new Font("Sitka Small", 11F, FontStyle.Bold);
@@ -77,14 +68,15 @@
             btnUploadPhoto.Text = "Upload Photo";
             btnUploadPhoto.UseVisualStyleBackColor = true;
             // 
-            // picStaff
+            // picProduct
             // 
-            picStaff.BorderStyle = BorderStyle.FixedSingle;
-            picStaff.Location = new Point(633, 12);
-            picStaff.Name = "picStaff";
-            picStaff.Size = new Size(145, 185);
-            picStaff.TabIndex = 75;
-            picStaff.TabStop = false;
+            picProduct.BorderStyle = BorderStyle.FixedSingle;
+            picProduct.Location = new Point(633, 12);
+            picProduct.Name = "picProduct";
+            picProduct.Size = new Size(145, 185);
+            picProduct.SizeMode = PictureBoxSizeMode.Zoom;
+            picProduct.TabIndex = 75;
+            picProduct.TabStop = false;
             // 
             // labelCategoryID
             // 
@@ -207,19 +199,28 @@
             txtProductStock.Size = new Size(217, 28);
             txtProductStock.TabIndex = 87;
             // 
+            // cBCategoryID
+            // 
+            cBCategoryID.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
+            cBCategoryID.FormattingEnabled = true;
+            cBCategoryID.Location = new Point(399, 33);
+            cBCategoryID.Name = "cBCategoryID";
+            cBCategoryID.Size = new Size(153, 31);
+            cBCategoryID.TabIndex = 88;
+            // 
             // ProductsAddForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(795, 405);
+            Controls.Add(cBCategoryID);
             Controls.Add(txtProductStock);
             Controls.Add(labelProductStock);
             Controls.Add(rtxtProductDescription);
             Controls.Add(btnUpdate);
             Controls.Add(btnInsert);
-            Controls.Add(txtCategoryID);
             Controls.Add(btnUploadPhoto);
-            Controls.Add(picStaff);
+            Controls.Add(picProduct);
             Controls.Add(labelCategoryID);
             Controls.Add(labelDescription);
             Controls.Add(txtPrice);
@@ -232,7 +233,8 @@
             Name = "ProductsAddForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ProductsAddForm";
-            ((System.ComponentModel.ISupportInitialize)picStaff).EndInit();
+            Load += ProductsAddForm_Load;
+            ((System.ComponentModel.ISupportInitialize)picProduct).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -241,9 +243,8 @@
         private Button btnInsert;
         private TextBox textBox8;
         private TextBox textBox7;
-        private TextBox txtCategoryID;
         private Button btnUploadPhoto;
-        private PictureBox picStaff;
+        private PictureBox picProduct;
         private Label labelPersonalNumber;
         private Label labelContactNumber;
         private Label labelStaffAddress;
@@ -260,5 +261,6 @@
         private RichTextBox rtxtProductDescription;
         private Label labelProductStock;
         private TextBox txtProductStock;
+        private ComboBox cBCategoryID;
     }
 }
