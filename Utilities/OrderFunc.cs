@@ -9,178 +9,129 @@ using OOADPRO.Models;
 
 namespace OOADPRO.Utilities;
 
-//public static class OrderFunc
-//{
-//    public static IEnumerable<Order> GetAllProducts(SqlConnection con)
-//    {
-//        SqlCommand cmd = new SqlCommand("spReadAllProducts", con);
-//        SqlDataReader? reader = null;
-//        try
-//        {
-//            reader = cmd.ExecuteReader();
-//        }
-//        catch (Exception ex)
-//        {
-//            throw new Exception($"Error in getting all Products > {ex.Message}");
-//        }
-//        finally
-//        {
-//            cmd.Dispose();
-//        }
-//        if (reader != null && reader.HasRows == true)
-//        {
-//            var queryAbles = reader.Cast<IDataRecord>().AsQueryable();
-//            foreach (var record in queryAbles)
-//            {
-//                yield return reader.ToDisplayProduct();
-//            }
-//        }
-//        reader?.Close();
-//    }
-//    public static IEnumerable<Products> GetAllProductID(SqlConnection con)
-//    {
-//        SqlCommand cmd = new SqlCommand("spReadAllStaffID", con);
-//        SqlDataReader? reader = null;
-//        try
-//        {
-//            reader = cmd.ExecuteReader();
-//        }
-//        catch (Exception ex)
-//        {
-//            throw new Exception($"Error in getting all Products ID > {ex.Message}");
-//        }
-//        finally
-//        {
-//            cmd.Dispose();
-//        }
-//        if (reader != null && reader.HasRows == true)
-//        {
-//            var queryAbles = reader.Cast<IDataRecord>().AsQueryable();
-//            foreach (var record in queryAbles)
-//            {
-//                yield return reader.ToDisplayProductsID();
-//            }
-//        }
-//        reader?.Close();
-//    }
+public static class OrderFunc
+{
+    public static IEnumerable<Order> GetAllOrders(SqlConnection con)
+    {
+        SqlCommand cmd = new SqlCommand("spGetAllOrders", con);
+        SqlDataReader? reader = null;
 
-//    public static Products GetProductById(SqlConnection con, int id)
-//    {
-//        SqlCommand cmd = new SqlCommand("spReadOneProduct", con);
-//        cmd.CommandType = CommandType.StoredProcedure;
-//        cmd.Parameters.AddWithValue("@id", id);
+        try
+        {
+            reader = cmd.ExecuteReader();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error in getting all orders > {ex.Message}");
+        }
+        finally
+        {
+            cmd.Dispose();
+        }
 
-//        SqlDataReader reader = null;
-//        Products product = null;
+        if (reader != null && reader.HasRows)
+        {
+            var queryAbles = reader.Cast<IDataRecord>().AsQueryable();
+            foreach (var record in queryAbles)
+            {
+                yield return record.ToDisplayOrder();
+            }
+        }
 
-//        try
-//        {
-//            reader = cmd.ExecuteReader();
-//            if (reader.HasRows)
-//            {
-//                reader.Read();
-//                product = new Products
-//                {
-//                    ProductsID = reader.GetInt32(reader.GetOrdinal("ProductsID")),
-//                    ProductName = reader.GetString(reader.GetOrdinal("ProductsName")),
-//                    ProductsPrice = reader.GetDecimal(reader.GetOrdinal("Price")),
-//                    ProductDescription = reader.GetString(reader.GetOrdinal("ProductsDescription")),
-//                    ProductsStock = reader.GetInt32(reader.GetOrdinal("ProductsStock")),
-//                    ProductImage = reader["ProductsImage"] as byte[]
-//                };
-//            }
-//        }
-//        catch (Exception ex)
-//        {
-//            throw new Exception($"Error retrieving product: {ex.Message}");
-//        }
-//        finally
-//        {
-//            reader?.Close();
-//        }
+        reader?.Close();
+    }
+    public static Order? GetOrderById(SqlConnection con, int id)
+    {
+        SqlCommand cmd = new SqlCommand("spGetOrderById", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@OrderID", id);
+        SqlDataReader? reader = null;
 
-//        return product;
-//    }
+        try
+        {
+            reader = cmd.ExecuteReader();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error in getting order by ID {id} > {ex.Message}");
+        }
+        finally
+        {
+            cmd.Dispose();
+        }
 
+        Order? result = null;
+        if (reader != null && reader.HasRows && reader.Read())
+        {
+            result = reader.ToOrderAllData();
+        }
 
+        reader?.Close();
+        return result;
+    }
+    public static bool AddOrder(SqlConnection con, Order order)
+    {
+        SqlCommand cmd = new SqlCommand("spInsertOrder", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@DateOrder", order.DateOrder);
+        cmd.Parameters.AddWithValue("@TotalPrice", order.TotalPrice);
 
+        try
+        {
+            int affectedRows = cmd.ExecuteNonQuery();
+            return affectedRows > 0;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Failed to add new order > {ex.Message}");
+        }
+        finally
+        {
+            cmd.Dispose();
+        }
+    }
+    public static bool UpdateOrder(SqlConnection con, Order order)
+    {
+        SqlCommand cmd = new SqlCommand("spUpdateOrder", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@OrderID", order.OrderID);
+        cmd.Parameters.AddWithValue("@DateOrder", order.DateOrder);
+        cmd.Parameters.AddWithValue("@TotalPrice", order.TotalPrice);
 
-//    public static Products GetOneProducts(SqlConnection con, int id)
-//    {
-//        SqlCommand cmd = new SqlCommand("spReadOneProduct", con);
-//        cmd.CommandType = CommandType.StoredProcedure;
-//        cmd.Parameters.AddWithValue("@id", id);
-//        SqlDataReader? reader = null;
-//        try
-//        {
-//            reader = cmd.ExecuteReader();
-//        }
-//        catch (Exception ex)
-//        {
-//            throw new Exception($"Error in getting Products with id, {id} > {ex.Message}");
-//        }
-//        finally
-//        {
-//            cmd.Dispose();
-//        }
-//        Products? result = null;
-//        if (reader != null && reader.HasRows == true)
-//        {
-//            if (reader.Read() == true)
-//            {
-//                result = reader.ToProductsAllData();
-//            }
-//        }
-//        reader?.Close();
-//        return result;
-//    }
+        try
+        {
+            int affectedRows = cmd.ExecuteNonQuery();
+            return affectedRows > 0;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Failed to update order ID {order.OrderID} > {ex.Message}");
+        }
+        finally
+        {
+            cmd.Dispose();
+        }
+    }
+    public static bool DeleteOrder(SqlConnection con, int id)
+    {
+        SqlCommand cmd = new SqlCommand("spDeleteOrder", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@OrderID", id);
 
-//    public static bool AddProducts(SqlConnection con, Products product)
-//    {
-//        SqlCommand cmd = new SqlCommand("spInsertProduct", con);
-//        cmd.CommandType = CommandType.StoredProcedure;
-//        cmd.Parameters.AddWithValue("@pn", product.ProductName);
-//        cmd.Parameters.AddWithValue("@pm", product.ProductsPrice);
-//        cmd.Parameters.AddWithValue("@ps", product.ProductsStock);
-//        cmd.Parameters.AddWithValue("@pd", product.ProductDescription);
-//        cmd.Parameters.AddWithValue("@pi", product.ProductImage);
-//        cmd.Parameters.AddWithValue("@cid", product.Category.CategoryID);
-//        try
-//        {
-//            int effected = cmd.ExecuteNonQuery();
-//            return effected > 0;
-//        }
-//        catch (Exception ex)
-//        {
-//            throw new Exception($"Failed in adding new staff > {ex.Message}");
+        try
+        {
+            int affectedRows = cmd.ExecuteNonQuery();
+            return affectedRows > 0;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Failed to delete order ID {id} > {ex.Message}");
+        }
+        finally
+        {
+            cmd.Dispose();
+        }
+    }
+   
 
-//        }
-//        finally
-//        {
-//            cmd.Dispose();
-//        }
-//    }
-//    public static bool UpdateProducts(SqlConnection con, Products product)
-//    {
-//        SqlCommand cmd = new SqlCommand("spUpdateProduct", con);
-//        cmd.CommandType = CommandType.StoredProcedure;
-//        cmd.Parameters.AddWithValue("@pn", product.ProductName);
-//        cmd.Parameters.AddWithValue("@pm", product.ProductsPrice);
-//        cmd.Parameters.AddWithValue("@ps", product.ProductDescription);
-//        cmd.Parameters.AddWithValue("@pi", product.ProductDescription);
-//        cmd.Parameters.AddWithValue("@pd", product.ProductImage);
-//        try
-//        {
-//            int effected = cmd.ExecuteNonQuery();
-//            return (effected > 0);
-//        }
-//        catch (Exception ex)
-//        {
-//            throw new Exception($"Failed in updating existing staff > {ex.Message}");
-//        }
-//        finally
-//        {
-//            cmd.Dispose();
-//        }
-//    }
-//}
+}

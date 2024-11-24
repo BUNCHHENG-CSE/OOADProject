@@ -16,7 +16,7 @@ internal static class Program
         // see https://aka.ms/applicationconfiguration.
         ConnectToDB();
         ApplicationConfiguration.Initialize();
-        Application.Run(new AdminForm());
+        Application.Run(new CashierForm());
     }
     public static void ConnectToDB()
     {

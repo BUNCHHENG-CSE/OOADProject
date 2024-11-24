@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
 using OOADPRO.Models;
 using OOADPRO.Utilities;
 
@@ -25,7 +26,7 @@ namespace OOADPRO.Forms.CashierDisplayForm
 
             if (OrderID != null)
             {
-                //LoadOrderDetails((int)OrderID);
+                LoadOrderDetails(Program.Connection,(int)OrderID);
             }
             else
             {
@@ -52,12 +53,13 @@ namespace OOADPRO.Forms.CashierDisplayForm
                     Height = 180,
                     SizeMode = PictureBoxSizeMode.Zoom,
                     Image = product.ProductImage != null ? ConvertImageClass.ConvertByteArrayToImage(product.ProductImage) : null,
-                    Tag = product // Store product data in Tag for reference
+                    Tag = product 
                 };
                 pictureBox.Click += (s, e) =>
                 {
                     AddProductToGrid((Products)pictureBox.Tag);
                 };
+
                 Label productNameLabel = new Label
                 {
                     Text = product.ProductName,
@@ -70,12 +72,14 @@ namespace OOADPRO.Forms.CashierDisplayForm
                     AutoSize = true,
                     Location = new Point(5, 210)
                 };
+
                 productPanel.Controls.Add(pictureBox);
                 productPanel.Controls.Add(productNameLabel);
                 productPanel.Controls.Add(productPriceLabel);
                 flowLayoutPanel1.Controls.Add(productPanel);
             }
         }
+        
         private void AddProductToGrid(Products product)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -87,17 +91,20 @@ namespace OOADPRO.Forms.CashierDisplayForm
                     UpdateTotalAmount();
                     return;
                 }
-
-                int rowIndex = dataGridView1.Rows.Add();
-                var newRow = dataGridView1.Rows[rowIndex];
-                newRow.Cells["ProductsID"].Value = product.ProductsID;
-                newRow.Cells["ProductName"].Value = product.ProductName;
-                newRow.Cells["Qty"].Value = 1;
-                newRow.Cells["UnitPrice"].Value = product.ProductsPrice;
-                CalculateRowAmount(newRow);
-                UpdateTotalAmount();
             }
+
+            int rowIndex = dataGridView1.Rows.Add();
+            var newRow = dataGridView1.Rows[rowIndex];
+            newRow.Cells["OrderDetailID"].Value = -1;
+            newRow.Cells["ProductsID"].Value = product.ProductsID;
+            newRow.Cells["ProductsName"].Value = product.ProductName;
+            newRow.Cells["Qty"].Value = 1;
+            newRow.Cells["UnitPrice"].Value = product.ProductsPrice;
+          
+            CalculateRowAmount(newRow);
+            UpdateTotalAmount();
         }
+
         private void CalculateRowAmount(DataGridViewRow row)
         {
             int qty = Convert.ToInt32(row.Cells["Qty"].Value);
@@ -113,12 +120,39 @@ namespace OOADPRO.Forms.CashierDisplayForm
                 TotalAmount += Convert.ToSingle(row.Cells["Amount"].Value);
             }
 
-            txtTotal.Text = TotalAmount.ToString("F2");
+            txtTotal.Text = $"Total: ${TotalAmount:F2}";
+
         }
+        private void LoadOrderDetails(SqlConnection con, int orderId)
+        {
+            SqlCommand cmd = new SqlCommand("GetOrderDetailsByOrderID", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@odid", orderId);
 
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    int orderDetailId = reader.GetInt32(reader.GetOrdinal("OrderDetailID"));
+                    int orderQty = reader.GetInt32(reader.GetOrdinal("OrderQty"));
+                    float unitPrice = reader.GetFloat(reader.GetOrdinal("UnitPrice"));
+                    string productName = reader.GetString(reader.GetOrdinal("ProductName"));
+                    int productsId = reader.GetInt32(reader.GetOrdinal("ProductsID"));
 
+                    // Add row to the DataGridView
+                    int rowIndex = dataGridView1.Rows.Add();
+                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
 
-
+                    row.Cells["OrderDetailID"].Value = orderDetailId;
+                    row.Cells["ProductsID"].Value = productsId;
+                    row.Cells["ProductName"].Value = productName;
+                    row.Cells["Qty"].Value = orderQty;
+                    row.Cells["UnitPrice"].Value = unitPrice;
+                    CalculateRowAmount(row);
+                    UpdateTotalAmount();
+                }
+            }
+        }
     }
 }
     
