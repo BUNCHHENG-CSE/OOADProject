@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadingForm));
             progressBarLoading = new ProgressBar();
             labelTitle = new Label();
             timerLoading = new System.Windows.Forms.Timer(components);
@@ -58,6 +59,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(25, 33);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(186, 165);

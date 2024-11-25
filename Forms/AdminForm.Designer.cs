@@ -32,7 +32,7 @@
             panel1 = new Panel();
             btnProducts = new Button();
             btnOverview = new Button();
-            button5 = new Button();
+            btnLogout = new Button();
             btnSaleReport = new Button();
             btnCategory = new Button();
             btnUser = new Button();
@@ -50,7 +50,7 @@
             panel1.BackColor = Color.FromArgb(38, 57, 91);
             panel1.Controls.Add(btnProducts);
             panel1.Controls.Add(btnOverview);
-            panel1.Controls.Add(button5);
+            panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(btnSaleReport);
             panel1.Controls.Add(btnCategory);
             panel1.Controls.Add(btnUser);
@@ -94,21 +94,21 @@
             btnOverview.Text = "Overview";
             btnOverview.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // btnLogout
             // 
-            button5.BackColor = Color.FromArgb(38, 57, 91);
-            button5.FlatAppearance.BorderSize = 0;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.ForeColor = Color.FromArgb(212, 203, 229);
-            button5.Image = (Image)resources.GetObject("button5.Image");
-            button5.ImageAlign = ContentAlignment.MiddleLeft;
-            button5.Location = new Point(32, 738);
-            button5.Name = "button5";
-            button5.Size = new Size(234, 38);
-            button5.TabIndex = 6;
-            button5.Text = "Logout";
-            button5.UseVisualStyleBackColor = false;
+            btnLogout.BackColor = Color.FromArgb(38, 57, 91);
+            btnLogout.FlatAppearance.BorderSize = 0;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.ForeColor = Color.FromArgb(212, 203, 229);
+            btnLogout.Image = (Image)resources.GetObject("btnLogout.Image");
+            btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLogout.Location = new Point(32, 738);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(234, 38);
+            btnLogout.TabIndex = 6;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = false;
             // 
             // btnSaleReport
             // 
@@ -245,7 +245,7 @@
         private Button btnDashboard;
         private Label label1;
         private Button btnOverview;
-        private Button button5;
+        private Button btnLogout;
         private Button btnSaleReport;
         private Button btnCategory;
         private Button btnUser;

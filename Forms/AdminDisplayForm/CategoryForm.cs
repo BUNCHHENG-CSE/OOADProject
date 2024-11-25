@@ -1,14 +1,5 @@
 ﻿using OOADPRO.Models;
 using OOADPRO.Utilities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace OOADPRO.Forms.AdminDisplayForm;
 
@@ -40,9 +31,14 @@ public partial class CategoryForm : Form
 
     private void DoClickUpdateCategory(object? sender, EventArgs e)
     {
-       CategoryAddForm categoryAddForm = new CategoryAddForm();
+        CategoryAddForm categoryAddForm = new CategoryAddForm();
         categoryAddForm.LoadCategoryToUpdate(effectedCategory);
-        categoryAddForm.ShowDialog();
+        categoryAddForm.CategoryHanlder += (sender, result) =>
+        {
+            if (result)
+                LoadingDataCategory();
+        };
+        categoryAddForm.Show();
     }
 
     private void DoClickDeleteCategory(object? sender, EventArgs e)
@@ -62,7 +58,15 @@ public partial class CategoryForm : Form
 
     private void DoClickAddCategory(object? sender, EventArgs e)
     {
-        new CategoryAddForm().Show();
+        CategoryAddForm categoryAddForm = new CategoryAddForm();
+        categoryAddForm.CategoryHanlder += (sender, result) =>
+        {
+            if (result)
+                LoadingDataCategory();
+        };
+        categoryAddForm.Show();
+
+
     }
 
     private void CategoryForm_Load(object sender, EventArgs e)
@@ -74,7 +78,7 @@ public partial class CategoryForm : Form
         try
         {
             var result = CategoryFunc.GetAllCategory(Program.Connection);
-            
+
             dgvCategory.Rows.Clear();
             foreach (var category in result)
             {

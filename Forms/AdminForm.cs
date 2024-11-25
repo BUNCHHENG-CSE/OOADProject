@@ -4,10 +4,16 @@ namespace OOADPRO;
 
 public partial class AdminForm : Form
 {
+    private LoadingForm loadingFormReference;
+    private LoginForm loginFormReference;
     private DBConnectionForm databaseConnectionFormReference;
-    public AdminForm()
+    public AdminForm(LoadingForm loadingForm, DBConnectionForm databaseConnectionForm, LoginForm login)
     {
         InitializeComponent();
+        loadingFormReference = loadingForm;
+        loginFormReference = login;
+        databaseConnectionFormReference = databaseConnectionForm;
+        this.FormClosed += new FormClosedEventHandler(AdminForm_FormClosed);
         btnDashboard.Click += DoClickDashboard;
         btnStaff.Click += DoClickStaff;
         btnProducts.Click += DoClickProducts;
@@ -15,6 +21,16 @@ public partial class AdminForm : Form
         btnUser.Click += DoClickUser;
         btnSaleReport.Click += DoClickSaleReport;
         btnOverview.Click += DoClickOverview;
+        btnLogout.Click += (_, _) => { this.Hide(); loginFormReference.Show(); };
+    }
+
+    
+
+    private void AdminForm_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        loadingFormReference.Close();
+        loginFormReference.Close();
+        databaseConnectionFormReference.Close();
     }
 
     private void DoClickOverview(object? sender, EventArgs e)

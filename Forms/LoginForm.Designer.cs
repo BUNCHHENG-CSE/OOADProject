@@ -46,7 +46,7 @@
             // labelUsernameLogin
             // 
             labelUsernameLogin.AutoSize = true;
-            labelUsernameLogin.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUsernameLogin.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
             labelUsernameLogin.ForeColor = SystemColors.ControlText;
             labelUsernameLogin.ImageAlign = ContentAlignment.MiddleLeft;
             labelUsernameLogin.Location = new Point(14, 156);
@@ -57,7 +57,7 @@
             // 
             // txtPassword
             // 
-            txtPassword.Font = new Font("Sitka Small", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtPassword.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             txtPassword.Location = new Point(148, 216);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(289, 28);
@@ -66,7 +66,7 @@
             // 
             // txtUsername
             // 
-            txtUsername.Font = new Font("Sitka Small", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtUsername.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             txtUsername.Location = new Point(148, 156);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(289, 28);
@@ -75,7 +75,7 @@
             // labelPasswordLogin
             // 
             labelPasswordLogin.AutoSize = true;
-            labelPasswordLogin.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point);
+            labelPasswordLogin.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
             labelPasswordLogin.ForeColor = SystemColors.ControlText;
             labelPasswordLogin.ImageAlign = ContentAlignment.MiddleLeft;
             labelPasswordLogin.Location = new Point(14, 216);
@@ -89,7 +89,7 @@
             btnLogin.BackColor = Color.FromArgb(25, 149, 173);
             btnLogin.FlatAppearance.BorderColor = Color.White;
             btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point);
+            btnLogin.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
             btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(14, 312);
             btnLogin.Name = "btnLogin";
@@ -101,7 +101,7 @@
             // chBShowPassword
             // 
             chBShowPassword.AutoSize = true;
-            chBShowPassword.Font = new Font("Sitka Small", 11.249999F, FontStyle.Bold, GraphicsUnit.Point);
+            chBShowPassword.Font = new Font("Sitka Small", 11.249999F, FontStyle.Bold);
             chBShowPassword.Location = new Point(284, 271);
             chBShowPassword.Name = "chBShowPassword";
             chBShowPassword.Size = new Size(153, 25);
@@ -123,7 +123,7 @@
             // labelUserLogin
             // 
             labelUserLogin.AutoSize = true;
-            labelUserLogin.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUserLogin.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
             labelUserLogin.ForeColor = SystemColors.ControlText;
             labelUserLogin.Location = new Point(165, 34);
             labelUserLogin.Name = "labelUserLogin";
@@ -144,7 +144,7 @@
             // labelShowMessage
             // 
             labelShowMessage.AutoSize = true;
-            labelShowMessage.Font = new Font("Sitka Small", 6.75F, FontStyle.Bold, GraphicsUnit.Point);
+            labelShowMessage.Font = new Font("Sitka Small", 6.75F, FontStyle.Bold);
             labelShowMessage.Location = new Point(94, 255);
             labelShowMessage.Name = "labelShowMessage";
             labelShowMessage.Size = new Size(0, 13);
@@ -155,7 +155,7 @@
             btnBack.BackColor = Color.White;
             btnBack.FlatAppearance.BorderColor = Color.FromArgb(25, 149, 173);
             btnBack.FlatStyle = FlatStyle.Flat;
-            btnBack.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBack.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
             btnBack.ForeColor = Color.Black;
             btnBack.Location = new Point(14, 365);
             btnBack.Name = "btnBack";
@@ -181,13 +181,11 @@
             Controls.Add(labelUsernameLogin);
             Controls.Add(labelPasswordLogin);
             FormBorderStyle = FormBorderStyle.None;
-            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginForm";
-          // Load += LoginForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

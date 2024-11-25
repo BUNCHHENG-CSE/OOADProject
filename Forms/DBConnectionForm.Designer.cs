@@ -27,7 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-          //  System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DatabaseConnectionForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBConnectionForm));
             panel1 = new Panel();
             pictureBox1 = new PictureBox();
             label1 = new Label();
@@ -59,7 +59,7 @@
             // 
             // pictureBox1
             // 
-           // pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(60, 22);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(100, 61);
@@ -70,7 +70,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
             label1.Location = new Point(166, 36);
             label1.Name = "label1";
             label1.Size = new Size(300, 28);
@@ -80,7 +80,7 @@
             // labelServerName
             // 
             labelServerName.AutoSize = true;
-            labelServerName.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point);
+            labelServerName.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
             labelServerName.Location = new Point(61, 142);
             labelServerName.Name = "labelServerName";
             labelServerName.Size = new Size(142, 28);
@@ -90,7 +90,7 @@
             // labelPassword
             // 
             labelPassword.AutoSize = true;
-            labelPassword.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point);
+            labelPassword.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
             labelPassword.Location = new Point(61, 329);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new Size(109, 28);
@@ -100,7 +100,7 @@
             // labelUser
             // 
             labelUser.AutoSize = true;
-            labelUser.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point);
+            labelUser.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
             labelUser.Location = new Point(61, 282);
             labelUser.Name = "labelUser";
             labelUser.Size = new Size(58, 28);
@@ -110,7 +110,7 @@
             // labelDatabaseName
             // 
             labelDatabaseName.AutoSize = true;
-            labelDatabaseName.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point);
+            labelDatabaseName.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
             labelDatabaseName.Location = new Point(60, 188);
             labelDatabaseName.Name = "labelDatabaseName";
             labelDatabaseName.Size = new Size(168, 28);
@@ -119,7 +119,7 @@
             // 
             // txtServerName
             // 
-            txtServerName.Font = new Font("Sitka Small", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtServerName.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             txtServerName.Location = new Point(247, 142);
             txtServerName.Name = "txtServerName";
             txtServerName.Size = new Size(337, 28);
@@ -127,7 +127,7 @@
             // 
             // txtDatabaseName
             // 
-            txtDatabaseName.Font = new Font("Sitka Small", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtDatabaseName.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             txtDatabaseName.Location = new Point(247, 188);
             txtDatabaseName.Name = "txtDatabaseName";
             txtDatabaseName.Size = new Size(337, 28);
@@ -135,7 +135,7 @@
             // 
             // txtUser
             // 
-            txtUser.Font = new Font("Sitka Small", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtUser.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             txtUser.Location = new Point(247, 282);
             txtUser.Name = "txtUser";
             txtUser.Size = new Size(337, 28);
@@ -143,7 +143,7 @@
             // 
             // txtPassword
             // 
-            txtPassword.Font = new Font("Sitka Small", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtPassword.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             txtPassword.Location = new Point(247, 329);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(337, 28);
@@ -152,7 +152,7 @@
             // labelAuthentication
             // 
             labelAuthentication.AutoSize = true;
-            labelAuthentication.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point);
+            labelAuthentication.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
             labelAuthentication.Location = new Point(60, 234);
             labelAuthentication.Name = "labelAuthentication";
             labelAuthentication.Size = new Size(161, 28);
@@ -162,7 +162,7 @@
             // cBAuthentication
             // 
             cBAuthentication.DropDownStyle = ComboBoxStyle.DropDownList;
-            cBAuthentication.Font = new Font("Sitka Small", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            cBAuthentication.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
             cBAuthentication.FormattingEnabled = true;
             cBAuthentication.Location = new Point(247, 231);
             cBAuthentication.Name = "cBAuthentication";
@@ -173,7 +173,7 @@
             // 
             btnConnect.BackColor = Color.FromArgb(25, 149, 173);
             btnConnect.FlatStyle = FlatStyle.Flat;
-            btnConnect.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point);
+            btnConnect.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
             btnConnect.ForeColor = Color.White;
             btnConnect.Location = new Point(32, 390);
             btnConnect.Name = "btnConnect";
@@ -186,7 +186,7 @@
             // 
             btnCancel.FlatAppearance.BorderColor = Color.FromArgb(25, 149, 173);
             btnCancel.FlatStyle = FlatStyle.Flat;
-            btnCancel.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancel.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
             btnCancel.Location = new Point(463, 390);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(146, 43);
@@ -194,7 +194,7 @@
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             // 
-            // DatabaseConnectionForm
+            // DBConnectionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -214,9 +214,8 @@
             Controls.Add(labelServerName);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
-            //Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            Name = "DatabaseConnectionForm";
+            Name = "DBConnectionForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "DatabaseConnectionForm";
             panel1.ResumeLayout(false);

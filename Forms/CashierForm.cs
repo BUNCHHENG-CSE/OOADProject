@@ -5,12 +5,27 @@ namespace OOADPRO.Forms
 {
     public partial class CashierForm : Form
     {
-        public CashierForm(User user)
+        private LoadingForm loadingFormReference;
+        private LoginForm loginFormReference;
+        private DBConnectionForm databaseConnectionFormReference;
+        public CashierForm(LoadingForm loadingForm, DBConnectionForm databaseConnectionForm, LoginForm login,User user)
         {
             InitializeComponent();
+            loadingFormReference = loadingForm;
+            loginFormReference = login;
+            databaseConnectionFormReference = databaseConnectionForm;
+            this.FormClosed += new FormClosedEventHandler(CashierForm_FormClosed);
             btnCashierProducts.Click += DoClickProducts;
             btnOrder.Click += DoClickOrder;
-            LabelUser.Text += " "+user.Username.ToUpper();
+            btnLogout.Click += (_, _) => { this.Hide(); loginFormReference.Show(); };
+            if (user != null)
+                LabelUser.Text += " " + user.Username.ToUpper();
+        }
+        private void CashierForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            loadingFormReference.Close();
+            loginFormReference.Close();
+            databaseConnectionFormReference.Close();
         }
         private void DoClickProducts(object? sender, EventArgs e)
         {
@@ -32,7 +47,7 @@ namespace OOADPRO.Forms
         private void CashierForm_Load(object sender, EventArgs e)
         {
             AddControl(new CashierProductForm());
-            
+
         }
     }
 }
