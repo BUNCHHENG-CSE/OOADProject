@@ -30,20 +30,24 @@
         {
             formsPlotTodayvsYTD = new ScottPlot.FormsPlot();
             panel1 = new Panel();
-            label2 = new Label();
+            labelTotalUsers = new Label();
             label1 = new Label();
             panel2 = new Panel();
-            label3 = new Label();
+            lblTotalSales = new Label();
             label4 = new Label();
             panel3 = new Panel();
-            label5 = new Label();
+            lbIncometoday = new Label();
             label6 = new Label();
             panel4 = new Panel();
-            label7 = new Label();
+            lblTodayOrder = new Label();
             label8 = new Label();
             formsPlotWeeklySale = new ScottPlot.FormsPlot();
             labelWeeklySale = new Label();
             labelTodayvsYTD = new Label();
+            lblTodaySales = new Label();
+            lblYesterdaySales = new Label();
+            lblLastWeekSales = new Label();
+            lblThisWeekSales = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -61,23 +65,23 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(38, 57, 91);
-            panel1.Controls.Add(label2);
+            panel1.Controls.Add(labelTotalUsers);
             panel1.Controls.Add(label1);
             panel1.Location = new Point(12, 25);
             panel1.Name = "panel1";
             panel1.Size = new Size(249, 133);
             panel1.TabIndex = 2;
             // 
-            // label2
+            // labelTotalUsers
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Sitka Small Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(19, 12);
-            label2.Name = "label2";
-            label2.Size = new Size(51, 35);
-            label2.TabIndex = 4;
-            label2.Text = "111";
+            labelTotalUsers.AutoSize = true;
+            labelTotalUsers.Font = new Font("Sitka Small Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelTotalUsers.ForeColor = Color.White;
+            labelTotalUsers.Location = new Point(19, 12);
+            labelTotalUsers.Name = "labelTotalUsers";
+            labelTotalUsers.Size = new Size(32, 35);
+            labelTotalUsers.TabIndex = 4;
+            labelTotalUsers.Text = "0";
             // 
             // label1
             // 
@@ -93,23 +97,23 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(38, 57, 91);
-            panel2.Controls.Add(label3);
+            panel2.Controls.Add(lblTotalSales);
             panel2.Controls.Add(label4);
             panel2.Location = new Point(279, 25);
             panel2.Name = "panel2";
             panel2.Size = new Size(249, 133);
             panel2.TabIndex = 3;
             // 
-            // label3
+            // lblTotalSales
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Sitka Small Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(19, 12);
-            label3.Name = "label3";
-            label3.Size = new Size(51, 35);
-            label3.TabIndex = 7;
-            label3.Text = "111";
+            lblTotalSales.AutoSize = true;
+            lblTotalSales.Font = new Font("Sitka Small Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalSales.ForeColor = Color.White;
+            lblTotalSales.Location = new Point(19, 12);
+            lblTotalSales.Name = "lblTotalSales";
+            lblTotalSales.Size = new Size(32, 35);
+            lblTotalSales.TabIndex = 7;
+            lblTotalSales.Text = "0";
             // 
             // label4
             // 
@@ -118,30 +122,30 @@
             label4.ForeColor = Color.White;
             label4.Location = new Point(143, 99);
             label4.Name = "label4";
-            label4.Size = new Size(100, 23);
+            label4.Size = new Size(93, 23);
             label4.TabIndex = 3;
-            label4.Text = "Today Sale";
+            label4.Text = "Total Sale";
             // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(38, 57, 91);
-            panel3.Controls.Add(label5);
+            panel3.Controls.Add(lbIncometoday);
             panel3.Controls.Add(label6);
             panel3.Location = new Point(547, 25);
             panel3.Name = "panel3";
             panel3.Size = new Size(249, 133);
             panel3.TabIndex = 5;
             // 
-            // label5
+            // lbIncometoday
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Sitka Small Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(19, 12);
-            label5.Name = "label5";
-            label5.Size = new Size(51, 35);
-            label5.TabIndex = 8;
-            label5.Text = "111";
+            lbIncometoday.AutoSize = true;
+            lbIncometoday.Font = new Font("Sitka Small Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbIncometoday.ForeColor = Color.White;
+            lbIncometoday.Location = new Point(19, 12);
+            lbIncometoday.Name = "lbIncometoday";
+            lbIncometoday.Size = new Size(32, 35);
+            lbIncometoday.TabIndex = 8;
+            lbIncometoday.Text = "0";
             // 
             // label6
             // 
@@ -157,23 +161,23 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(38, 57, 91);
-            panel4.Controls.Add(label7);
+            panel4.Controls.Add(lblTodayOrder);
             panel4.Controls.Add(label8);
             panel4.Location = new Point(815, 25);
             panel4.Name = "panel4";
             panel4.Size = new Size(249, 133);
             panel4.TabIndex = 5;
             // 
-            // label7
+            // lblTodayOrder
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Sitka Small Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.White;
-            label7.Location = new Point(15, 12);
-            label7.Name = "label7";
-            label7.Size = new Size(51, 35);
-            label7.TabIndex = 9;
-            label7.Text = "111";
+            lblTodayOrder.AutoSize = true;
+            lblTodayOrder.Font = new Font("Sitka Small Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTodayOrder.ForeColor = Color.White;
+            lblTodayOrder.Location = new Point(15, 12);
+            lblTodayOrder.Name = "lblTodayOrder";
+            lblTodayOrder.Size = new Size(32, 35);
+            lblTodayOrder.TabIndex = 9;
+            lblTodayOrder.Text = "0";
             // 
             // label8
             // 
@@ -188,6 +192,7 @@
             // 
             // formsPlotWeeklySale
             // 
+            formsPlotWeeklySale.AutoScroll = true;
             formsPlotWeeklySale.Location = new Point(31, 417);
             formsPlotWeeklySale.Margin = new Padding(4, 3, 4, 3);
             formsPlotWeeklySale.Name = "formsPlotWeeklySale";
@@ -214,11 +219,55 @@
             labelTodayvsYTD.TabIndex = 8;
             labelTodayvsYTD.Text = "Today VS Yesterday Income";
             // 
+            // lblTodaySales
+            // 
+            lblTodaySales.AutoSize = true;
+            lblTodaySales.Font = new Font("Segoe UI", 13F);
+            lblTodaySales.Location = new Point(729, 695);
+            lblTodaySales.Name = "lblTodaySales";
+            lblTodaySales.Size = new Size(64, 25);
+            lblTodaySales.TabIndex = 9;
+            lblTodaySales.Text = "Today ";
+            // 
+            // lblYesterdaySales
+            // 
+            lblYesterdaySales.AutoSize = true;
+            lblYesterdaySales.Font = new Font("Segoe UI", 13F);
+            lblYesterdaySales.Location = new Point(729, 732);
+            lblYesterdaySales.Name = "lblYesterdaySales";
+            lblYesterdaySales.Size = new Size(44, 25);
+            lblYesterdaySales.TabIndex = 10;
+            lblYesterdaySales.Text = "YTD";
+            // 
+            // lblLastWeekSales
+            // 
+            lblLastWeekSales.AutoSize = true;
+            lblLastWeekSales.Font = new Font("Segoe UI", 13F);
+            lblLastWeekSales.Location = new Point(99, 732);
+            lblLastWeekSales.Name = "lblLastWeekSales";
+            lblLastWeekSales.Size = new Size(91, 25);
+            lblLastWeekSales.TabIndex = 12;
+            lblLastWeekSales.Text = "Last Week";
+            // 
+            // lblThisWeekSales
+            // 
+            lblThisWeekSales.AutoSize = true;
+            lblThisWeekSales.Font = new Font("Segoe UI", 13F);
+            lblThisWeekSales.Location = new Point(99, 695);
+            lblThisWeekSales.Name = "lblThisWeekSales";
+            lblThisWeekSales.Size = new Size(91, 25);
+            lblThisWeekSales.TabIndex = 11;
+            lblThisWeekSales.Text = "This Week";
+            // 
             // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1092, 802);
+            Controls.Add(lblLastWeekSales);
+            Controls.Add(lblThisWeekSales);
+            Controls.Add(lblYesterdaySales);
+            Controls.Add(lblTodaySales);
             Controls.Add(labelTodayvsYTD);
             Controls.Add(labelWeeklySale);
             Controls.Add(formsPlotWeeklySale);
@@ -246,7 +295,7 @@
         #endregion
         private ScottPlot.FormsPlot formsPlotTodayvsYTD;
         private Panel panel1;
-        private Label label2;
+        private Label labelTotalUsers;
         private Label label1;
         private Panel panel2;
         private Label label4;
@@ -255,10 +304,14 @@
         private Panel panel4;
         private Label label8;
         private ScottPlot.FormsPlot formsPlotWeeklySale;
-        private Label label3;
-        private Label label5;
-        private Label label7;
+        private Label lblTotalSales;
+        private Label lbIncometoday;
+        private Label lblTodayOrder;
         private Label labelWeeklySale;
         private Label labelTodayvsYTD;
+        private Label lblTodaySales;
+        public Label lblYesterdaySales;
+        public Label lblLastWeekSales;
+        private Label lblThisWeekSales;
     }
 }

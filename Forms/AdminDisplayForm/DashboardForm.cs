@@ -1,4 +1,6 @@
-﻿using ScottPlot;
+﻿using Microsoft.Data.SqlClient;
+using OOADPRO.Utilities;
+using ScottPlot;
 using ScottPlot.MarkerShapes;
 using System;
 using System.Collections.Generic;
@@ -18,32 +20,160 @@ public partial class DashboardForm : Form
     {
         InitializeComponent();
     }
+    private void TodayVsYesterdaySales()
+    {
+        double[] values = new double[2];
+        string[] labels = { "Yesterday", "Today" };
+        Color[] labelColors = { Color.White, Color.White };
+        Color[] sliceColors = { Color.Red, Color.Green };
+        try
+        {          
+                using (var command = new SqlCommand("spGetTodayVsYesterdaySales", Program.Connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            values[0] = reader.GetDouble(reader.GetOrdinal("YesterdaySales")); 
+                            values[1] = reader.GetDouble(reader.GetOrdinal("TodaySales"));  
+                        }
+                    }
+                
+          }
+            if (values[0] > 0 || values[1] > 0)
+            {
+                var pie = formsPlotTodayvsYTD.Plot.AddPie(values);
+                pie.SliceLabels = labels;
+                pie.ShowLabels = true;
+                pie.SliceFillColors = sliceColors;
+                pie.SliceLabelColors = labelColors;
+                formsPlotTodayvsYTD.Plot.Style(this.BackColor, this.BackColor);
+                formsPlotTodayvsYTD.Plot.XAxis.Ticks(false);
+                formsPlotTodayvsYTD.Plot.YAxis.Ticks(false);
+                formsPlotTodayvsYTD.Refresh();
+                lblTodaySales.Text = $"Today = {values[1]:C2}"; 
+                lblYesterdaySales.Text = $"Yesterday = {values[0]:C2}";
+                lbIncometoday.Text = $"{values[1]:C2}";
+            }
+            else
+            {
+                MessageBox.Show("No sales data available for today or yesterday.", "Sales Comparison", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Failed to load today vs yesterday sales: {ex.Message}", "Sales Comparison", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
     private void WeeklySale()
     {
-        double[] dataX = new double[] { 1, 4, 9, 16, 25 };
-        double[] dataY = new double[] { 1, 2, 3, 4, 5 };
-        formsPlotWeeklySale.Plot.AddBar(dataX, dataY);
-        formsPlotWeeklySale.Refresh();
+        double[] values = new double[2]; 
+        string[] labels = { "Last Week", "This Week" };
+        Color[] labelColors = { Color.White, Color.White };
+        Color[] sliceColors = { Color.Blue, Color.Orange }; 
+
+        try
+        {
+
+     
+                using (var command = new SqlCommand("spGetWeeklySales", Program.Connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        List<(DateTime WeekStartDate, double Sales)> weeklySales = new List<(DateTime, double)>();
+                        while (reader.Read())
+                        {
+                            DateTime weekStart = Convert.ToDateTime(reader["WeekStartDate"]); 
+                            double sales = Convert.ToDouble(reader["TotalSales"]);
+                            weeklySales.Add((weekStart, sales));
+                        }
+
+         
+                        if (weeklySales.Count >= 2)
+                        {
+         
+                            var lastWeekSales = weeklySales[weeklySales.Count - 2]; 
+                            var thisWeekSales = weeklySales[weeklySales.Count - 1];
+                            values[0] = lastWeekSales.Sales; 
+                            values[1] = thisWeekSales.Sales; 
+                            labels[0] = "Last Week ";
+                            labels[1] = "This Week ";
+                            var pie = formsPlotWeeklySale.Plot.AddPie(values);
+                            pie.SliceLabels = labels;
+                            pie.ShowLabels = true;
+                            pie.SliceFillColors = sliceColors;
+                            pie.SliceLabelColors = labelColors;              
+                            formsPlotWeeklySale.Plot.Style(this.BackColor, this.BackColor);
+                            formsPlotWeeklySale.Plot.XAxis.Ticks(false);
+                            formsPlotWeeklySale.Plot.YAxis.Ticks(false);
+
+                 
+                            formsPlotWeeklySale.Refresh();
+
+          
+                        lblThisWeekSales.Text = $"This Week = {values[1]:C2}";
+                        lblLastWeekSales.Text = $"Last Week = {values[0]:C2}";
+                    }
+                        else
+                        {
+                            MessageBox.Show("Not enough data to display weekly sales.", "Weekly Sales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Failed to load weekly sales: {ex.Message}", "Weekly Sales", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
-    private void TodayvsYTDPlot()
+    private void DisplayTotalSales()
     {
-        double[] values = { 789, 143 };
-        string[] labels = { "Yesterday", "Today" };
-        Color[] labelcolors = { Color.White, Color.White,};
-        Color[] slicecolors = { Color.Red,  Color.Gold };
-        var pie = formsPlotTodayvsYTD.Plot.AddPie(values);
-        pie.SliceLabels = labels;
-        pie.ShowLabels = true;
-        pie.SliceFillColors = slicecolors;
-        pie.SliceLabelColors = labelcolors;
-        formsPlotTodayvsYTD.Plot.Style(this.BackColor, this.BackColor);
-        formsPlotTodayvsYTD.Plot.XAxis.Ticks(false);
-        formsPlotTodayvsYTD.Plot.YAxis.Ticks(false);
-        formsPlotTodayvsYTD.Refresh();
+        try
+        {
+
+            double totalSales = DashboardFunc.GetTotalSalesAllTime(Program.Connection);
+            lblTotalSales.Text = $"{totalSales:C}";
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error retrieving total sales: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+    private void DisplayOrderQuantityToday()
+    {
+        try
+        {
+
+            double orderQuantityToday = DashboardFunc.GetOrderQuantityToday(Program.Connection);
+            lblTodayOrder.Text = $"{orderQuantityToday}";
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error retrieving total sales: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+    private void DisplayTotalUsers()
+    {
+        try
+        {
+            int totalUsers = DashboardFunc.GetTotalUsers(Program.Connection);
+            labelTotalUsers.Text = $"{totalUsers}";
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Failed to load total users: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
     private void DashboardForm_Load(object sender, EventArgs e)
     {
-        TodayvsYTDPlot();
+        TodayVsYesterdaySales();
         WeeklySale();
+        DisplayTotalSales();
+        DisplayOrderQuantityToday();
+        DisplayTotalUsers();
     }
 }

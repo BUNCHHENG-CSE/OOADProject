@@ -10,7 +10,7 @@ namespace OOADPRO.Forms
             InitializeComponent();
             btnCashierProducts.Click += DoClickProducts;
             btnOrder.Click += DoClickOrder;
-            LabelUser.Text += " "+user.Username.ToUpper();
+            //LabelUser.Text += " "+user.Username.ToUpper();
         }
         private void DoClickProducts(object? sender, EventArgs e)
         {
