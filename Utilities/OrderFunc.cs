@@ -11,61 +11,59 @@ namespace OOADPRO.Utilities;
 
 public static class OrderFunc
 {
-    public static IEnumerable<Order> GetAllOrders(SqlConnection con)
+    public static IEnumerable<Order> GetAllOrder(SqlConnection con)
     {
-        SqlCommand cmd = new SqlCommand("spGetAllOrders", con);
+        SqlCommand cmd = new SqlCommand("spReadAllOrder", con);
         SqlDataReader? reader = null;
-
         try
         {
             reader = cmd.ExecuteReader();
         }
         catch (Exception ex)
         {
-            throw new Exception($"Error in getting all orders > {ex.Message}");
+            throw new Exception($"Error in getting all Order > {ex.Message}");
         }
         finally
         {
             cmd.Dispose();
         }
-
-        if (reader != null && reader.HasRows)
+        if (reader != null && reader.HasRows == true)
         {
             var queryAbles = reader.Cast<IDataRecord>().AsQueryable();
             foreach (var record in queryAbles)
             {
-                yield return record.ToDisplayOrder();
+                yield return reader.ToDisplayOrder();
             }
         }
-
         reader?.Close();
     }
-    public static Order? GetOrderById(SqlConnection con, int id)
-    {
-        SqlCommand cmd = new SqlCommand("spGetOrderById", con);
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@OrderID", id);
-        SqlDataReader? reader = null;
 
+    public static Order GetOneOrder(SqlConnection con, int id)
+    {
+        SqlCommand cmd = new SqlCommand("spReadOneOrder", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@id", id);
+        SqlDataReader? reader = null;
         try
         {
             reader = cmd.ExecuteReader();
         }
         catch (Exception ex)
         {
-            throw new Exception($"Error in getting order by ID {id} > {ex.Message}");
+            throw new Exception($"Error in getting category with id, {id} > {ex.Message}");
         }
         finally
         {
             cmd.Dispose();
         }
-
         Order? result = null;
-        if (reader != null && reader.HasRows && reader.Read())
+        if (reader != null && reader.HasRows == true)
         {
-            result = reader.ToOrderAllData();
+            if (reader.Read() == true)
+            {
+                result = reader.ToDisplayOrder();
+            }
         }
-
         reader?.Close();
         return result;
     }
@@ -132,6 +130,62 @@ public static class OrderFunc
             cmd.Dispose();
         }
     }
-   
+    public static bool InsertOrderDetail(SqlConnection con, OrderDetail order)
+    {
+        SqlCommand cmd = new SqlCommand("spInsertOrderDetail", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@oid", order.Order.OrderID);
+        cmd.Parameters.AddWithValue("@pid", order.Products.ProductsID);
+        cmd.Parameters.AddWithValue("@oq", order.OrderQty);
+        cmd.Parameters.AddWithValue("@up", order.UnitPrice);
+
+        try
+        {
+            int affectedRows = cmd.ExecuteNonQuery();
+            return affectedRows > 0;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Failed to insert order detail > {ex.Message}");
+        }
+        finally
+        {
+            cmd.Dispose();
+        }
+
+
+    }
+
+    public static int CreateNewOrder(SqlConnection con, DateTime dateOrder, float totalPrice, int customerId)
+    {
+        SqlCommand cmd = new SqlCommand("spCreateNewOrder", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@DateOrder", dateOrder);
+        cmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
+        cmd.Parameters.AddWithValue("@CustomerID", customerId);
+        SqlParameter outputParam = new SqlParameter("@NewOrderID", SqlDbType.Int)
+        {
+            Direction = ParameterDirection.Output
+        };
+        cmd.Parameters.Add(outputParam);
+        cmd.ExecuteNonQuery();
+        return Convert.ToInt32(outputParam.Value);
+    }
+
+    public static int CreateNewCustomer(SqlConnection con)
+    {
+        SqlCommand cmd = new SqlCommand("spCreateNewCustomer", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+
+        try
+        {
+            int newCustomerId = Convert.ToInt32(cmd.ExecuteScalar());
+            return newCustomerId; 
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Failed to create new customer: {ex.Message}");
+        }
+    }
 
 }

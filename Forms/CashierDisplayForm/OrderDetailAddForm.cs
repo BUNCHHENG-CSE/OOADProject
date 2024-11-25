@@ -157,8 +157,25 @@ namespace OOADPRO.Forms.CashierDisplayForm
         }
         public void SaveOrderDetails(SqlConnection con)
         {
-
-            SqlCommand cmd;
+            int customerId = OrderFunc.CreateNewCustomer(con);
+            float totalPrice = CalculateTotalPrice();
+            SqlCommand cmd = new SqlCommand("spCreateNewOrder", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@DateOrder", DateTime.Now);  
+            cmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
+            cmd.Parameters.AddWithValue("@CustomerID", customerId);
+            try
+            {
+                int newOrderId = Convert.ToInt32(cmd.ExecuteScalar());
+                InsertOrderDetails(con, newOrderId); 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to save order details: {ex.Message}");
+            }
+        }
+        public void InsertOrderDetails(SqlConnection con, int orderId)
+        {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.IsNewRow) continue;
@@ -169,49 +186,59 @@ namespace OOADPRO.Forms.CashierDisplayForm
                 float unitPrice = Convert.ToSingle(row.Cells["UnitPrice"].Value);
                 if (orderDetailId == -1)
                 {
-                    cmd = new SqlCommand("spInsertOrderDetail", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@oq", orderQty);
-                    cmd.Parameters.AddWithValue("@up", unitPrice);
-                    cmd.Parameters.AddWithValue("@oid", this.OrderID);
-                    //Console.WriteLine("OrderID: " + OrderID);
-                    cmd.Parameters.AddWithValue("@pid", productId);                                               
-                    try
+                    OrderDetail orderDetail = new OrderDetail
                     {
-                        cmd.ExecuteNonQuery();
-                        
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception($"Failed in Pay > {ex.Message}");
+                        Order = new Order { OrderID = orderId }, 
+                        Products = new Products { ProductsID = productId },
+                        OrderQty = orderQty,
+                        UnitPrice = unitPrice
+                    };
 
-                    }
-                    finally
+                    bool success = OrderFunc.InsertOrderDetail(con, orderDetail);
+                    if (!success)
                     {
-                        cmd.Dispose();
+                        throw new Exception("Failed to insert order detail into the database.");
                     }
                 }
-                //else
-                //{
-                //    cmd = new SqlCommand("spUpdateOrderDetail", con);
-                //    cmd.CommandType = CommandType.StoredProcedure;
-                //    cmd.Parameters.AddWithValue("@odid", orderDetailId);
-                //    cmd.Parameters.AddWithValue("@oid", this.OrderID);
-                //    cmd.Parameters.AddWithValue("@pid", productId);
-                //    cmd.Parameters.AddWithValue("@oq", orderQty);
-                //    cmd.Parameters.AddWithValue("@up", unitPrice);
-                //    cmd.ExecuteNonQuery();
-                //}
             }
         }
+        private float CalculateTotalPrice()
+        {
+            float totalPrice = 0;
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.IsNewRow) continue; 
+
+                int qty = Convert.ToInt32(row.Cells["Qty"].Value); 
+                float unitPrice = Convert.ToSingle(row.Cells["UnitPrice"].Value); 
+                totalPrice += qty * unitPrice;
+            }
+
+            return totalPrice;
+        }
+        private void ResetOrderForm()
+        {
+            dataGridView1.Rows.Clear();
+            TotalAmount = 0;
+            txtTotal.Text = "Total: $0.00";
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
-            using (Program.Connection) 
+            using (Program.Connection)
             {
-      
-                SaveOrderDetails(Program.Connection);
+                try
+                {
+                    SaveOrderDetails(Program.Connection);
+                    MessageBox.Show("Order details saved successfully!");
+                    ResetOrderForm();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving order details: {ex.Message}");
+                }
             }
-            MessageBox.Show("Order details saved successfully!");
         }
 
 

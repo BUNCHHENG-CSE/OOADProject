@@ -268,6 +268,15 @@ public static class IDataRecordExtension
     #region Order
     public static Order ToDisplayOrder(this IDataRecord record)
     {
+        int index = record.GetOrdinal("OrderID");
+        int orderid = record.GetInt32(index);
+
+        index = record.GetOrdinal("DateOrder");
+        DateTime dateorder = record.GetDateTime(index);
+
+        index = record.GetOrdinal("TotalPrice");
+        decimal totalprice = (decimal)record.GetDecimal(index);
+
         return new Order
         {
             OrderID = record.GetInt32(record.GetOrdinal("OrderID")),
