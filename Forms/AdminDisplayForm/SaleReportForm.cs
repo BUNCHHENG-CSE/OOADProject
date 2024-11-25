@@ -49,9 +49,7 @@ namespace OOADPRO.Forms.AdminDisplayForm
 
         private void SaleReportForm_Load(object sender, EventArgs e)
         {
-            //DailySale();
-            //MonthlySale();
-            //YearlySale();
+      
             OverallIncome();
         }
     }

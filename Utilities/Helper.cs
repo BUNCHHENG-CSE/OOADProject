@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace OOADPRO.Utilities;
 
-internal class Helper
+public static class Helper
 {
     public static string ConnectionStringKey { get; set; } = "DBConnectionString";
     public static IConfiguration? Configuration { get; set; } = null;

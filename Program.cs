@@ -15,10 +15,13 @@ internal static class Program
     {
         // To customize application configuration such as set high DPI settings or default font,
         // see https://aka.ms/applicationconfiguration.
+
         //ConnectToDB();
+
         ApplicationConfiguration.Initialize();
         Application.Run(new LoadingForm());
     }
+
     public static void ConnectToDB()
     {
         Helper.ConnectionStringKey = "DBConnectionString";
@@ -33,6 +36,7 @@ internal static class Program
             Environment.Exit(0);
         }
     }
+
     public static SqlConnection Connection = default!;
     public static string[] Genders { get; set; } = new string[] { "Female", "Male" };
 

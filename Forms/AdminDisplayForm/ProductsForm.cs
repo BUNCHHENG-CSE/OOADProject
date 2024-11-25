@@ -88,7 +88,7 @@ public partial class ProductsForm : Form
                     TextAlign = ContentAlignment.MiddleLeft,
                     AutoSize = false,
                     
-                    Location = new Point(5, 230)
+                    Location = new Point(5, 232)
                 };
                 Label categoryNameLabel = new Label
                 {

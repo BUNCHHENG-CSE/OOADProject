@@ -8,7 +8,9 @@ public partial class DBConnectionForm : Form
 {
     string[] authentication { get; set; } = new string[] { "Window Authentication", "Server Authentication" };
     public static IConfiguration? Configuration { get; set; } = null;
+
     string? ConnectionStringToDatabase;
+
     private LoadingForm loadingFormReference;
 
     public DBConnectionForm(LoadingForm loadingForm)
@@ -90,7 +92,13 @@ public partial class DBConnectionForm : Form
             }
         }
     }
+
+
+
+    
 }
+
+
 class DBConnection
 {
     public string? DBConnectionString { get; set; }

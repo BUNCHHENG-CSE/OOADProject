@@ -24,13 +24,13 @@ public partial class ProductsAddForm : Form
         byte[] ProductImages = null;
         if (txtProductName.Text == "" || txtProductName.Text.Trim().Length > 100)
         {
-            MessageBox.Show("Staff Name is required or name too long", "Creating",
+            MessageBox.Show("Product is required or name too long", "Creating",
             MessageBoxButtons.OK, MessageBoxIcon.Stop);
             return;
         }
         if (cBCategoryID.SelectedItem == null)
         {
-            MessageBox.Show("Staff Gender is required", "Creating",
+            MessageBox.Show("Category is required", "Creating",
             MessageBoxButtons.OK, MessageBoxIcon.Stop);
             return;
         }
@@ -90,19 +90,19 @@ public partial class ProductsAddForm : Form
         byte[] ProductImages = null;
         if (txtProductName.Text == "" || txtProductName.Text.Trim().Length > 100)
         {
-            MessageBox.Show("Staff Name is required or name too long", "Creating",
+            MessageBox.Show("Product Name is required or name too long", "Creating",
             MessageBoxButtons.OK, MessageBoxIcon.Stop);
             return;
         }
         if (cBCategoryID.SelectedItem == null)
         {
-            MessageBox.Show("Staff Gender is required", "Creating",
+            MessageBox.Show("Category  is required", "Creating",
             MessageBoxButtons.OK, MessageBoxIcon.Stop);
             return;
         }
         if (rtxtProductDescription.Text == "" || rtxtProductDescription.Text.Trim().Length > 1000)
         {
-            MessageBox.Show("Staff Address is required or address too long", "Creating",
+            MessageBox.Show("Product description is required ", "Creating",
             MessageBoxButtons.OK, MessageBoxIcon.Stop);
             return;
         }

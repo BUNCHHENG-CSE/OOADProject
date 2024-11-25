@@ -11,6 +11,7 @@ public partial class LoginForm : Form
     public LoginForm(LoadingForm loadingForm, DBConnectionForm databaseConnectionForm)
     {
         InitializeComponent();
+
         Program.ConnectToDB();
 
         btnLogin.Click += DoClickLogin;
@@ -83,6 +84,4 @@ public partial class LoginForm : Form
     //    databaseConnectionFormReference.Close();
     //    loadingFormReference.Close();
     //}
-
-
 }
