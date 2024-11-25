@@ -55,11 +55,11 @@ public partial class LoginForm : Form
             {
                 AdminForm adminForm = new AdminForm();
                 adminForm.Show();
-                //MessageBox.Show("Welcome Admin");
+
             }
             else
             {
-                CashierForm cashierForm = new CashierForm();
+                CashierForm cashierForm = new CashierForm(userVerify);
                 cashierForm.Show();
             }
             txtUsername.Clear();

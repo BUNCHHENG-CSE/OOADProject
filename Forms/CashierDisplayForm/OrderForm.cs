@@ -11,43 +11,50 @@ using OOADPRO.Forms.AdminDisplayForm;
 using OOADPRO.Models;
 using OOADPRO.Utilities;
 
-namespace OOADPRO.Forms.CashierDisplayForm
+namespace OOADPRO.Forms.CashierDisplayForm;
+
+public partial class OrderForm : Form
 {
-    public partial class OrderForm : Form
+    Order? effectedOrder = null;
+   
+    public OrderForm()
     {
-        Order? effectedOrder = null;
-       
-        public OrderForm()
-        {
-            InitializeComponent();
-            btnAddStaff.Click += DoClickAddOrderDetail;
-            dgvOrder.CellClick += Select_Handling_Order;
-        }
-
-        private void Select_Handling_Order(object? sender, EventArgs e)
-        {
-            if (dgvOrder.CurrentRow == null) return;
-            int no = (int)dgvOrder.CurrentRow.Cells["CategoryID"].Value;
-            try
-            {
-                Order? effectedOrder =OrderFunc.GetOneOrder(Program.Connection, no);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Here: {ex.Message}");
-            }
-        }
-
-        private void DoClickAddOrderDetail(object? sender, EventArgs e)
-        {
-            new OrderDetailAddForm().Show();
-        }
-
-        private void OrderForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        
+        InitializeComponent();
+        btnAddStaff.Click += DoClickAddOrderDetail;
     }
+
+    private void DoClickAddOrderDetail(object? sender, EventArgs e)
+    {
+        OrderDetailAddForm orderDetailAddForm =  new OrderDetailAddForm(this);
+        orderDetailAddForm.OrderDetailAdded += (sender, e) =>
+        {
+            LoadingDataCategory();
+        };
+        orderDetailAddForm.Show();
+    }
+
+    private void OrderForm_Load(object sender, EventArgs e)
+    {
+        LoadingDataCategory();
+    }
+
+    private void LoadingDataCategory()
+    {
+        try
+        {
+            var result = OrderFunc.GetAllOrder(Program.Connection);
+
+            dgvOrder.Rows.Clear();
+            foreach (var order in result)
+            {
+                dgvOrder.Rows.Add(order.OrderID, order.DateOrder, order.TotalPrice,order.Customer.CustomerID);
+            }
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Retriving Room", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
 }

@@ -35,7 +35,7 @@ public class LoginFunc
         {
             if (reader.Read() == true)
             {
-                verify = reader.ToUserAllData();
+                verify = reader.ToUserAllDataToLogin();
             }
         }
         reader?.Close();

@@ -56,7 +56,7 @@
             buttonpay.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonpay.Location = new Point(626, 582);
             buttonpay.Name = "buttonpay";
-            buttonpay.Size = new Size(92, 42);
+            buttonpay.Size = new Size(111, 42);
             buttonpay.TabIndex = 83;
             buttonpay.Text = "Pay Order";
             buttonpay.UseVisualStyleBackColor = true;
@@ -152,7 +152,8 @@
             Controls.Add(txtProductName);
             Controls.Add(labelOverview);
             Name = "OrderDetailAddForm";
-            Text = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Order Products";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

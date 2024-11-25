@@ -1,25 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using OOADPRO.Forms.AdminDisplayForm;
-using OOADPRO.Forms.CashierDisplayForm;
+﻿using OOADPRO.Forms.CashierDisplayForm;
+using OOADPRO.Models;
 
 namespace OOADPRO.Forms
 {
     public partial class CashierForm : Form
     {
-        public CashierForm()
+        public CashierForm(User user)
         {
             InitializeComponent();
             btnCashierProducts.Click += DoClickProducts;
             btnOrder.Click += DoClickOrder;
-                   }
+            LabelUser.Text += " "+user.Username.ToUpper();
+        }
         private void DoClickProducts(object? sender, EventArgs e)
         {
             AddControl(new CashierProductForm());
@@ -40,6 +32,7 @@ namespace OOADPRO.Forms
         private void CashierForm_Load(object sender, EventArgs e)
         {
             AddControl(new CashierProductForm());
+            
         }
     }
 }

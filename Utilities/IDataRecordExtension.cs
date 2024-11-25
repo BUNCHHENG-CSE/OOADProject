@@ -263,9 +263,40 @@ public static class IDataRecordExtension
             Staff = staff
         };
     }
+    public static User ToUserAllDataToLogin(this IDataReader record)
+    {
+        Staff staff = new Staff();
+        int index = record.GetOrdinal("UserID");
+        int id = record.GetInt32(index);
+
+        index = record.GetOrdinal("Username");
+        string? username = record.GetString(index);
+
+        index = record.GetOrdinal("Password");
+        string? password = record.GetString(index);
+
+        index = record.GetOrdinal("StaffID");
+        staff.StaffID = record.GetInt32(index);
+
+        index = record.GetOrdinal("StaffName");
+        staff.StaffName = record.GetString(index);
+
+        index = record.GetOrdinal("StaffPosition");
+        staff.StaffPosition = record.GetString(index);
+
+        return new User()
+        {
+            UserID = id,
+            Username = username,
+            Password = password,
+            Staff = staff
+        };
+
+    }
+        
     #endregion
 
-    #region Order
+        #region Order
     public static Order ToDisplayOrder(this IDataRecord record)
     {
         int index = record.GetOrdinal("OrderID");
@@ -275,14 +306,20 @@ public static class IDataRecordExtension
         DateTime dateorder = record.GetDateTime(index);
 
         index = record.GetOrdinal("TotalPrice");
-        decimal totalprice = (decimal)record.GetDecimal(index);
+        decimal totalprice = record.GetDecimal(index);
+
+        index = record.GetOrdinal("CustomerID");
+        int customerID = record.GetInt32(index);
 
         return new Order
         {
-            OrderID = record.GetInt32(record.GetOrdinal("OrderID")),
-            DateOrder = record.GetDateTime(record.GetOrdinal("DateOrder")),
-            TotalPrice = record.GetDecimal(record.GetOrdinal("TotalPrice")),
-         
+            OrderID = orderid,
+            DateOrder = dateorder,
+            TotalPrice = totalprice,
+            Customer = new Customer
+            {
+                CustomerID = customerID
+            }   
         };
     }
 
@@ -295,20 +332,7 @@ public static class IDataRecordExtension
         };
     }
 
-    public static Order ToOrderAllData(this IDataReader record)
-    {
-        int orderId = record.GetInt32(record.GetOrdinal("OrderID"));
-        DateTime dateOrder = record.GetDateTime(record.GetOrdinal("DateOrder"));
-        decimal totalPrice = record.GetDecimal(record.GetOrdinal("TotalPrice"));
-
-        return new Order
-        {
-            OrderID = orderId,
-            DateOrder = dateOrder,
-            TotalPrice = totalPrice,
-
-        };
-    }
+    
     #endregion
 
     #region OrderDetail

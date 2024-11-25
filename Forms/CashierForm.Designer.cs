@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            LabelUser = new Label();
             btnOrder = new Button();
             btnLogout = new Button();
             btnCashierProducts = new Button();
@@ -42,6 +43,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(38, 57, 91);
+            panel1.Controls.Add(LabelUser);
             panel1.Controls.Add(btnOrder);
             panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(btnCashierProducts);
@@ -51,6 +53,17 @@
             panel1.Size = new Size(291, 802);
             panel1.TabIndex = 0;
             // 
+            // LabelUser
+            // 
+            LabelUser.AutoSize = true;
+            LabelUser.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold);
+            LabelUser.ForeColor = Color.FromArgb(212, 203, 229);
+            LabelUser.Location = new Point(32, 127);
+            LabelUser.Name = "LabelUser";
+            LabelUser.Size = new Size(101, 28);
+            LabelUser.TabIndex = 0;
+            LabelUser.Text = "Welcome";
+            // 
             // btnOrder
             // 
             btnOrder.BackColor = Color.FromArgb(38, 57, 91);
@@ -59,7 +72,7 @@
             btnOrder.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnOrder.ForeColor = Color.FromArgb(212, 203, 229);
             btnOrder.ImageAlign = ContentAlignment.MiddleLeft;
-            btnOrder.Location = new Point(32, 210);
+            btnOrder.Location = new Point(32, 285);
             btnOrder.Name = "btnOrder";
             btnOrder.Size = new Size(234, 38);
             btnOrder.TabIndex = 8;
@@ -90,7 +103,7 @@
             btnCashierProducts.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCashierProducts.ForeColor = Color.FromArgb(212, 203, 229);
             btnCashierProducts.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCashierProducts.Location = new Point(32, 138);
+            btnCashierProducts.Location = new Point(32, 201);
             btnCashierProducts.Name = "btnCashierProducts";
             btnCashierProducts.Size = new Size(234, 38);
             btnCashierProducts.TabIndex = 1;
@@ -138,6 +151,7 @@
             Text = "Cashier";
             Load += CashierForm_Load;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);
@@ -156,5 +170,6 @@
         private Button btnCategory;
         private Button btnUser;
         private Button btnOrder;
+        private Label LabelUser;
     }
 }
