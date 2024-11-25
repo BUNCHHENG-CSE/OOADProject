@@ -55,7 +55,7 @@
             labelTitle.Name = "labelTitle";
             labelTitle.Size = new Size(326, 39);
             labelTitle.TabIndex = 1;
-            labelTitle.Text = "Cafe Management System";
+            labelTitle.Text = "Café Management System";
             // 
             // pictureBox1
             // 
