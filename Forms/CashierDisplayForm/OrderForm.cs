@@ -13,10 +13,12 @@ namespace OOADPRO.Forms.CashierDisplayForm
 {
     public partial class OrderForm : Form
     {
-        public OrderForm()
+        public int? OrderID { get; set; }
+        public OrderForm(int? orderID)
         {
             InitializeComponent();
             btnAddStaff.Click += DoClickAddOrderDetail;
+            this.OrderID = orderID;
         }
 
         private void DoClickAddOrderDetail(object? sender, EventArgs e)

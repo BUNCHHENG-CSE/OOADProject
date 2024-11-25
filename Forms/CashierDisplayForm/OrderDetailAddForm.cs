@@ -40,6 +40,7 @@ namespace OOADPRO.Forms.CashierDisplayForm
             var products = ProductFunc.GetAllProducts(Program.Connection);
             foreach (var product in products)
             {
+                
                 Panel productPanel = new Panel
                 {
                     Width = 200,
@@ -154,8 +155,9 @@ namespace OOADPRO.Forms.CashierDisplayForm
                 }
             }
         }
-        private void SaveOrderDetails(SqlConnection con)
+        public void SaveOrderDetails(SqlConnection con)
         {
+
             SqlCommand cmd;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -167,32 +169,46 @@ namespace OOADPRO.Forms.CashierDisplayForm
                 float unitPrice = Convert.ToSingle(row.Cells["UnitPrice"].Value);
                 if (orderDetailId == -1)
                 {
-                    cmd = new SqlCommand("InsertOrderDetail", con);
+                    cmd = new SqlCommand("spInsertOrderDetail", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@OrderID", this.OrderID); 
-                    cmd.Parameters.AddWithValue("@ProductID", productId);
-                    cmd.Parameters.AddWithValue("@OrderQty", orderQty);
-                    cmd.Parameters.AddWithValue("@UnitPrice", unitPrice);
-                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@oq", orderQty);
+                    cmd.Parameters.AddWithValue("@up", unitPrice);
+                    cmd.Parameters.AddWithValue("@oid", this.OrderID);
+                    //Console.WriteLine("OrderID: " + OrderID);
+                    cmd.Parameters.AddWithValue("@pid", productId);                                               
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception($"Failed in Pay > {ex.Message}");
+
+                    }
+                    finally
+                    {
+                        cmd.Dispose();
+                    }
                 }
-                else
-                {
-                    cmd = new SqlCommand("UpdateOrderDetail", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@OrderDetailID", orderDetailId);
-                    cmd.Parameters.AddWithValue("@OrderID", this.OrderID);
-                    cmd.Parameters.AddWithValue("@ProductID", productId);
-                    cmd.Parameters.AddWithValue("@OrderQty", orderQty);
-                    cmd.Parameters.AddWithValue("@UnitPrice", unitPrice);
-                    cmd.ExecuteNonQuery();
-                }
+                //else
+                //{
+                //    cmd = new SqlCommand("spUpdateOrderDetail", con);
+                //    cmd.CommandType = CommandType.StoredProcedure;
+                //    cmd.Parameters.AddWithValue("@odid", orderDetailId);
+                //    cmd.Parameters.AddWithValue("@oid", this.OrderID);
+                //    cmd.Parameters.AddWithValue("@pid", productId);
+                //    cmd.Parameters.AddWithValue("@oq", orderQty);
+                //    cmd.Parameters.AddWithValue("@up", unitPrice);
+                //    cmd.ExecuteNonQuery();
+                //}
             }
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
             using (Program.Connection) 
             {
-                Program.Connection.Open();
+      
                 SaveOrderDetails(Program.Connection);
             }
             MessageBox.Show("Order details saved successfully!");

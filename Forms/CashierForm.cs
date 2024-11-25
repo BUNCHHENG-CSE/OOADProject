@@ -18,17 +18,13 @@ namespace OOADPRO.Forms
         {
             InitializeComponent();
             btnCashierProducts.Click += DoClickProducts;
-            btnCustomer.Click += DoClickCustomer;
             btnOrder.Click += DoClickOrder;
                    }
         private void DoClickProducts(object? sender, EventArgs e)
         {
             AddControl(new CashierProductForm());
         }
-        private void DoClickCustomer(object? sender, EventArgs e)
-        {
-            AddControl(new CashierCustomerForm());
-        }
+
         private void DoClickOrder(object? sender, EventArgs e)
         {
             AddControl(new OrderForm());

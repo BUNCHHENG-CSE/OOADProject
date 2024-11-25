@@ -31,7 +31,6 @@
             panel1 = new Panel();
             btnOrder = new Button();
             btnLogout = new Button();
-            btnCustomer = new Button();
             btnCashierProducts = new Button();
             panel3 = new Panel();
             label1 = new Label();
@@ -45,7 +44,6 @@
             panel1.BackColor = Color.FromArgb(38, 57, 91);
             panel1.Controls.Add(btnOrder);
             panel1.Controls.Add(btnLogout);
-            panel1.Controls.Add(btnCustomer);
             panel1.Controls.Add(btnCashierProducts);
             panel1.Controls.Add(panel3);
             panel1.Location = new Point(-1, -1);
@@ -60,9 +58,8 @@
             btnOrder.FlatStyle = FlatStyle.Flat;
             btnOrder.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnOrder.ForeColor = Color.FromArgb(212, 203, 229);
-
             btnOrder.ImageAlign = ContentAlignment.MiddleLeft;
-            btnOrder.Location = new Point(32, 287);
+            btnOrder.Location = new Point(32, 210);
             btnOrder.Name = "btnOrder";
             btnOrder.Size = new Size(234, 38);
             btnOrder.TabIndex = 8;
@@ -84,22 +81,6 @@
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = false;
             // 
-            // btnCustomer
-            // 
-            btnCustomer.BackColor = Color.FromArgb(38, 57, 91);
-            btnCustomer.FlatAppearance.BorderSize = 0;
-            btnCustomer.FlatStyle = FlatStyle.Flat;
-            btnCustomer.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCustomer.ForeColor = Color.FromArgb(212, 203, 229);
-
-            btnCustomer.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCustomer.Location = new Point(32, 213);
-            btnCustomer.Name = "btnCustomer";
-            btnCustomer.Size = new Size(234, 38);
-            btnCustomer.TabIndex = 2;
-            btnCustomer.Text = "Customer";
-            btnCustomer.UseVisualStyleBackColor = false;
-            // 
             // btnCashierProducts
             // 
             btnCashierProducts.BackColor = Color.FromArgb(38, 57, 91);
@@ -108,7 +89,6 @@
             btnCashierProducts.FlatStyle = FlatStyle.Flat;
             btnCashierProducts.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCashierProducts.ForeColor = Color.FromArgb(212, 203, 229);
-
             btnCashierProducts.ImageAlign = ContentAlignment.MiddleLeft;
             btnCashierProducts.Location = new Point(32, 138);
             btnCashierProducts.Name = "btnCashierProducts";
@@ -175,7 +155,6 @@
         private Button btnSale;
         private Button btnCategory;
         private Button btnUser;
-        private Button btnCustomer;
         private Button btnOrder;
     }
 }

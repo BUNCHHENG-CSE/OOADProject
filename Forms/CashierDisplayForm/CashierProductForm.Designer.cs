@@ -30,6 +30,7 @@
         {
             txtProductName = new TextBox();
             label1 = new Label();
+            flowLayoutPanelProducts = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // txtProductName
@@ -50,15 +51,24 @@
             label1.TabIndex = 69;
             label1.Text = "Search :";
             // 
-            // ProductForm
+            // flowLayoutPanelProducts
+            // 
+            flowLayoutPanelProducts.AutoScroll = true;
+            flowLayoutPanelProducts.Location = new Point(12, 78);
+            flowLayoutPanelProducts.Name = "flowLayoutPanelProducts";
+            flowLayoutPanelProducts.Size = new Size(1044, 551);
+            flowLayoutPanelProducts.TabIndex = 71;
+            // 
+            // CashierProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1092, 802);
+            Controls.Add(flowLayoutPanelProducts);
             Controls.Add(txtProductName);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "ProductForm";
+            Name = "CashierProductForm";
             Text = "OverviewForm";
             ResumeLayout(false);
             PerformLayout();
@@ -68,5 +78,6 @@
 
         private TextBox txtProductName;
         private Label label1;
+        private FlowLayoutPanel flowLayoutPanelProducts;
     }
 }
