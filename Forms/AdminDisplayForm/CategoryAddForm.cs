@@ -39,6 +39,7 @@ public partial class CategoryAddForm : Form
             if (result == true)
             {
                 MessageBox.Show($"Successfully updated category with the id {txtCategoryID.Text}");
+                CategoryHanlder?.Invoke(this, result);
             }
         }
         catch (Exception ex) { MessageBox.Show(ex.Message, "Submitting", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -72,7 +73,7 @@ public partial class CategoryAddForm : Form
             if (result == true)
             {
                 MessageBox.Show($"Successfully inserted category with the id {txtCategoryID.Text}");
-
+                CategoryHanlder?.Invoke(this,result);
             }
         }
         catch (Exception ex) { MessageBox.Show(ex.Message, "Submitting", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -119,5 +120,6 @@ public partial class CategoryAddForm : Form
         rtxtCategoryDescription.Text = category.CategoryDescription;
         effectedCategory = category;
     }
-    
+    public event LoadingEventHandler? CategoryHanlder;
+
 }

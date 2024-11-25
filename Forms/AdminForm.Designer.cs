@@ -32,17 +32,19 @@
             panel1 = new Panel();
             btnProducts = new Button();
             btnOverview = new Button();
-            button5 = new Button();
+            btnLogout = new Button();
             btnSaleReport = new Button();
             btnCategory = new Button();
             btnUser = new Button();
             btnStaff = new Button();
             btnDashboard = new Button();
             panel3 = new Panel();
+            pictureBox1 = new PictureBox();
             label1 = new Label();
             panelcontrolMain = new Panel();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -50,7 +52,7 @@
             panel1.BackColor = Color.FromArgb(38, 57, 91);
             panel1.Controls.Add(btnProducts);
             panel1.Controls.Add(btnOverview);
-            panel1.Controls.Add(button5);
+            panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(btnSaleReport);
             panel1.Controls.Add(btnCategory);
             panel1.Controls.Add(btnUser);
@@ -94,21 +96,21 @@
             btnOverview.Text = "Overview";
             btnOverview.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // btnLogout
             // 
-            button5.BackColor = Color.FromArgb(38, 57, 91);
-            button5.FlatAppearance.BorderSize = 0;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.ForeColor = Color.FromArgb(212, 203, 229);
-            button5.Image = (Image)resources.GetObject("button5.Image");
-            button5.ImageAlign = ContentAlignment.MiddleLeft;
-            button5.Location = new Point(32, 738);
-            button5.Name = "button5";
-            button5.Size = new Size(234, 38);
-            button5.TabIndex = 6;
-            button5.Text = "Logout";
-            button5.UseVisualStyleBackColor = false;
+            btnLogout.BackColor = Color.FromArgb(38, 57, 91);
+            btnLogout.FlatAppearance.BorderSize = 0;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.ForeColor = Color.FromArgb(212, 203, 229);
+            btnLogout.Image = (Image)resources.GetObject("btnLogout.Image");
+            btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLogout.Location = new Point(32, 738);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(234, 38);
+            btnLogout.TabIndex = 6;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = false;
             // 
             // btnSaleReport
             // 
@@ -195,22 +197,33 @@
             // 
             panel3.BackColor = Color.FromArgb(38, 57, 91);
             panel3.Controls.Add(label1);
+            panel3.Controls.Add(pictureBox1);
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(291, 100);
             panel3.TabIndex = 0;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(13, 23);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(130, 64);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
             // label1
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.FromArgb(38, 57, 91);
-            label1.Font = new Font("Sitka Small", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Sitka Small", 20F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(212, 203, 229);
-            label1.Location = new Point(62, 36);
+            label1.Location = new Point(111, 48);
             label1.Name = "label1";
-            label1.Size = new Size(164, 35);
+            label1.Size = new Size(80, 39);
             label1.TabIndex = 0;
-            label1.Text = "Coffee Shop";
+            label1.Text = "Café";
             // 
             // panelcontrolMain
             // 
@@ -234,6 +247,7 @@
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -245,11 +259,12 @@
         private Button btnDashboard;
         private Label label1;
         private Button btnOverview;
-        private Button button5;
+        private Button btnLogout;
         private Button btnSaleReport;
         private Button btnCategory;
         private Button btnUser;
         private Button btnStaff;
         private Button btnProducts;
+        private PictureBox pictureBox1;
     }
 }

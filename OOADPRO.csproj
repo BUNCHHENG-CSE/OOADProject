@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="appSettings.json" />
+    <None Remove="DBConnectionFormat.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="appSettings.json">
+    <Content Include="DBConnectionFormat.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

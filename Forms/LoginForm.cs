@@ -6,26 +6,31 @@ namespace OOADPRO.Forms;
 public partial class LoginForm : Form
 {
     public static User userVerify = null;
-
-    public LoginForm()
+    private LoadingForm loadingFormReference;
+    private DBConnectionForm databaseConnectionFormReference;
+    public LoginForm(LoadingForm loadingForm, DBConnectionForm databaseConnectionForm)
     {
         InitializeComponent();
         Program.ConnectToDB();
 
         btnLogin.Click += DoClickLogin;
-        //this.loadingFormReference = loadingForm;
-        // this.databaseConnectionFormReference = databaseConnectionForm;
-        // this.FormClosed += new FormClosedEventHandler(LoginForm_FormClosed);
+        this.loadingFormReference = loadingForm;
+        this.databaseConnectionFormReference = databaseConnectionForm;
+        this.FormClosed += new FormClosedEventHandler(LoginForm_FormClosed);
         chBShowPassword.CheckedChanged += CheckedShowPassword;
-        // btnBack.Click += DoClickBack;
+        btnBack.Click += DoClickBack;
 
     }
-    //private void DoClickBack(object? sender, EventArgs e)
-    //{
-    //    databaseConnectionFormReference.Show();
-    //    this.Hide();
-    //}
-
+    private void DoClickBack(object? sender, EventArgs e)
+    {
+        databaseConnectionFormReference.Show();
+        this.Hide();
+    }
+    private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        databaseConnectionFormReference.Close();
+        loadingFormReference.Close();
+    }
     private void CheckedShowPassword(object? sender, EventArgs e)
     {
         if (chBShowPassword.Checked)
@@ -53,13 +58,13 @@ public partial class LoginForm : Form
         {
             if (userVerify.Staff.StaffPosition == "Administrator")
             {
-                AdminForm adminForm = new AdminForm();
+                AdminForm adminForm = new AdminForm(this.loadingFormReference, this.databaseConnectionFormReference, this);
                 adminForm.Show();
 
             }
             else
             {
-                CashierForm cashierForm = new CashierForm(userVerify);
+                CashierForm cashierForm = new CashierForm(this.loadingFormReference, this.databaseConnectionFormReference, this,userVerify);
                 cashierForm.Show();
             }
             txtUsername.Clear();

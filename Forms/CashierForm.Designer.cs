@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CashierForm));
             panel1 = new Panel();
             LabelUser = new Label();
             btnOrder = new Button();
@@ -36,8 +37,10 @@
             panel3 = new Panel();
             label1 = new Label();
             panelcontrolMain = new Panel();
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -114,6 +117,7 @@
             // 
             panel3.BackColor = Color.FromArgb(38, 57, 91);
             panel3.Controls.Add(label1);
+            panel3.Controls.Add(pictureBox1);
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(291, 100);
@@ -125,11 +129,11 @@
             label1.BackColor = Color.FromArgb(38, 57, 91);
             label1.Font = new Font("Sitka Small", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(212, 203, 229);
-            label1.Location = new Point(62, 36);
+            label1.Location = new Point(123, 48);
             label1.Name = "label1";
-            label1.Size = new Size(164, 35);
+            label1.Size = new Size(71, 35);
             label1.TabIndex = 0;
-            label1.Text = "Coffee Shop";
+            label1.Text = "Café";
             // 
             // panelcontrolMain
             // 
@@ -138,6 +142,16 @@
             panelcontrolMain.Name = "panelcontrolMain";
             panelcontrolMain.Size = new Size(1092, 802);
             panelcontrolMain.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(13, 19);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(130, 64);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // CashierForm
             // 
@@ -154,6 +168,7 @@
             panel1.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -171,5 +186,6 @@
         private Button btnUser;
         private Button btnOrder;
         private Label LabelUser;
+        private PictureBox pictureBox1;
     }
 }

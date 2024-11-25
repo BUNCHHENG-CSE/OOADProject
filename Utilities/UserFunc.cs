@@ -37,35 +37,6 @@ public class UserFunc
         }
         reader?.Close();
     }
-    public static User GetOneUser(SqlConnection con, int id)
-    {
-        SqlCommand cmd = new SqlCommand("spReadOneUser", con);
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@id", id);
-        SqlDataReader? reader = null;
-        try
-        {
-            reader = cmd.ExecuteReader();
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"Error in getting user with id, {id} > {ex.Message}");
-        }
-        finally
-        {
-            cmd.Dispose();
-        }
-        User? result = null;
-        if (reader != null && reader.HasRows == true)
-        {
-            if (reader.Read() == true)
-            {
-                result = reader.ToUserAllData();
-            }
-        }
-        reader?.Close();
-        return result;
-    }
     public static bool AddUser(SqlConnection con, User user)
     {
         SqlCommand cmd = new SqlCommand("spInsertUser", con);
@@ -99,7 +70,7 @@ public class UserFunc
         cmd.Parameters.AddWithValue("@usr", user.Username);
         cmd.Parameters.AddWithValue("@passwd", user.Password);
         cmd.Parameters.AddWithValue("@staid", user.Staff.StaffID);
-        cmd.Parameters.AddWithValue("@stanKH", user.Staff.StaffName);
+        cmd.Parameters.AddWithValue("@stan", user.Staff.StaffName);
         cmd.Parameters.AddWithValue("@stapos", user.Staff.StaffPosition);
         try
         {
