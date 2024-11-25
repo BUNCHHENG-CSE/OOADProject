@@ -59,35 +59,6 @@ public static class StaffFunc
         }
         reader?.Close();
     }
-    public static Staff GetOneStaff(SqlConnection con, int id)
-    {
-        SqlCommand cmd = new SqlCommand("spReadOneStaff", con);
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@id", id);
-        SqlDataReader? reader = null;
-        try
-        {
-            reader = cmd.ExecuteReader();
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"Error in getting staff with id, {id} > {ex.Message}");
-        }
-        finally
-        {
-            cmd.Dispose();
-        }
-        Staff? result = null;
-        if (reader != null && reader.HasRows == true)
-        {
-            if (reader.Read() == true)
-            {
-                result = reader.ToStaffAllData();
-            }
-        }
-        reader?.Close();
-        return result;
-    }
     public static Staff GetOneStaffNameandPositionPhoto(SqlConnection con, int id)
     {
         SqlCommand cmd = new SqlCommand("spReadOneStaffNameandPositionPhoto", con);

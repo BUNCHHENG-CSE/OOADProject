@@ -38,98 +38,7 @@ public static class OrderFunc
         reader?.Close();
     }
 
-    public static Order GetOneOrder(SqlConnection con, int id)
-    {
-        SqlCommand cmd = new SqlCommand("spReadOneOrder", con);
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@id", id);
-        SqlDataReader? reader = null;
-        try
-        {
-            reader = cmd.ExecuteReader();
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"Error in getting category with id, {id} > {ex.Message}");
-        }
-        finally
-        {
-            cmd.Dispose();
-        }
-        Order? result = null;
-        if (reader != null && reader.HasRows == true)
-        {
-            if (reader.Read() == true)
-            {
-                result = reader.ToDisplayOrder();
-            }
-        }
-        reader?.Close();
-        return result;
-    }
-    public static bool AddOrder(SqlConnection con, Order order)
-    {
-        SqlCommand cmd = new SqlCommand("spInsertOrder", con);
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@DateOrder", order.DateOrder);
-        cmd.Parameters.AddWithValue("@TotalPrice", order.TotalPrice);
-
-        try
-        {
-            int affectedRows = cmd.ExecuteNonQuery();
-            return affectedRows > 0;
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"Failed to add new order > {ex.Message}");
-        }
-        finally
-        {
-            cmd.Dispose();
-        }
-    }
-    public static bool UpdateOrder(SqlConnection con, Order order)
-    {
-        SqlCommand cmd = new SqlCommand("spUpdateOrder", con);
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@OrderID", order.OrderID);
-        cmd.Parameters.AddWithValue("@DateOrder", order.DateOrder);
-        cmd.Parameters.AddWithValue("@TotalPrice", order.TotalPrice);
-
-        try
-        {
-            int affectedRows = cmd.ExecuteNonQuery();
-            return affectedRows > 0;
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"Failed to update order ID {order.OrderID} > {ex.Message}");
-        }
-        finally
-        {
-            cmd.Dispose();
-        }
-    }
-    public static bool DeleteOrder(SqlConnection con, int id)
-    {
-        SqlCommand cmd = new SqlCommand("spDeleteOrder", con);
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@OrderID", id);
-
-        try
-        {
-            int affectedRows = cmd.ExecuteNonQuery();
-            return affectedRows > 0;
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"Failed to delete order ID {id} > {ex.Message}");
-        }
-        finally
-        {
-            cmd.Dispose();
-        }
-    }
+    
     public static bool InsertOrderDetail(SqlConnection con, OrderDetail order)
     {
         SqlCommand cmd = new SqlCommand("spInsertOrderDetail", con);
@@ -156,21 +65,6 @@ public static class OrderFunc
 
     }
 
-    public static int CreateNewOrder(SqlConnection con, DateTime dateOrder, float totalPrice, int customerId)
-    {
-        SqlCommand cmd = new SqlCommand("spCreateNewOrder", con);
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@DateOrder", dateOrder);
-        cmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
-        cmd.Parameters.AddWithValue("@CustomerID", customerId);
-        SqlParameter outputParam = new SqlParameter("@NewOrderID", SqlDbType.Int)
-        {
-            Direction = ParameterDirection.Output
-        };
-        cmd.Parameters.Add(outputParam);
-        cmd.ExecuteNonQuery();
-        return Convert.ToInt32(outputParam.Value);
-    }
 
     public static int CreateNewCustomer(SqlConnection con)
     {
