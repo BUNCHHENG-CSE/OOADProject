@@ -186,6 +186,10 @@ public static class OrderFunc
         {
             throw new Exception($"Failed to create new customer: {ex.Message}");
         }
+        finally
+        {
+            cmd.Dispose();
+        }
     }
 
 }

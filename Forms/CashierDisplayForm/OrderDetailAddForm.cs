@@ -173,6 +173,10 @@ namespace OOADPRO.Forms.CashierDisplayForm
             {
                 MessageBox.Show($"Failed to save order details: {ex.Message}");
             }
+            finally
+            {
+                cmd.Dispose();
+            }
         }
         public void InsertOrderDetails(SqlConnection con, int orderId)
         {
@@ -194,11 +198,8 @@ namespace OOADPRO.Forms.CashierDisplayForm
                         UnitPrice = unitPrice
                     };
 
-                    bool success = OrderFunc.InsertOrderDetail(con, orderDetail);
-                    if (!success)
-                    {
-                        throw new Exception("Failed to insert order detail into the database.");
-                    }
+                     OrderFunc.InsertOrderDetail(con, orderDetail);
+                     
                 }
             }
         }
@@ -226,11 +227,10 @@ namespace OOADPRO.Forms.CashierDisplayForm
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            using (Program.Connection)
-            {
                 try
                 {
                     SaveOrderDetails(Program.Connection);
+
                     MessageBox.Show("Order details saved successfully!");
                     ResetOrderForm();
                 }
@@ -238,7 +238,7 @@ namespace OOADPRO.Forms.CashierDisplayForm
                 {
                     MessageBox.Show($"Error saving order details: {ex.Message}");
                 }
-            }
+            
         }
 
 

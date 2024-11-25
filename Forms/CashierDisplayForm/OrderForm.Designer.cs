@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderForm));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             btnAddStaff = new Button();
-            dataGridView1 = new DataGridView();
+            dgvOrder = new DataGridView();
             OrderID = new DataGridViewTextBoxColumn();
             DataOrder = new DataGridViewTextBoxColumn();
             TotalPrice = new DataGridViewTextBoxColumn();
             CustomerID = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvOrder).BeginInit();
             SuspendLayout();
             // 
             // btnAddStaff
@@ -52,41 +52,41 @@
             btnAddStaff.TabIndex = 2;
             btnAddStaff.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgvOrder
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.ColumnHeadersHeight = 30;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { OrderID, DataOrder, TotalPrice, CustomerID });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Sitka Small", 11.249999F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.Location = new Point(34, 112);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Sitka Small", 11.249999F, FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridView1.Size = new Size(1029, 607);
-            dataGridView1.TabIndex = 4;
+            dgvOrder.AllowUserToAddRows = false;
+            dgvOrder.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dgvOrder.ColumnHeadersHeight = 30;
+            dgvOrder.Columns.AddRange(new DataGridViewColumn[] { OrderID, DataOrder, TotalPrice, CustomerID });
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Sitka Small", 11.249999F, FontStyle.Bold);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dgvOrder.DefaultCellStyle = dataGridViewCellStyle8;
+            dgvOrder.Location = new Point(34, 112);
+            dgvOrder.Name = "dgvOrder";
+            dgvOrder.ReadOnly = true;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = SystemColors.Control;
+            dataGridViewCellStyle9.Font = new Font("Sitka Small", 11.249999F, FontStyle.Bold);
+            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dgvOrder.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dgvOrder.Size = new Size(1029, 607);
+            dgvOrder.TabIndex = 4;
             // 
             // OrderID
             // 
@@ -121,19 +121,20 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1076, 763);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvOrder);
             Controls.Add(btnAddStaff);
             FormBorderStyle = FormBorderStyle.None;
             Name = "OrderForm";
             Text = "OrderForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += OrderForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvOrder).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Button btnAddStaff;
-        private DataGridView dataGridView1;
+        private DataGridView dgvOrder;
         private DataGridViewTextBoxColumn OrderID;
         private DataGridViewTextBoxColumn DataOrder;
         private DataGridViewTextBoxColumn TotalPrice;
