@@ -66,12 +66,12 @@ public partial class DashboardForm : Form
             }
             else
             {
-                MessageBox.Show("No sales data available for today or yesterday.", "Sales Comparison", MessageBoxButtons.OK, MessageBoxIcon.Information);
+    
             }
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Failed to load today vs yesterday sales: {ex.Message}", "Sales Comparison", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
         finally
         {
@@ -130,14 +130,14 @@ public partial class DashboardForm : Form
                     }
                         else
                         {
-                            MessageBox.Show("Not enough data to display weekly sales.", "Weekly Sales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                 
                         }
                     }
                 }
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Failed to load weekly sales: {ex.Message}", "Weekly Sales", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
         finally
         {
@@ -154,7 +154,7 @@ public partial class DashboardForm : Form
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error retrieving total sales: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    
         }
     }
     private void DisplayOrderQuantityToday()
@@ -167,7 +167,7 @@ public partial class DashboardForm : Form
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error retrieving total sales: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
     }
     private void DisplayTotalUsers()
@@ -180,7 +180,7 @@ public partial class DashboardForm : Form
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Failed to load total users: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+   
         }
     }
     private void DashboardForm_Load(object sender, EventArgs e)
