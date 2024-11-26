@@ -40,6 +40,7 @@
             OrderDetailID = new DataGridViewTextBoxColumn();
             txtProductName = new TextBox();
             labelOverview = new Label();
+            btnClear = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -141,11 +142,22 @@
             labelOverview.TabIndex = 77;
             labelOverview.Text = "Search :";
             // 
+            // btnClear
+            // 
+            btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClear.Location = new Point(884, 582);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(111, 42);
+            btnClear.TabIndex = 87;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
+            // 
             // OrderDetailAddForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1060, 724);
+            Controls.Add(btnClear);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(buttonpay);
             Controls.Add(txtTotal);
@@ -174,5 +186,6 @@
         private DataGridViewTextBoxColumn UnitPrice;
         private DataGridViewTextBoxColumn Amount;
         private DataGridViewTextBoxColumn OrderDetailID;
+        private Button btnClear;
     }
 }

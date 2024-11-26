@@ -16,7 +16,8 @@ public partial class OrderDetailAddForm : Form
         InitializeComponent();
         this.OrderID = orderId;
         this.Controls.Add(txtProductName);
-        txtProductName.KeyDown += TxtSearch_KeyDown;
+        txtProductName.TextChanged += TxtProductName_TextChanged;
+        //txtProductName.KeyDown += TxtSearch_KeyDown;
         if (OrderID != null)
         {
             LoadOrderDetails(Program.Connection, (int)OrderID);
@@ -26,25 +27,38 @@ public partial class OrderDetailAddForm : Form
             LoadProducts();
         }
         buttonpay.Click += btnSave_Click;
-
+        btnClear.Click += cleardata;
     }
-    private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
+    private void TxtProductName_TextChanged(object sender, EventArgs e)
     {
-        if (e.KeyCode == Keys.Enter)
+        string searchText = txtProductName.Text.Trim();
+        if (!string.IsNullOrEmpty(searchText))
         {
-            string searchText = txtProductName.Text.Trim();
-            if (!string.IsNullOrEmpty(searchText))
-            {
-                SearchProducts(searchText);
-            }
-            else
-            {
-                LoadProducts();
-            }
-            e.Handled = true;
-            e.SuppressKeyPress = true;
+            SearchProducts(searchText);
+        }
+        else
+        {
+            LoadProducts();
         }
     }
+
+    //private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
+    //{
+    //    if (e.KeyCode == Keys.Enter)
+    //    {
+    //        string searchText = txtProductName.Text.Trim();
+    //        if (!string.IsNullOrEmpty(searchText))
+    //        {
+    //            SearchProducts(searchText);
+    //        }
+    //        else
+    //        {
+    //            LoadProducts();
+    //        }
+    //        e.Handled = true;
+    //        e.SuppressKeyPress = true;
+    //    }
+    //}
     private void SearchProducts(string searchText)
     {
         try
@@ -150,7 +164,6 @@ public partial class OrderDetailAddForm : Form
                 return;
             }
         }
-
         int rowIndex = dataGridView1.Rows.Add();
         var newRow = dataGridView1.Rows[rowIndex];
         newRow.Cells["OrderDetailID"].Value = -1;
@@ -161,9 +174,7 @@ public partial class OrderDetailAddForm : Form
 
         CalculateRowAmount(newRow);
         UpdateTotalAmount();
-    }
-   
-
+    }  
     private void CalculateRowAmount(DataGridViewRow row)
     {
         int qty = Convert.ToInt32(row.Cells["Qty"].Value);
@@ -279,7 +290,10 @@ public partial class OrderDetailAddForm : Form
         TotalAmount = 0;
         txtTotal.Text = "Total: $0.00";
     }
-
+    private void cleardata(object sender, EventArgs e) {
+        OrderDetailAdded?.Invoke(this, true);
+        ResetOrderForm();
+    }
     private void btnSave_Click(object sender, EventArgs e)
     {
         try
@@ -295,7 +309,5 @@ public partial class OrderDetailAddForm : Form
         }
 
     }
-
-
     public event LoadingEventHandler? OrderDetailAdded;
 }
