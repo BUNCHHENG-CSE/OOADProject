@@ -51,16 +51,16 @@
             labelTitle.AutoSize = true;
             labelTitle.Font = new Font("Sitka Heading", 20.2499981F, FontStyle.Bold);
             labelTitle.ForeColor = Color.White;
-            labelTitle.Location = new Point(217, 79);
+            labelTitle.Location = new Point(204, 103);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new Size(326, 39);
+            labelTitle.Size = new Size(428, 39);
             labelTitle.TabIndex = 1;
-            labelTitle.Text = "Café Management System";
+            labelTitle.Text = "Coffee Beans Management System";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(25, 33);
+            pictureBox1.Location = new Point(12, 35);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(186, 165);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;

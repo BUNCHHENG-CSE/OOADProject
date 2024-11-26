@@ -88,16 +88,12 @@ public partial class DBConnectionForm : Form
                 txtPassword.Enabled = false;
                 txtUser.Clear();
                 txtPassword.Clear();
+
                 ConnectionStringToDatabase = Helper.GetDBConnectionSetting("DBConnectionStringWindowAuth");
             }
         }
     }
-
-
-
-    
 }
-
 
 class DBConnection
 {

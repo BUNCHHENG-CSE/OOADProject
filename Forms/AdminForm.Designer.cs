@@ -189,13 +189,13 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.FromArgb(38, 57, 91);
-            label1.Font = new Font("Sitka Small", 20F, FontStyle.Bold);
+            label1.Font = new Font("Sitka Small", 18F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(212, 203, 229);
             label1.Location = new Point(111, 48);
             label1.Name = "label1";
-            label1.Size = new Size(80, 39);
+            label1.Size = new Size(178, 35);
             label1.TabIndex = 0;
-            label1.Text = "Café";
+            label1.Text = "Coffee Beans";
             // 
             // pictureBox1
             // 
