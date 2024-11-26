@@ -11,7 +11,7 @@ public partial class StaffAddForm : Form
     List<string> listBoxStaff = new List<string>();
     int staffCount = 0;
     int indexOfUpdateStaff;
-    string[] staffPosition { get; set; } = new string[] { "Administrator", "Cashier" };
+    string[] staffPosition { get; set; } = new string[] { "Administrator", "Cashier" ,"Cleaner","Waiter"};
     public StaffAddForm(StaffForm staffform)
     {
         InitializeComponent();

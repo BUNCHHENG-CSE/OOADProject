@@ -45,6 +45,7 @@ public partial class DashboardForm : Form
                             values[0] = reader.GetDouble(reader.GetOrdinal("YesterdaySales")); 
                             values[1] = reader.GetDouble(reader.GetOrdinal("TodaySales"));  
                         }
+                       
                     }
                 
           }
