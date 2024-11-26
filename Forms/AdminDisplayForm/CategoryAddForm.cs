@@ -25,7 +25,7 @@ public partial class CategoryAddForm : Form
             return;
         }
 
-        if (rtxtCategoryDescription.Text == "" || rtxtCategoryDescription.Text.Trim().Length > 1000)
+        if (rtxtCategoryDescription.Text.Trim().Length > 1000)
         {
             MessageBox.Show("Category Descriptionis required or Descriptionis too long", "Creating",
             MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -54,7 +54,7 @@ public partial class CategoryAddForm : Form
             return;
         }
 
-        if (rtxtCategoryDescription.Text == "" || rtxtCategoryDescription.Text.Trim().Length > 1000)
+        if ( rtxtCategoryDescription.Text.Trim().Length > 1000)
         {
             MessageBox.Show("Category Descriptionis required or Descriptionis too long", "Creating",
                MessageBoxButtons.OK, MessageBoxIcon.Stop);

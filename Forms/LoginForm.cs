@@ -24,7 +24,10 @@ public partial class LoginForm : Form
     }
     private void DoClickBack(object? sender, EventArgs e)
     {
+        File.Delete($"{Environment.CurrentDirectory}/appSettings.json");
         databaseConnectionFormReference.Show();
+        // delete database file 
+       
         this.Hide();
     }
     private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -79,9 +82,4 @@ public partial class LoginForm : Form
             labelShowMessage.Text = "The username or password you entered is incorrect. Please try again";
         }
     }
-    //private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
-    //{
-    //    databaseConnectionFormReference.Close();
-    //    loadingFormReference.Close();
-    //}
 }
