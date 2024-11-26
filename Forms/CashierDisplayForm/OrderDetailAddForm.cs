@@ -17,7 +17,6 @@ public partial class OrderDetailAddForm : Form
         this.OrderID = orderId;
         this.Controls.Add(txtProductName);
         txtProductName.TextChanged += TxtProductName_TextChanged;
-        //txtProductName.KeyDown += TxtSearch_KeyDown;
         if (OrderID != null)
         {
             LoadOrderDetails(Program.Connection, (int)OrderID);
@@ -29,9 +28,18 @@ public partial class OrderDetailAddForm : Form
         buttonpay.Click += btnSave_Click;
         btnClear.Click += cleardata;
     }
+    private void SearchProducts(string searchText)
+    {
+        var allProducts = ProductFunc.GetAllProducts(Program.Connection);
+        var filteredProducts = allProducts
+            .Where(p => p.ProductName.ToLower().Contains(searchText.ToLower()))
+            .ToList();
+        LoadProducts(filteredProducts);
+    }
     private void TxtProductName_TextChanged(object sender, EventArgs e)
     {
         string searchText = txtProductName.Text.Trim();
+
         if (!string.IsNullOrEmpty(searchText))
         {
             SearchProducts(searchText);
@@ -41,49 +49,13 @@ public partial class OrderDetailAddForm : Form
             LoadProducts();
         }
     }
-
-    //private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
-    //{
-    //    if (e.KeyCode == Keys.Enter)
-    //    {
-    //        string searchText = txtProductName.Text.Trim();
-    //        if (!string.IsNullOrEmpty(searchText))
-    //        {
-    //            SearchProducts(searchText);
-    //        }
-    //        else
-    //        {
-    //            LoadProducts();
-    //        }
-    //        e.Handled = true;
-    //        e.SuppressKeyPress = true;
-    //    }
-    //}
-    private void SearchProducts(string searchText)
-    {
-        try
-        {
-            flowLayoutPanel1.Controls.Clear();
-            var result = IDataRecordExtension.SearchProducts(Program.Connection, searchText);
-
-            foreach (var product in result)
-            {
-                Panel productPanel = CreateProductPanel(product);
-                flowLayoutPanel1.Controls.Add(productPanel);
-            }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.Message, "Error Searching Products", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-    }
-    private void LoadProducts()
+    private void LoadProducts(List<Products> products = null)
     {
         try
         {
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel1.Padding = new Padding(20, 20, 20, 20);
-            var result = ProductFunc.GetAllProducts(Program.Connection);
+            var result =products?? ProductFunc.GetAllProducts(Program.Connection);
 
             foreach (var product in result)
             {

@@ -134,60 +134,6 @@ public static class IDataRecordExtension
             }
         };
     }
-    public static List<Products> SearchProducts(SqlConnection con, string searchText)
-    {
-        SqlCommand cmd = new SqlCommand("spSearchProducts", con)
-        {
-            CommandType = CommandType.StoredProcedure
-        };
-        cmd.Parameters.AddWithValue("@SearchText", searchText);
-
-        SqlDataReader reader = null;
-        List<Products> products = new List<Products>(); // List to store products
-
-        try
-        {
-            reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                Products product = MapReaderToProduct(reader); 
-                products.Add(product); 
-            }
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"Error in searching products > {ex.Message}");
-        }
-        finally
-        {
-            reader?.Close();
-            cmd.Dispose();
-        }
-        return products; 
-    }
-
-    public static Products MapReaderToProduct(SqlDataReader reader)
-    {
-        return new Products
-        {
-            ProductsID = Convert.ToInt32(reader["ProductsID"]),
-            ProductName = reader["ProductsName"].ToString(),
-            ProductsPrice = Convert.ToDecimal(reader["Price"]),
-            ProductDescription = reader["ProductsDescription"].ToString(),
-            ProductsStock = Convert.ToInt32(reader["ProductsStock"]),
-            ProductImage = reader["ProductsImage"] as byte[], 
-            Category = new Category
-            {
-                CategoryID = Convert.ToInt32(reader["CategoryID"]),
-                CategoryName = reader["CategoryName"].ToString()
-            }
-        };
-    }
-
-
-
-
 
     #endregion
 

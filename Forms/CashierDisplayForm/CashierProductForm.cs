@@ -21,54 +21,38 @@ namespace OOADPRO.Forms.CashierDisplayForm
             InitializeComponent(); 
             LoadingDataProducts();
             this.Controls.Add(txtSearch);
-            txtSearch.KeyDown += TxtSearch_KeyDown;
-            //flowLayoutPanelProducts.Controls.Add(txtSearch);
+            txtSearch.TextChanged += TxtProductName_TextChanged;
 
 
-        }
-        private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                string searchText = txtSearch.Text.Trim();
-                if (!string.IsNullOrEmpty(searchText))
-                {
-                    SearchProducts(searchText);
-                }
-                else
-                {
-                    LoadingDataProducts(); 
-                }
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-            }
         }
         private void SearchProducts(string searchText)
         {
-            try
-            {
-                flowLayoutPanelProducts.Controls.Clear();
-                var result = IDataRecordExtension.SearchProducts(Program.Connection, searchText); 
+            var allProducts = ProductFunc.GetAllProducts(Program.Connection);
+            var filteredProducts = allProducts
+                .Where(p => p.ProductName.ToLower().Contains(searchText.ToLower()))
+                .ToList();
+            LoadingDataProducts(filteredProducts);
+        }
+        private void TxtProductName_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = txtSearch.Text.Trim();
 
-                foreach (var product in result)
-                {
-                    Panel productPanel = CreateProductPanel(product);
-                    flowLayoutPanelProducts.Controls.Add(productPanel); 
-                }
-            }
-            catch (Exception ex)
+            if (!string.IsNullOrEmpty(searchText))
             {
-                MessageBox.Show(ex.Message, "Error Searching Products", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SearchProducts(searchText);
+            }
+            else
+            {
+                LoadingDataProducts();
             }
         }
-
-        private void LoadingDataProducts()
+        private void LoadingDataProducts(List<Products> products = null)
         {
             try
             {
                 flowLayoutPanelProducts.Controls.Clear();
                 flowLayoutPanelProducts.Padding = new Padding(20, 20, 20, 20);
-                var result = ProductFunc.GetAllProducts(Program.Connection); 
+                var result = products ?? ProductFunc.GetAllProducts(Program.Connection);
 
                 foreach (var product in result)
                 {
