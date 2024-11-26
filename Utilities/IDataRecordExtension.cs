@@ -1,4 +1,5 @@
-﻿using OOADPRO.Models;
+﻿using Microsoft.Data.SqlClient;
+using OOADPRO.Models;
 using ScottPlot;
 using System;
 using System.Data;
@@ -133,55 +134,59 @@ public static class IDataRecordExtension
             }
         };
     }
-    public static Products ToDisplayProductsID(this IDataReader record)
+    public static List<Products> SearchProducts(SqlConnection con, string searchText)
     {
-        int index = record.GetOrdinal("ProductsID");
-        int pid = record.GetInt32(index);
-
-        return new Products()
+        SqlCommand cmd = new SqlCommand("spSearchProducts", con)
         {
-            ProductsID = pid,
+            CommandType = CommandType.StoredProcedure
+        };
+        cmd.Parameters.AddWithValue("@SearchText", searchText);
+
+        SqlDataReader reader = null;
+        List<Products> products = new List<Products>(); // List to store products
+
+        try
+        {
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Products product = MapReaderToProduct(reader); 
+                products.Add(product); 
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Error in searching products > {ex.Message}");
+        }
+        finally
+        {
+            reader?.Close();
+            cmd.Dispose();
+        }
+        return products; 
+    }
+
+    public static Products MapReaderToProduct(SqlDataReader reader)
+    {
+        return new Products
+        {
+            ProductsID = Convert.ToInt32(reader["ProductsID"]),
+            ProductName = reader["ProductsName"].ToString(),
+            ProductsPrice = Convert.ToDecimal(reader["Price"]),
+            ProductDescription = reader["ProductsDescription"].ToString(),
+            ProductsStock = Convert.ToInt32(reader["ProductsStock"]),
+            ProductImage = reader["ProductsImage"] as byte[], 
+            Category = new Category
+            {
+                CategoryID = Convert.ToInt32(reader["CategoryID"]),
+                CategoryName = reader["CategoryName"].ToString()
+            }
         };
     }
 
-    public static Products ToProductsAllData(this IDataReader record)
-    {
-        int index = record.GetOrdinal("ProductsID");
-        int pid = record.GetInt32(index);
-
-        index = record.GetOrdinal("ProductName");
-        string? productname = record.GetString(index);
-
-        index = record.GetOrdinal("ProductsPrice");
-        int productsprice = record.GetInt32(index);
-
-        index = record.GetOrdinal("ProductDescription");
-        string? productdescription = record.GetString(index);
-
-        index = record.GetOrdinal("ProductsStock");
-        int productstock = record.GetInt32(index);
-
-        index = record.GetOrdinal("ProductImage");
-        byte[] productimage = null;
-        if (!record.IsDBNull(index)) productimage = (byte[])record[index];
 
 
-        return new Products()
-        {
-            ProductsID = pid,
-
-            ProductName = productname,
-
-            ProductsPrice = productsprice,
-
-            ProductDescription = productdescription,
-
-            ProductsStock = productstock,
-
-            ProductImage = productimage
-
-        };
-    }
 
 
     #endregion

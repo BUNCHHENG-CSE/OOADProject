@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace OOADPRO.Forms.AdminDisplayForm;
 
@@ -48,7 +49,7 @@ public partial class UserForm : Form
     {
         try
         {
-
+            flowLayoutPanelUser.Padding = new Padding(20, 20, 20, 20);
             var result = UserFunc.GetAllUser(Program.Connection);
             foreach (var user in result)
             {
@@ -59,7 +60,7 @@ public partial class UserForm : Form
                     BorderStyle = BorderStyle.FixedSingle,
                     Padding = new Padding(20)
                 };
-
+                userPanel.Margin = new Padding(20, 20, 20, 20);
                 PictureBox pictureBox = new PictureBox
                 {
                     Width = 180,
@@ -109,7 +110,6 @@ public partial class UserForm : Form
                 userPanel.Controls.Add(userPosition);
                 flowLayoutPanelUser.Controls.Add(userPanel);
             }
-
         }
         catch (Exception ex)
         {
@@ -161,7 +161,7 @@ public partial class UserForm : Form
             }
             else
             {
-                MessageBox.Show("Sava man.");
+              
             }
         }
         catch (Exception ex)

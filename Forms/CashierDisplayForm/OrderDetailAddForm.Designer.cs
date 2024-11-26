@@ -32,12 +32,12 @@
             buttonpay = new Button();
             txtTotal = new Label();
             dataGridView1 = new DataGridView();
-            OrderDetailID = new DataGridViewTextBoxColumn();
             ProductsID = new DataGridViewTextBoxColumn();
             ProductsName = new DataGridViewTextBoxColumn();
             Qty = new DataGridViewTextBoxColumn();
             UnitPrice = new DataGridViewTextBoxColumn();
             Amount = new DataGridViewTextBoxColumn();
+            OrderDetailID = new DataGridViewTextBoxColumn();
             txtProductName = new TextBox();
             labelOverview = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -76,26 +76,19 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { OrderDetailID, ProductsID, ProductsName, Qty, UnitPrice, Amount });
-            dataGridView1.Location = new Point(604, 48);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ProductsID, ProductsName, Qty, UnitPrice, Amount, OrderDetailID });
+            dataGridView1.Location = new Point(598, 48);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.Size = new Size(434, 412);
             dataGridView1.TabIndex = 79;
-            // 
-            // OrderDetailID
-            // 
-            OrderDetailID.HeaderText = "SR";
-            OrderDetailID.Name = "OrderDetailID";
-            OrderDetailID.ReadOnly = true;
-            OrderDetailID.Width = 30;
             // 
             // ProductsID
             // 
             ProductsID.HeaderText = "ID";
             ProductsID.Name = "ProductsID";
             ProductsID.ReadOnly = true;
-            ProductsID.Width = 30;
+            ProductsID.Width = 35;
             // 
             // ProductsName
             // 
@@ -121,11 +114,19 @@
             Amount.HeaderText = "Total";
             Amount.Name = "Amount";
             Amount.ReadOnly = true;
+            Amount.Width = 125;
+            // 
+            // OrderDetailID
+            // 
+            OrderDetailID.HeaderText = "SR";
+            OrderDetailID.Name = "OrderDetailID";
+            OrderDetailID.ReadOnly = true;
+            OrderDetailID.Visible = false;
             // 
             // txtProductName
             // 
             txtProductName.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            txtProductName.Location = new Point(118, 3);
+            txtProductName.Location = new Point(118, 7);
             txtProductName.Name = "txtProductName";
             txtProductName.Size = new Size(211, 28);
             txtProductName.TabIndex = 78;
@@ -134,7 +135,7 @@
             // 
             labelOverview.AutoSize = true;
             labelOverview.Font = new Font("Sitka Small Semibold", 14F, FontStyle.Bold);
-            labelOverview.Location = new Point(18, 2);
+            labelOverview.Location = new Point(19, 5);
             labelOverview.Name = "labelOverview";
             labelOverview.Size = new Size(94, 28);
             labelOverview.TabIndex = 77;
@@ -167,11 +168,11 @@
         private DataGridView dataGridView1;
         private TextBox txtProductName;
         private Label labelOverview;
-        private DataGridViewTextBoxColumn OrderDetailID;
         private DataGridViewTextBoxColumn ProductsID;
         private DataGridViewTextBoxColumn ProductsName;
         private DataGridViewTextBoxColumn Qty;
         private DataGridViewTextBoxColumn UnitPrice;
         private DataGridViewTextBoxColumn Amount;
+        private DataGridViewTextBoxColumn OrderDetailID;
     }
 }

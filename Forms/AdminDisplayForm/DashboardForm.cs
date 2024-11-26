@@ -16,9 +16,15 @@ namespace OOADPRO.Forms.AdminDisplayForm;
 
 public partial class DashboardForm : Form
 {
+
     public DashboardForm()
     {
         InitializeComponent();
+
+    }
+    private void OnLoadingChanged(bool result)
+    {
+        LoadingChanged?.Invoke(this, result);
     }
     private void TodayVsYesterdaySales()
     {
@@ -27,7 +33,8 @@ public partial class DashboardForm : Form
         Color[] labelColors = { Color.White, Color.White };
         Color[] sliceColors = { Color.Red, Color.Green };
         try
-        {          
+        {
+            OnLoadingChanged(true);
                 using (var command = new SqlCommand("spGetTodayVsYesterdaySales", Program.Connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -65,6 +72,10 @@ public partial class DashboardForm : Form
         {
             MessageBox.Show($"Failed to load today vs yesterday sales: {ex.Message}", "Sales Comparison", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        finally
+        {
+            OnLoadingChanged(false);
+        }
     }
     private void WeeklySale()
     {
@@ -75,9 +86,8 @@ public partial class DashboardForm : Form
 
         try
         {
-
-     
-                using (var command = new SqlCommand("spGetWeeklySales", Program.Connection))
+            OnLoadingChanged(true);
+            using (var command = new SqlCommand("spGetWeeklySales", Program.Connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -123,18 +133,21 @@ public partial class DashboardForm : Form
                         }
                     }
                 }
-            
         }
         catch (Exception ex)
         {
             MessageBox.Show($"Failed to load weekly sales: {ex.Message}", "Weekly Sales", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            OnLoadingChanged(false); 
         }
     }
     private void DisplayTotalSales()
     {
         try
         {
-
+            OnLoadingChanged(true);
             double totalSales = DashboardFunc.GetTotalSalesAllTime(Program.Connection);
             lblTotalSales.Text = $"{totalSales:C}";
         }
@@ -147,7 +160,7 @@ public partial class DashboardForm : Form
     {
         try
         {
-
+            OnLoadingChanged(true);
             double orderQuantityToday = DashboardFunc.GetOrderQuantityToday(Program.Connection);
             lblTodayOrder.Text = $"{orderQuantityToday}";
         }
@@ -160,6 +173,7 @@ public partial class DashboardForm : Form
     {
         try
         {
+            OnLoadingChanged(true);
             int totalUsers = DashboardFunc.GetTotalUsers(Program.Connection);
             labelTotalUsers.Text = $"{totalUsers}";
         }
@@ -175,5 +189,8 @@ public partial class DashboardForm : Form
         DisplayTotalSales();
         DisplayOrderQuantityToday();
         DisplayTotalUsers();
+
     }
+    public event LoadingEventHandler? LoadingChanged;
+
 }

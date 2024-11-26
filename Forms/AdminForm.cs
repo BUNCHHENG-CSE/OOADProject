@@ -20,7 +20,6 @@ public partial class AdminForm : Form
         btnCategory.Click += DoClickCategory;
         btnUser.Click += DoClickUser;
         btnSaleReport.Click += DoClickSaleReport;
-        btnOverview.Click += DoClickOverview;
         btnLogout.Click += (_, _) => { this.Hide(); loginFormReference.Show(); };
     }
 

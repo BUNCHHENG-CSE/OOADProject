@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             panel1 = new Panel();
             btnProducts = new Button();
-            btnOverview = new Button();
             btnLogout = new Button();
             btnSaleReport = new Button();
             btnCategory = new Button();
@@ -39,8 +38,8 @@
             btnStaff = new Button();
             btnDashboard = new Button();
             panel3 = new Panel();
-            pictureBox1 = new PictureBox();
             label1 = new Label();
+            pictureBox1 = new PictureBox();
             panelcontrolMain = new Panel();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -51,7 +50,6 @@
             // 
             panel1.BackColor = Color.FromArgb(38, 57, 91);
             panel1.Controls.Add(btnProducts);
-            panel1.Controls.Add(btnOverview);
             panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(btnSaleReport);
             panel1.Controls.Add(btnCategory);
@@ -79,22 +77,6 @@
             btnProducts.TabIndex = 8;
             btnProducts.Text = "Product";
             btnProducts.UseVisualStyleBackColor = false;
-            // 
-            // btnOverview
-            // 
-            btnOverview.BackColor = Color.FromArgb(38, 57, 91);
-            btnOverview.FlatAppearance.BorderSize = 0;
-            btnOverview.FlatStyle = FlatStyle.Flat;
-            btnOverview.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnOverview.ForeColor = Color.FromArgb(212, 203, 229);
-            btnOverview.Image = (Image)resources.GetObject("btnOverview.Image");
-            btnOverview.ImageAlign = ContentAlignment.MiddleLeft;
-            btnOverview.Location = new Point(32, 609);
-            btnOverview.Name = "btnOverview";
-            btnOverview.Size = new Size(234, 38);
-            btnOverview.TabIndex = 7;
-            btnOverview.Text = "Overview";
-            btnOverview.UseVisualStyleBackColor = false;
             // 
             // btnLogout
             // 
@@ -203,16 +185,6 @@
             panel3.Size = new Size(291, 100);
             panel3.TabIndex = 0;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(13, 23);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(130, 64);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -224,6 +196,16 @@
             label1.Size = new Size(80, 39);
             label1.TabIndex = 0;
             label1.Text = "Café";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(13, 23);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(130, 64);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
             // 
             // panelcontrolMain
             // 
@@ -258,7 +240,6 @@
         private Panel panelcontrolMain;
         private Button btnDashboard;
         private Label label1;
-        private Button btnOverview;
         private Button btnLogout;
         private Button btnSaleReport;
         private Button btnCategory;

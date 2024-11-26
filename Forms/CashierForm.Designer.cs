@@ -36,8 +36,8 @@
             btnCashierProducts = new Button();
             panel3 = new Panel();
             label1 = new Label();
-            panelcontrolMain = new Panel();
             pictureBox1 = new PictureBox();
+            panelcontrolMain = new Panel();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -74,6 +74,7 @@
             btnOrder.FlatStyle = FlatStyle.Flat;
             btnOrder.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnOrder.ForeColor = Color.FromArgb(212, 203, 229);
+            btnOrder.Image = (Image)resources.GetObject("btnOrder.Image");
             btnOrder.ImageAlign = ContentAlignment.MiddleLeft;
             btnOrder.Location = new Point(32, 285);
             btnOrder.Name = "btnOrder";
@@ -105,6 +106,7 @@
             btnCashierProducts.FlatStyle = FlatStyle.Flat;
             btnCashierProducts.Font = new Font("Sitka Small", 14.2499981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCashierProducts.ForeColor = Color.FromArgb(212, 203, 229);
+            btnCashierProducts.Image = (Image)resources.GetObject("btnCashierProducts.Image");
             btnCashierProducts.ImageAlign = ContentAlignment.MiddleLeft;
             btnCashierProducts.Location = new Point(32, 201);
             btnCashierProducts.Name = "btnCashierProducts";
@@ -135,14 +137,6 @@
             label1.TabIndex = 0;
             label1.Text = "Café";
             // 
-            // panelcontrolMain
-            // 
-            panelcontrolMain.BackColor = Color.FromArgb(243, 244, 243);
-            panelcontrolMain.Location = new Point(289, -1);
-            panelcontrolMain.Name = "panelcontrolMain";
-            panelcontrolMain.Size = new Size(1092, 802);
-            panelcontrolMain.TabIndex = 1;
-            // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
@@ -152,6 +146,14 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            // 
+            // panelcontrolMain
+            // 
+            panelcontrolMain.BackColor = Color.FromArgb(243, 244, 243);
+            panelcontrolMain.Location = new Point(289, -1);
+            panelcontrolMain.Name = "panelcontrolMain";
+            panelcontrolMain.Size = new Size(1092, 802);
+            panelcontrolMain.TabIndex = 1;
             // 
             // CashierForm
             // 

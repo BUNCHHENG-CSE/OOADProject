@@ -15,7 +15,8 @@ public partial class OrderDetailAddForm : Form
 
         InitializeComponent();
         this.OrderID = orderId;
-
+        this.Controls.Add(txtProductName);
+        txtProductName.KeyDown += TxtSearch_KeyDown;
         if (OrderID != null)
         {
             LoadOrderDetails(Program.Connection, (int)OrderID);
@@ -27,62 +28,125 @@ public partial class OrderDetailAddForm : Form
         buttonpay.Click += btnSave_Click;
 
     }
+    private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Enter)
+        {
+            string searchText = txtProductName.Text.Trim();
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                SearchProducts(searchText);
+            }
+            else
+            {
+                LoadProducts();
+            }
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+        }
+    }
+    private void SearchProducts(string searchText)
+    {
+        try
+        {
+            flowLayoutPanel1.Controls.Clear();
+            var result = IDataRecordExtension.SearchProducts(Program.Connection, searchText);
+
+            foreach (var product in result)
+            {
+                Panel productPanel = CreateProductPanel(product);
+                flowLayoutPanel1.Controls.Add(productPanel);
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Error Searching Products", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
     private void LoadProducts()
     {
-        var products = ProductFunc.GetAllProducts(Program.Connection);
-        foreach (var product in products)
+        try
         {
+            flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel1.Padding = new Padding(20, 20, 20, 20);
+            var result = ProductFunc.GetAllProducts(Program.Connection);
 
-            Panel productPanel = new Panel
+            foreach (var product in result)
             {
-                Width = 200,
-                Height = 250,
-                BorderStyle = BorderStyle.FixedSingle,
-                Margin = new Padding(5)
-            };
-
-            PictureBox pictureBox = new PictureBox
-            {
-                Width = 180,
-                Height = 180,
-                SizeMode = PictureBoxSizeMode.Zoom,
-                Image = product.ProductImage != null ? ConvertImageClass.ConvertByteArrayToImage(product.ProductImage) : null,
-                Tag = product
-            };
-            pictureBox.Click += (s, e) =>
-            {
-                AddProductToGrid((Products)pictureBox.Tag);
-            };
-
-            Label productNameLabel = new Label
-            {
-                Text = product.ProductName,
-                AutoSize = true,
-                Location = new Point(5, 190)
-            };
-            Label productPriceLabel = new Label
-            {
-                Text = $"${product.ProductsPrice}",
-                AutoSize = true,
-                Location = new Point(5, 210)
-            };
-
-            productPanel.Controls.Add(pictureBox);
-            productPanel.Controls.Add(productNameLabel);
-            productPanel.Controls.Add(productPriceLabel);
-            flowLayoutPanel1.Controls.Add(productPanel);
+                Panel productPanel = CreateProductPanel(product);
+                flowLayoutPanel1.Controls.Add(productPanel);
+                productPanel.Margin = new Padding(20, 20, 20, 20);
+            }
         }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Error Loading Products", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+    private Panel CreateProductPanel(Products product)
+    {
+        Panel productPanel = new Panel
+        {
+            Width = 200,
+            Height = 250,
+            BorderStyle = BorderStyle.None,
+            Margin = new Padding(0)
+        };
+        productPanel.Margin = new Padding(20, 20, 20, 20);
+        PictureBox pictureBox = new PictureBox
+        {
+            Width = 180,
+            Height = 180,
+            SizeMode = PictureBoxSizeMode.StretchImage,
+            Image = product.ProductImage != null ? ConvertImageClass.ConvertByteArrayToImage(product.ProductImage) : null,
+            Tag = product
+        };
+        pictureBox.Click += (s, e) =>
+        {
+            AddProductToGrid((Products)pictureBox.Tag);
+        };
+
+        Label productNameLabel = new Label
+        {
+            Text = product.ProductName,
+            AutoSize = true,
+            Location = new Point(5, 190)
+        };
+        Label productPriceLabel = new Label
+        {
+            Text = $"${product.ProductsPrice}",
+            AutoSize = true,
+            Location = new Point(5, 210)
+        };
+
+        productPanel.Controls.Add(pictureBox);
+        productPanel.Controls.Add(productNameLabel);
+        productPanel.Controls.Add(productPriceLabel);
+        return productPanel;
     }
 
     private void AddProductToGrid(Products product)
     {
+        if (product.ProductsStock <= 0)
+        {
+            MessageBox.Show($"The product '{product.ProductName}' is out of stock.", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return; 
+        }
         foreach (DataGridViewRow row in dataGridView1.Rows)
         {
             if ((int)row.Cells["ProductsID"].Value == product.ProductsID)
             {
-                row.Cells["Qty"].Value = Convert.ToInt32(row.Cells["Qty"].Value) + 1;
-                CalculateRowAmount(row);
-                UpdateTotalAmount();
+                int currentQty = Convert.ToInt32(row.Cells["Qty"].Value);
+                if (currentQty < product.ProductsStock) 
+                {
+                    row.Cells["Qty"].Value = currentQty + 1;
+                    CalculateRowAmount(row);
+                    UpdateTotalAmount();
+                }
+                else
+                {
+                    MessageBox.Show($"Not enough stock for '{product.ProductName}'.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
                 return;
             }
         }
@@ -98,6 +162,7 @@ public partial class OrderDetailAddForm : Form
         CalculateRowAmount(newRow);
         UpdateTotalAmount();
     }
+   
 
     private void CalculateRowAmount(DataGridViewRow row)
     {
@@ -132,8 +197,6 @@ public partial class OrderDetailAddForm : Form
                 float unitPrice = reader.GetFloat(reader.GetOrdinal("UnitPrice"));
                 string productName = reader.GetString(reader.GetOrdinal("ProductName"));
                 int productsId = reader.GetInt32(reader.GetOrdinal("ProductsID"));
-
-                // Add row to the DataGridView
                 int rowIndex = dataGridView1.Rows.Add();
                 DataGridViewRow row = dataGridView1.Rows[rowIndex];
 

@@ -20,14 +20,14 @@ public partial class CategoryAddForm : Form
     {
         if (txtCategoryName.Text == "" || txtCategoryName.Text.Trim().Length > 100)
         {
-            MessageBox.Show("Staff Name is required or name too long", "Creating",
+            MessageBox.Show("Category is required or name too long", "Creating",
             MessageBoxButtons.OK, MessageBoxIcon.Stop);
             return;
         }
 
         if (rtxtCategoryDescription.Text == "" || rtxtCategoryDescription.Text.Trim().Length > 1000)
         {
-            MessageBox.Show("Staff Address is required or address too long", "Creating",
+            MessageBox.Show("Category Descriptionis required or Descriptionis too long", "Creating",
             MessageBoxButtons.OK, MessageBoxIcon.Stop);
             return;
         }
@@ -49,15 +49,15 @@ public partial class CategoryAddForm : Form
     {
         if (txtCategoryName.Text == "" || txtCategoryName.Text.Trim().Length > 100)
         {
-            MessageBox.Show("Staff Name is required or name too long", "Creating",
+            MessageBox.Show("Category is required or name too long", "Creating",
             MessageBoxButtons.OK, MessageBoxIcon.Stop);
             return;
         }
 
         if (rtxtCategoryDescription.Text == "" || rtxtCategoryDescription.Text.Trim().Length > 1000)
         {
-            MessageBox.Show("Staff Address is required or address too long", "Creating",
-            MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            MessageBox.Show("Category Descriptionis required or Descriptionis too long", "Creating",
+               MessageBoxButtons.OK, MessageBoxIcon.Stop);
             return;
         }
 

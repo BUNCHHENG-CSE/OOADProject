@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtProductName = new TextBox();
+            txtSearch = new TextBox();
             label1 = new Label();
             flowLayoutPanelProducts = new FlowLayoutPanel();
             SuspendLayout();
             // 
-            // txtProductName
+            // txtSearch
             // 
-            txtProductName.Font = new Font("Sitka Small", 12F, FontStyle.Bold);
-            txtProductName.Location = new Point(136, 21);
-            txtProductName.Name = "txtProductName";
-            txtProductName.Size = new Size(243, 28);
-            txtProductName.TabIndex = 70;
+            txtSearch.Font = new Font("Sitka Small", 10F);
+            txtSearch.Location = new Point(136, 21);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Search products...";
+            txtSearch.Size = new Size(243, 24);
+            txtSearch.TabIndex = 70;
             // 
             // label1
             // 
@@ -65,7 +66,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1092, 802);
             Controls.Add(flowLayoutPanelProducts);
-            Controls.Add(txtProductName);
+            Controls.Add(txtSearch);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "CashierProductForm";
@@ -76,7 +77,7 @@
 
         #endregion
 
-        private TextBox txtProductName;
+        private TextBox txtSearch;
         private Label label1;
         private FlowLayoutPanel flowLayoutPanelProducts;
     }

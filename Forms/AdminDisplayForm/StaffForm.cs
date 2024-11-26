@@ -40,7 +40,7 @@ public partial class StaffForm : Form
     {
         try
         {
-     
+            flowLayoutPanelStaff.Padding = new Padding(20, 20, 20, 20);
             var result = StaffFunc.GetAllStaff(Program.Connection);
             foreach (var staff in result)
             {
@@ -51,7 +51,7 @@ public partial class StaffForm : Form
                     BorderStyle = BorderStyle.FixedSingle,
                     Padding = new Padding(20)
                 };
-
+                productPanel.Margin = new Padding(20, 20, 20, 20);
                 PictureBox pictureBox = new PictureBox
                 {
                     Width = 180,
@@ -153,7 +153,7 @@ public partial class StaffForm : Form
             }
             else
             {
-                MessageBox.Show("Sava man.");
+              
             }
         }
         catch (Exception ex)

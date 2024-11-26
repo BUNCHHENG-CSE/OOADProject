@@ -48,7 +48,7 @@ public partial class ProductsForm : Form
     {
         try
         {
-
+            flowLayoutPanelProducts.Padding = new Padding(20, 20, 20, 20);
             var result = ProductFunc.GetAllProducts(Program.Connection);
 
             foreach (var product in result)
@@ -61,7 +61,7 @@ public partial class ProductsForm : Form
                     BorderStyle = BorderStyle.FixedSingle,
                     Padding = new Padding(20)
                 };
-
+                productPanel.Margin = new Padding(20, 20, 20, 20);
                 PictureBox pictureBox = new PictureBox
                 {
                     Width = 180,
@@ -77,7 +77,7 @@ public partial class ProductsForm : Form
                     Size = new Size(180, 30),
                     TextAlign = ContentAlignment.MiddleLeft,
                     AutoSize = false,
-                    Location = new Point(5, 210)
+                    Location = new Point(5, 220)
                 };
 
                 Label productStockLabel = new Label
@@ -88,7 +88,7 @@ public partial class ProductsForm : Form
                     TextAlign = ContentAlignment.MiddleLeft,
                     AutoSize = false,
                     
-                    Location = new Point(5, 232)
+                    Location = new Point(5, 240)
                 };
                 Label categoryNameLabel = new Label
                 {
@@ -174,7 +174,7 @@ public partial class ProductsForm : Form
             }
             else
             {
-                MessageBox.Show("Sava man.");
+                
             }
         }
         catch (Exception ex)

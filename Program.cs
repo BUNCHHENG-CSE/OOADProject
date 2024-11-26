@@ -1,5 +1,7 @@
 using Microsoft.Data.SqlClient;
 using OOADPRO.Forms;
+using OOADPRO.Forms.AdminDisplayForm;
+using OOADPRO.Forms.CashierDisplayForm;
 using OOADPRO.Models;
 using OOADPRO.Utilities;
 
@@ -16,7 +18,7 @@ internal static class Program
         // To customize application configuration such as set high DPI settings or default font,
         // see https://aka.ms/applicationconfiguration.
 
-        //ConnectToDB();
+        ConnectToDB();
 
         ApplicationConfiguration.Initialize();
         Application.Run(new LoadingForm());

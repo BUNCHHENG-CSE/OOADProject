@@ -49,7 +49,7 @@
             flowLayoutPanelProducts.AutoScroll = true;
             flowLayoutPanelProducts.Location = new Point(36, 103);
             flowLayoutPanelProducts.Name = "flowLayoutPanelProducts";
-            flowLayoutPanelProducts.Size = new Size(1044, 551);
+            flowLayoutPanelProducts.Size = new Size(1044, 587);
             flowLayoutPanelProducts.TabIndex = 3;
             // 
             // ProductsForm
